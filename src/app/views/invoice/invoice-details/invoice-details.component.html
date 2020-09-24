@@ -1,0 +1,398 @@
+<!-- Edit Invoice -->
+<mat-card *ngIf="showEditOption">
+  <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()">
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button
+        mat-button
+        type="button"
+        class="ml-1 mr-1"
+        *ngIf="!isLoading"
+        (click)="showEditOption = !showEditOption"
+      >
+        Cancel
+      </button>
+
+      <button-loading
+        [loadingText]="'Saving...'"
+        color="primary"
+        [type]="'submit'"
+        [loading]="isLoading"
+        >Save</button-loading
+      >
+    </div>
+
+    <!-- order details -->
+    <div fxLayout="row wrap" fxLayoutAlign="space-between" class="order-info">
+      <div fxLayout="column" fxFlex="33.33%">
+        <h4><strong>Order Info</strong></h4>
+        <p>Order Number</p>
+        <mat-form-field>
+          <input
+            formControlName="orderNo"
+            matInput
+            required
+            placeholder="Order No."
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxFlex="33.33%" fxLayoutGap="20px">
+        <div>
+          <mat-radio-group
+            formControlName="status"
+            fxLayout="column"
+            fxLayoutAlign="end end"
+            fxLayoutGap="5px"
+            required
+          >
+            <mat-radio-button labelPosition="before" value="pending"
+              >Pending</mat-radio-button
+            >
+            <mat-radio-button labelPosition="before" value="processing"
+              >Processing</mat-radio-button
+            >
+            <mat-radio-button labelPosition="before" value="delivered"
+              >Delivered</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+
+        <div>
+          <p class="align-right">Order Date</p>
+          <mat-form-field fxFill>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              required
+              placeholder="Choose a date"
+              formControlName="date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <!-- end of order details -->
+
+    <mat-divider></mat-divider>
+
+    <!-- billing details -->
+    <div
+      class="billing-address"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-between center"
+    >
+      <!-- seller -->
+      <div
+        formGroupName="seller"
+        fxLayout="column"
+        fxLayoutGap="20px"
+        fxFlex="33.33%"
+      >
+        <h4><strong>Bill From</strong></h4>
+        <mat-form-field>
+          <input
+            formControlName="name"
+            matInput
+            required
+            placeholder="Name of Seller"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+            formControlName="address"
+            matInput
+            required
+            matTextareaAutosize
+            placeholder="Address of Seller"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- buyer -->
+      <div
+        formGroupName="buyer"
+        fxLayout="column"
+        fxLayoutAlign="center end"
+        fxLayoutGap="20px"
+        fxFlex="33.33%"
+      >
+        <h4><strong>Bill To</strong></h4>
+        <mat-form-field fxFill>
+          <input
+            formControlName="name"
+            matInput
+            required
+            placeholder="Name of Buyer"
+          />
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <textarea
+            formControlName="address"
+            matInput
+            required
+            matTextareaAutosize
+            placeholder="Address of Buyer"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end of billing details -->
+
+    <!-- item form table -->
+    <div formArrayName="item" class="item-form-list" fxLayout="column">
+      <div
+        class="item-form-list-head-line"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <p>#</p>
+        <p>Item Name</p>
+        <p>Unit Price</p>
+        <p>Unit</p>
+        <p>Cost</p>
+        <p></p>
+      </div>
+
+      <div
+        *ngFor="let item of invoiceItemFormArray.controls; let i = index"
+        [formGroup]="item"
+        class="form-rows"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <span>{{ i + 1 }}</span>
+        <mat-form-field>
+          <input
+            formControlName="name"
+            matInput
+            placeholder="Item Name"
+            #name
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="number"
+            formControlName="price"
+            matInput
+            placeholder="Item Price"
+            #price
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="number"
+            formControlName="unit"
+            matInput
+            placeholder="Item Unit"
+            #unit
+            required
+          />
+        </mat-form-field>
+        <span>{{ unit.value * price.value }}</span>
+        <button mat-button type="button" (click)="deleteItemFromInvoice(i)">
+          Delete
+        </button>
+      </div>
+      <!-- end of item form table -->
+
+      <!-- add item button -->
+      <div class="add-button">
+        <button mat-button type="button" (click)="addNewItem(emptyFormObject)">
+          Add Item
+        </button>
+      </div>
+    </div>
+
+    <!-- total cost of item form -->
+    <div
+      class="form-total-cost"
+      fxLayout="column"
+      fxLayoutAlign="center end"
+      fxLayoutGap="10px"
+    >
+      <!-- sub total -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span>Sub Total:</span>
+        <span>{{ currency }}{{ cost }}</span>
+      </div>
+
+      <!-- vat -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span>Vat(%):</span>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+          <mat-form-field>
+            <input
+              type="number"
+              formControlName="vat"
+              matInput
+              placeholder="vat"
+              required
+            />
+          </mat-form-field>
+          <span>{{ currency }}{{ vat }}</span>
+        </div>
+      </div>
+
+      <!-- grand total -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h5><strong>Grand Total: </strong></h5>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+          <mat-form-field>
+            <input
+              formControlName="currency"
+              matInput
+              placeholder="currency"
+              required
+            />
+          </mat-form-field>
+          <h5>
+            <strong>{{ currency }}{{ cost + vat }}</strong>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <!-- end of total cost -->
+  </form>
+</mat-card>
+<!-- end of edit invoice -->
+<!-- =================================================== -->
+
+<!-- =================================================== -->
+<!-- invoice details -->
+<mat-card *ngIf="!showEditOption" class="invoice-details">
+  <div fxLayout="row">
+    <button mat-icon-button routerLink="/invoice/list">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span fxFlex></span>
+
+    <button
+      mat-flat-button
+      color="primary"
+      class="ml-1 mr-1"
+      (click)="showEditOption = !showEditOption"
+    >
+      Edit Invoice
+    </button>
+    <button mat-flat-button color="accent" (click)="print()">
+      Print Invoice
+    </button>
+  </div>
+  <div id="print-area">
+    <!-- order details -->
+    <div class="order-info" fxLayout="row" fxLayoutAlign="space-between">
+      <div>
+        <h4><strong>Order Info</strong></h4>
+        <p>Order Number</p>
+        <p># {{ invoice?.orderNo }}</p>
+      </div>
+
+      <div>
+        <p><strong>Order status: </strong> {{ invoice?.status }}</p>
+        <p><strong>Order date: </strong> {{ invoice?.date | date }}</p>
+      </div>
+    </div>
+    <!-- end of order details -->
+
+    <mat-divider></mat-divider>
+
+    <!-- billing details -->
+    <div class="billing-address" fxLayout="row" fxLayoutAlign="space-between">
+      <!-- seller -->
+      <div>
+        <h4><strong>Bill From</strong></h4>
+        <p>{{ invoice?.seller?.name }}</p>
+        <p>{{ invoice?.seller?.address }}</p>
+      </div>
+
+      <!-- buyer -->
+      <div>
+        <h4><strong>Bill To</strong></h4>
+        <p>{{ invoice?.buyer?.name }}</p>
+        <p>{{ invoice?.buyer?.address }}</p>
+      </div>
+    </div>
+    <!-- end of billing details -->
+
+    <!-- item table -->
+    <div class="item-table">
+      <mat-table [dataSource]="invoice.item" class="mat-elevation-z4" #table>
+        <!-- Number Column -->
+        <ng-container matColumnDef="{{ itemTableColumn[0] }}">
+          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Item Name Column -->
+        <ng-container matColumnDef="{{ itemTableColumn[1] }}">
+          <mat-header-cell *matHeaderCellDef>
+            {{ itemTableColumn[1] }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
+
+        <!-- Unit price Column -->
+        <ng-container matColumnDef="{{ itemTableColumn[2] }}">
+          <mat-header-cell *matHeaderCellDef>
+            {{ itemTableColumn[2] }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+        </ng-container>
+
+        <!-- Unit Column -->
+        <ng-container matColumnDef="{{ itemTableColumn[3] }}">
+          <mat-header-cell *matHeaderCellDef>
+            {{ itemTableColumn[3] }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.unit }} </mat-cell>
+        </ng-container>
+
+        <!-- Cost column -->
+        <ng-container matColumnDef="{{ itemTableColumn[4] }}">
+          <mat-header-cell *matHeaderCellDef>
+            {{ itemTableColumn[4] }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.unit * element.price }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="itemTableColumn"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: itemTableColumn"></mat-row>
+      </mat-table>
+    </div>
+    <!-- end of table -->
+
+    <!-- total cost -->
+    <div
+      class="total-cost"
+      fxLayout="row"
+      fxLayoutAlign="end"
+      fxLayoutGap="50px"
+    >
+      <div>
+        <p>Sub Total:</p>
+        <p>Vat:</p>
+        <h5><strong>Grand Total: </strong></h5>
+      </div>
+
+      <div>
+        <p>{{ currency }}{{ cost }}</p>
+        <p>{{ currency }}{{ vat.toFixed(2) }}</p>
+        <h5>
+          <strong>{{ currency }}{{ (cost + vat).toFixed(2) }}</strong>
+        </h5>
+      </div>
+    </div>
+    <!-- end of total cost -->
+  </div>
+</mat-card>

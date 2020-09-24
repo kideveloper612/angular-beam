@@ -1,0 +1,38 @@
+<div class="support-page-wrapper">
+    <div class="container">
+        <div class="header-search mt-36">
+            <h2 class="fw-700 text-38 text-center">Request a Support </h2>
+        </div>
+        <div class="mt-40">
+            <mat-card fxFlex="100" color="primary">
+                <form [formGroup]="supportForm" class="support-form p-20" fxLayout="column" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Your name</mat-label>
+                        <input matInput formControlName="name" type="name" 
+                            placeholder="Your name" />
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" type="email" name="email" placeholder="Email" />
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>What are your enquiry about. Tell us in few words</mat-label>
+                        <input matInput formControlName="name" type="name"
+                            placeholder="Your name" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Textarea</mat-label>
+                        <textarea matInput></textarea>
+                      </mat-form-field>
+                    <div fxLayout="row wrap" fxLayoutAlign="start center" style="margin-top: 20px;"
+                        fxLayoutAlign="space-between center">
+                        <button mat-flat-button color="primary">Submit</button>
+
+                    </div>
+
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

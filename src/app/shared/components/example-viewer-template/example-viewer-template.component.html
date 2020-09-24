@@ -1,0 +1,5 @@
+<div class="m-333">
+  <div *ngFor="let example of examples" class="mb-24">
+    <marco-example-viewer [exampleId]="example" [path]="componentDirPath" [data]="exampleComponents[example]"></marco-example-viewer>
+  </div>
+</div>

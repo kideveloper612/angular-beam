@@ -1,0 +1,88 @@
+<div class="page-wrap page-login height-100 black">
+  <div class="signIn-wrapper">
+    <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+    <mat-card>
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16">
+          <img width="60px" src="assets/images/marco.png" alt="">
+          <H3 class="fw-500">Create Account</H3>
+          <p class="text-muted m-0">Fill the below form to create a new account.</p>
+        </div>
+
+        
+        <form
+        [formGroup]="signupForm"
+        fxLayout="column"
+        fxLayoutAlign="start"
+        (ngSubmit)="onSubmit()"
+      >
+   
+        <div >
+          <mat-form-field  class="full-width">
+            <input
+              formControlName="firstName"
+              matInput
+              type="text"
+              name="first_name"
+              placeholder="Name"
+            />
+          </mat-form-field>
+        
+        </div>
+  
+  
+        <mat-form-field class="full-width" >
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" >
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            name="password"
+            placeholder="********"
+          />
+        </mat-form-field>
+  
+        <mat-form-field class="full-width" >
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="confirm_password"
+            placeholder="********"
+            formControlName="confirmPassword"
+          />
+          <mat-error>
+            Password didn't match
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-checkbox class="mb-24" formControlName="agreed"
+          >I agree with terms and condtions</mat-checkbox
+        >
+        <button  mat-raised-button color="primary">Signup</button>
+  
+  
+        <div class="text-center mt-16">
+            <a
+              [routerLink]="'/sessions/signin'"
+              class="mat-color-primary text-center full-width"
+              >Sign in with an existing account</a
+            >
+          </div>
+      </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

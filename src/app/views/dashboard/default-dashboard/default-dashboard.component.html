@@ -1,0 +1,327 @@
+<div class="crypto-value">
+  <div class="profile-info"  
+  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+    <mat-card class="mat-bg-primary">
+      <div class="card-body-content" [style.height]="'126px'">
+        <div fxLayout="row" fxLayoutAlign="space-between start" class="">
+          <div>
+            <h5 class=" fw-500">Achivement</h5>
+            <h2 class="fw-600 text-30 mb-16">Cheers Marco!</h2>
+            <p>You have 3 more projects to finish and already completed 69% from your motnhly level. Keep going to your goal!</p>
+          </div> 
+          <div  class="pl-20">
+            <img src="../../../../assets/images/illustrations/skatch.svg" alt="" style="height: 200px; width: 400px; margin-top: -16px;">
+          </div>
+          
+         
+        </div>
+      </div>
+    </mat-card>
+</div>
+  <div class="customer-info"    
+  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+    <mat-card >
+      <div class="card-body-content" [style.height]="'126px'">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div>
+            <h5 class=" fw-500">NEW CUSTOMERS </h5>
+        
+            <h2 class="fw-600 text-30">3,897</h2>
+            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
+          </div> 
+        
+            <div id="chart">
+              <apx-chart
+                [series]="customerOptions.series"
+                [chart]="customerOptions.chart"
+                [xaxis]="customerOptions.xaxis"
+                [dataLabels]="customerOptions.dataLabels"
+                [grid]="customerOptions.grid"
+                [tooltip]="customerOptions.tooltip"
+                [stroke]="customerOptions.stroke"
+              ></apx-chart>
+            </div>
+         
+        </div>
+      </div>
+    </mat-card>
+</div>
+
+<div class="customer-info"  
+  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+    <mat-card >
+      <div class="card-body-content" [style.height]="'126px'">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div>
+            <h5 class=" fw-500">GROWTH </h5>
+            <h2 class="fw-600 text-30">66.6%</h2>
+            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
+          </div> 
+        
+            <div id="chart">
+              <apx-chart
+                [series]="customerOptions.series"
+                [chart]="customerOptions.chart"
+                [xaxis]="customerOptions.xaxis"
+                [dataLabels]="customerOptions.dataLabels"
+                [grid]="customerOptions.grid"
+                [tooltip]="customerOptions.tooltip"
+                [stroke]="customerOptions.stroke"
+              ></apx-chart>
+            </div>
+         
+        </div>
+      </div>
+    </mat-card>
+</div>
+
+</div>
+
+
+
+
+ 
+  <div class="user-wrap"
+  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+  
+
+  <div class="user-analytics">
+    <mat-card fxFlex="100" >
+      <div fxLayout.gt-sm="row" fxLayout="column">
+        <div fxFlex="40" fxLayout="column">
+          <h2 class="fw-600">Dashboard</h2>
+          <div fxLayout.gt-sm="row" class="mt-28">
+            <div fxLayout="column" fxFlex="50">
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">3453</span>
+                <p class="text-muted">Number of Purchases</p>
+              </div>
+              <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">€22.567.768.11</span>
+                <p class="text-muted">Total Sales Value</p>
+              </div>
+            </div>
+            <div fxLayout="column" fxFlex="50">
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">3453</span>
+                <p class="text-muted">Avarage Sales</p>
+              </div>
+              <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">€2.324.567</span>
+                <p class="text-muted">Financial Fee</p>
+              </div>
+            </div>
+          </div>
+         
+          <div fxLayout="column" class="mt-auto mb-24">
+            <a class="w-100"
+            mat-raised-button
+            color="primary"
+            href=""
+            >Check more details</a>
+          </div>
+        </div>
+       
+          <div id="chart" fxFlex="60">
+            <apx-chart
+              [series]="chartOptionsThree.series"
+              [chart]="chartOptionsThree.chart"
+              [xaxis]="chartOptionsThree.xaxis"
+              [stroke]="chartOptionsThree.stroke"
+              [tooltip]="chartOptionsThree.tooltip"
+              [dataLabels]="chartOptionsThree.dataLabels"
+            ></apx-chart>
+          </div>
+      </div>
+    </mat-card>
+  </div>
+
+ 
+
+
+</div>
+
+
+
+
+
+
+<!-- Fullwidth chart -->
+<div class="year-info-wrap" [@animate]="{value:'*',params:{y:'25px',delay:'300ms'}}">
+
+  <div class="yearly-info" >
+    
+    <mat-card fxLayout="row wrap" class="default">
+      <div class="p-1" fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="100" class="text-center">
+        <div class="p-1">
+          <div  class="rounded-circle w-12 h-12 flex items-center justify-center text-primary red-100 m-auto flex justify-center align-center">
+            <mat-icon svgIcon="group" class="btn-icon" color="primary" ></mat-icon>
+          </div>
+         <h1 class="fw-900 mt-4 mb-2 mt-1 text-36">55.4k</h1>
+         <p class="font-medium text-secondary m-0 text-muted">Total Visitors</p>
+          <span fxLayoutAlign="center center" class="text-cyan-600 mt-16" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
+        </div>
+      </div>
+      
+    </mat-card>
+  </div>
+  <div class="yearly-info" >
+    
+    <mat-card fxLayout="row wrap" class="default">
+      <div class="p-1" fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="100" class="text-center">
+        <div class="p-1">
+          <div  class="rounded-circle w-12 h-12 flex items-center justify-center text-primary red-100 m-auto flex justify-center align-center">
+            <mat-icon svgIcon="visibility" class="btn-icon icon-orange" ></mat-icon>
+          </div>
+         <h1 class="fw-900 mt-4 mb-2 mt-1 text-36">55.4k</h1>
+         <p class="font-medium text-secondary m-0 text-muted">Total Product Views </p>
+          <span fxLayoutAlign="center center" class="text-red-500 mt-16" fxLayout="row"><mat-icon class="mr-4">trending_down</mat-icon>20%</span>
+        </div>
+      </div>
+      
+    </mat-card>
+  </div>
+  <div class="yearly-info" >
+    
+    <mat-card fxLayout="row wrap" class="default">
+      <div class="p-1" fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="100" class="text-center">
+        <div class="p-1">
+          <div  class="rounded-circle w-12 h-12 flex items-center justify-center text-primary red-100 m-auto flex justify-center align-center">
+            <mat-icon svgIcon="shopping_basket" class="btn-icon icon-green" ></mat-icon>
+          </div>
+         <h1 class="fw-900 mt-4 mb-2 mt-1 text-36">55.4k</h1>
+        <p class="font-medium text-secondary m-0 text-muted">Revenue Per Visitor </p>
+          <span fxLayoutAlign="center center" class="text-cyan-600 text-center mt-16" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
+        </div>
+      </div>
+      
+    </mat-card>
+  </div>
+</div>
+
+<!-- Table row -->
+
+<div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'800ms',scale:'.9'}}">
+  <div fxFlex="100"  fxFlex.gt-sm="66.6" fxFlex.sm="66.6">
+    <mat-card class="p-0 ">
+      <div class="card-title">
+        <h4 class="fw-500">Dispatched Orders</h4>
+      </div>
+      
+      <!-- <ngx-datatable class="material ml-0 mr-0" [rows]="activeTrades" [columnMode]="'flex'" [headerHeight]="50"
+        [footerHeight]="0" [rowHeight]="'auto'">
+
+        <ngx-datatable-column name="Order No" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+              {{ row?.orderNo }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="PROJECT NAME" [flexGrow]="1">
+          <ng-template fxLayoutAlign="start center" let-row="row" ngx-datatable-cell-template>
+            {{row?.projectName}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="ASSIGN" [flexGrow]="1">
+          <ng-template fxLayoutAlign="start center" let-row="row" ngx-datatable-cell-template>
+            {{row?.operator}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Location" [flexGrow]="1">
+          <ng-template class="text-cyan-600 pt-4" let-row="row" ngx-datatable-cell-template>
+           <mat-chip [color]="row?.color" selected>{{row?.status}}</mat-chip>  
+          </ng-template>
+        </ngx-datatable-column>
+        
+        <ngx-datatable-column name="Start Date" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.startDate}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="End Date" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.endDate}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable> -->
+
+
+<div class="table-wrap fix">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100 border-shadow-0">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderNo}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Assign </th>
+      <td mat-cell *matCellDef="let element"> {{element.operator}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let element"><mat-chip [color]="element.color" selected>{{element.status}}</mat-chip> 
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+      <td mat-cell *matCellDef="let element">{{element.startDate}}
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
+      <td mat-cell *matCellDef="let element">{{element.endDate}}
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+      
+    </mat-card>
+  </div>
+  <div fxFlex="100"  fxFlex.gt-sm="33.4" fxFlex.sm="33.4">
+    <mat-card class="p-0 ">
+      <div class="card-title">
+        <h4 class="fw-500">Recent Users</h4>
+      </div>
+      <div class="card-body">
+        <mat-nav-list class="inbox-nav-list" role="list">
+          <mat-list-item
+          *ngFor="let contact of contacts"
+           class="border-bottom">
+            <a 
+            mat-list-avatar 
+            [ngClass]="{online: contact.status === 'online'}"
+            class="toolbar-avatar">
+              <img [src]="contact.avatar" alt="">
+              
+              <span class="status-dot"></span>
+            </a>
+              <h4 class="fw-500" matLine>{{contact.name}}</h4>
+               <p matLine class="mr-1 text-muted">{{contact.message}}</p>
+            
+           <div class="talk-time"><small class="text-muted">{{contact.time}}</small></div> 
+          </mat-list-item>
+          
+        </mat-nav-list>
+      </div>
+    </mat-card>
+  </div>
+</div>

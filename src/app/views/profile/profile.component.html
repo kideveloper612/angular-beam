@@ -1,0 +1,240 @@
+<div class="profile-wrapper">
+<div class="profile-header h-18">
+  
+  <div class="container">
+  <div class="propic text-center" fxHide fxShow.gt-sm >
+    <img class="w-6 h-6" src="assets/images/sq-face-220.jpg" alt="">
+    <h2 class="fw-700 mt-8">Pero Burgija</h2>
+  </div>
+  
+  </div>
+</div>
+<div class="line-wrapper">
+  <div class="container">
+    <div class="line" fxLayout="row wrap" fxLayoutAlign="end end">
+      <button mat-flat-button ><mat-icon class="mr-1 mat-color-primary">phone</mat-icon>Edit Profile</button>
+      <button mat-flat-button ><mat-icon class="mr-1 mat-color-primary ml-8 mr-8">visibility</mat-icon></button> 
+      <button mat-flat-button ><mat-icon class="mr-1 mat-color-primary">create</mat-icon></button> 
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<div class="container main-profile-wrapper">
+    <div class="tabs">
+      <mat-tab-group>
+        <mat-tab label="HOME"> 
+          <div class="main" fxLayout="row wrap">
+            <div class="column" fxFlex="100" fxFlex.gt-sm="66.67" fxFlex.sm="50">
+              <div>
+                <!-- Contact Information -->
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">About Me</h4>
+                  </div>
+                  <mat-card-content>
+                    <div>
+                      <p>I’m a friendly kitchen assistant who suffers from a severe phobia of buttons.
+        
+                        Brother of Elijah Jay Watkins, who has phobia of buttons and trust issues.</p>
+                    </div>
+                    <mat-list>
+                      <div class="user-info" fxLayout="row wrap" fxLayout.xs="column">
+                        <div >
+                          <mat-list-item >
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                              <mat-icon class="mr-1 mat-color-primary">phone</mat-icon>
+                            </div> 00389 (70)258 778
+                          </mat-list-item>
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                              <mat-icon class="mr-1 mat-color-primary">add_location</mat-icon>
+                            </div> Mk 1000, Skopje
+                          </mat-list-item>
+                        </div>
+                         
+                        <div >
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                            <mat-icon class="mr-1 mat-color-primary">public</mat-icon></div> www.yourwebsite.com
+                          </mat-list-item>
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                            <mat-icon class="mr-1 mat-color-primary">email</mat-icon></div> admin@admin.com
+                          </mat-list-item>
+                        </div>
+                         
+        
+                      </div>
+        
+        
+                    </mat-list>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div>
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">Gallery</h4>
+                  </div>
+                  <mat-card-content>
+                    <div class="gallery-wrapper">
+                      <img class="img-border-radius" src="assets/images/faces/2.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/3.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/5.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/4.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/9.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/10.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/12.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/13.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/15.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/16.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/17.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/2.jpg" alt="">
+                    </div>
+                  </mat-card-content>
+                  </mat-card>
+              </div>
+            </div>
+            <div class="column" fxFlex="100" fxFlex.gt-sm="33.33" fxFlex.sm="50">
+              <div >
+        
+                <!-- Contact Information -->
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">Friends sugestions</h4>
+                  </div>
+                  <mat-card-content class="pt-0">
+                    <mat-list>
+                      <mat-list-item *ngFor="let profile of countryTrafficStats; let i = index">
+                        <div class="w-100" fxLayout="row">
+                        
+                          <img class="avatar" [src]="profile.img" alt="">
+                          <div class="ml-8" fxLayout="column"  fxFlex="1 1 auto">
+                            <h5 class="fw-500 m-0 text-15">{{profile.name}}</h5>
+                            <p class="text-muted text-14 mb-0">{{profile.mutualFriends}}</p>
+                          </div>
+                        <div (click)="addFriendOption()"> <mat-icon *ngIf="profile.picked == true" class=" mat-color-primary">person_add</mat-icon><mat-icon *ngIf="profile.picked == false" class=" mat-color-primary">done</mat-icon></div>
+                      </div>
+                      </mat-list-item>
+                    </mat-list>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="ABOUT"> 
+          <div class="main" fxLayout="row wrap">
+            <div class="column" fxFlex="100" fxFlex.gt-sm="66.67" fxFlex.sm="50">
+              <div>
+                <!-- Contact Information -->
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">About Me</h4>
+                  </div>
+                  <mat-card-content>
+                    <div>
+                      <p>I’m a friendly kitchen assistant who suffers from a severe phobia of buttons.
+        
+                        Brother of Elijah Jay Watkins, who has phobia of buttons and trust issues.</p>
+                    </div>
+                    <mat-list>
+                      <div class="user-info" >
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                              <mat-icon class="mr-1 mat-color-primary">phone</mat-icon>
+                            </div> 00389 (70)258 778
+                          </mat-list-item>
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                              <mat-icon class="mr-1 mat-color-primary">add_location</mat-icon>
+                            </div> Mk 1000, Skopje
+                          </mat-list-item>
+        
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                            <mat-icon class="mr-1 mat-color-primary">public</mat-icon></div> www.yourwebsite.com
+                          </mat-list-item>
+                          <mat-list-item>
+                            <div class="icon-bg-wrap mr-8">
+                              <div class="icon-circle w-2.5 h-2.5 rounded-circle mat-bg-primary"></div>
+                            <mat-icon class="mr-1 mat-color-primary">email</mat-icon></div> admin@admin.com
+                          </mat-list-item>
+        
+                      </div>
+        
+        
+                    </mat-list>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div>
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">Gallery</h4>
+                  </div>
+                  <mat-card-content>
+                    <div class="gallery-wrapper">
+                      <img class="img-border-radius" src="assets/images/faces/2.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/3.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/5.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/4.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/9.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/10.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/12.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/13.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/15.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/16.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/17.jpg" alt="">
+                      <img class="img-border-radius" src="assets/images/faces/2.jpg" alt="">
+                    </div>
+                  </mat-card-content>
+                  </mat-card>
+              </div>
+            </div>
+            <div class="column" fxFlex="100" fxFlex.gt-sm="33.33" fxFlex.sm="50">
+              <div >
+        
+                <!-- Contact Information -->
+                <mat-card class="default">
+                  <div class="card-title">
+                    <h4 class="fw-500">Friends sugestions</h4>
+                  </div>
+                  <mat-card-content class="pt-0">
+                    <mat-list>
+                      <mat-list-item *ngFor="let profile of countryTrafficStats; let i = index">
+                        <div class="w-100" fxLayout="row">
+                        
+                          <img class="avatar" [src]="profile.img" alt="">
+                          <div class="ml-8" fxLayout="column"  fxFlex="1 1 auto">
+                            <h5 class="fw-500 m-0 text-15">{{profile.name}}</h5>
+                            <p class="text-muted text-14 mb-0">{{profile.mutualFriends}}</p>
+                          </div>
+                        <div (click)="addFriendOption()"> <mat-icon *ngIf="profile.picked == true" class=" mat-color-primary">person_add</mat-icon><mat-icon *ngIf="profile.picked == false" class=" mat-color-primary">done</mat-icon></div>
+                      </div>
+                      </mat-list-item>
+                    </mat-list>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="FOLLOWERS"> </mat-tab>
+        <mat-tab label="GALLERY"> </mat-tab>
+      </mat-tab-group>
+    </div>
+  
+
+
+</div>

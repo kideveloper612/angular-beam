@@ -1,0 +1,173 @@
+<div class="checkout">
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/invoice/add']"
+    routerLinkActive="router-link-active"
+    style="margin-bottom: 10px;"
+  >
+    Add Invoice
+  </button>
+    <mat-card class="mb-1 p-36" fxFlex="100" fxLayout="column">
+     <div class="header-wrapper" fxLayout="row wrap" fxFlex="100" fxFlex.gt-md="100" fxFlex.gt-sm="100">
+       <div class="logo-area" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="45">
+        <img class="height-10" src="../../../../assets/images/logo.svg" alt="">
+        
+         <h5 class="text-muted">RECIPIENT</h5>
+         <h4 class="fw-500">Michael Jordan</h4>
+         <p class="text-muted mb-0">Salwa Road, Retaj Complex</p>
+          <p class="text-muted mb-0">Doha, Qatar</p>
+          <p class="text-muted mb-0">Block A-5, Office 180,</p>
+       </div>
+       <div class="address-area text-right" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="45" fxLayout="column" fxLayoutAlign="end end">
+        <h1 class="display-1">
+          INVOICE
+        </h1>
+        <table>
+          <tbody>
+            <tr>
+              <td class="text-muted"> INVOICE NO.</td>
+              <td class="text-left pl-12">2019/0592</td>
+            </tr>
+            <tr>
+              <td class="text-muted"> INVOICE DATE</td>
+              <td class="text-left pl-12">10/04/2019</td>
+            </tr>
+            <tr>
+              <td class="text-muted"> PROJECT NO.</td>
+              <td class="text-left pl-12">D-23-44</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="mt-16">
+          <h5 class="text-muted">COMPANY</h5>
+          <h4 class="fw-500">Inovec Trading Ltd</h4>
+          <p class="text-muted mb-0">Salwa Road, Retaj Complex</p>
+          <p class="text-muted mb-0">Doha, Qatar</p>
+          <p class="text-muted mb-0">Block A-5, Office 180,</p>
+          <p class="text-muted mb-0 mt-16"> info@inovec.qa</p>
+          <p class="text-muted mb-0">+974 4468 7067</p>
+        </div>
+       </div>
+      
+     </div>
+
+       <div class="table-wrapper mt-40"  fxLayout="column" fxFlex="100" fxFlex.gt-md="100" fxFlex.gt-sm="100">
+         <div class="main-invoice">
+          <mat-table  [dataSource]="countryTrafficStats" matSort class="width-100">
+            <ng-container matColumnDef="country">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                SERVICE
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="id">
+                {{ row.country }}
+              </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="visitor">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                PRICE PER
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="progress">
+                {{ row.visitor }}
+              </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="pageView">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                UNIT
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="name">
+                {{ row.pageView }}
+              </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="download">
+              <mat-header-cell *matHeaderCellDef >
+                QUANTITY
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="color">
+                {{ row.download }}
+              </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="bounceRate">
+              <mat-header-cell *matHeaderCellDef  class="text-right"  fxFlexAlign="flex-end">
+                TOTAL
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="color" fxFlexAlign="flex-end"  >
+                {{ row.bounceRate }}
+              </mat-cell>
+            </ng-container>
+    
+            <mat-header-row
+              *matHeaderRowDef="[
+                'country',
+                'visitor',
+                'pageView',
+                'download',
+                'bounceRate'
+              ]"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="
+                let row;
+                columns: [
+                  'country',
+                  'visitor',
+                  'pageView',
+                  'download',
+                  'bounceRate'
+                ]
+              "
+            >
+            </mat-row>
+          </mat-table>
+         </div>
+       
+        <div class="summary-table">
+          <mat-table [dataSource]="invoiceTotal" matSort class="width-100">
+           <ng-container matColumnDef="download">
+              <mat-header-cell *matHeaderCellDef >
+                QUANTITY
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row" data-label="color">
+                {{ row.download }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="bounceRate">
+              <mat-header-cell *matHeaderCellDef  class="text-right"  fxFlexAlign="flex-end">
+                TOTAL
+              </mat-header-cell>
+              <mat-cell class="ml-36" *matCellDef="let row" data-label="color" fxFlexAlign="flex-end"  >
+                {{ row.bounceRate }}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row
+              *matHeaderRowDef="[           
+                'download',
+                'bounceRate'
+              ]"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="
+                let row;
+                columns: [           
+                  'download',
+                  'bounceRate'
+                ]
+              "
+            >
+            </mat-row>
+          </mat-table>
+        </div>
+        
+       </div>
+
+  </mat-card>
+
+
+
+  
+</div>

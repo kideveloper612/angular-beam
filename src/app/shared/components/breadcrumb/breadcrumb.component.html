@@ -1,0 +1,36 @@
+<mat-toolbar class="breadcrumb-toolbar border-top-light" *ngIf="
+layout.layoutConf.useBreadcrumb &&
+layout.layoutConf.breadcrumb === 'simple'
+">
+  <div class="container-dynamic">
+  <div
+    class="breadcrumb-bar"
+    
+  >
+    <ul class="breadcrumb path">
+      <li *ngFor="let part of routeParts">
+        <a routerLink="/{{ part.url }}">{{ part.breadcrumb }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="breadcrumb-title"
+    *ngIf="
+      layout.layoutConf.useBreadcrumb &&
+      layout.layoutConf.breadcrumb === 'title'
+    "
+  >
+    <h1 class="bc-title">
+      {{ routeParts[routeParts.length - 1]?.breadcrumb }}
+    </h1>
+    <ul class="breadcrumb breadMain" *ngIf="routeParts.length > 1">
+      <li *ngFor="let part of routeParts">
+        <a routerLink="/{{ part.url }}" class="text-muted">{{
+          part.breadcrumb
+        }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</mat-toolbar>

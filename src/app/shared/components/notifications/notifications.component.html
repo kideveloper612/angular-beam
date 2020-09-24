@@ -1,0 +1,19 @@
+<div class="text-left mat-bg-primary p-16 ">
+  <h4 class="m-0">Messages</h4>
+</div>
+<mat-nav-list class="message-list" role="list">
+  <!-- Notification item -->
+  <mat-list-item *ngFor="let n of notifications" class="notific-item pb-24 pt-24 border-bottom" role="listitem" routerLinkActive="open">
+    <img class="profile-img rounded-circle height-40px width-40px mr-05" [src]="n.image" alt="" />
+    <a [routerLink]="[n.route || '/dashboard']">
+      <div class="mat-list-text">
+        <h4 class="fw-600">{{n.title}}</h4>
+        <p class="message">{{n.message}}</p>
+        <small class="time text-muted">{{n.time}}</small>
+      </div>
+    </a>
+  </mat-list-item>
+</mat-nav-list>
+<div class="text-center mt-1" *ngIf="notifications.length">
+  <small><a href="#" (click)="clearAll($event)">Clear all notifications</a></small>
+</div>

@@ -1,0 +1,238 @@
+<div class="checkout">
+  <div fxLayout="row" fxLayout.lt-md="column" *ngIf="cart.length">
+    <mat-card class="mb-1">
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div class="billing-details" fxFlex="50" [@animate]="{value:'*',params:{delay: '100ms', x:'-50px'}}">
+     
+          <mat-card-title>
+            Billing address
+          </mat-card-title>
+         
+          <form fxLayout="row wrap">
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-4" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="First name (required)" #name="ngModel" ngModel name="name" required>
+                    <mat-error *ngIf="name.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Last name (required)" #email="ngModel" ngModel name="email" required>
+                    <mat-error *ngIf="email.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Company name (optional)" #subject="ngModel" ngModel name="subject">
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Address" #address="ngModel" ngModel name="address">
+                    <mat-error *ngIf="address.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Town/city" #town="ngModel" ngModel name="town/city">
+                    <mat-error *ngIf="town.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-4" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="State / Country (required)" #state="ngModel" ngModel name="state" required>
+                    <mat-error *ngIf="state.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Postcode / zip (required)" #postcode="ngModel" ngModel name="postcode" required>
+                    <mat-error *ngIf="postcode.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-4" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Email Address (required)" #email="ngModel" ngModel name="email" required>
+                    <mat-error *ngIf="email.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <input matInput placeholder="Phone (required)" #phone="ngModel" ngModel name="phone" required>
+                    <mat-error *ngIf="phone.invalid">Please enter a valid message</mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="add-info">
+              <h3>Additional information</h3>
+              <p class="text-muted">Order notes (optional)</p>
+  
+            </div>
+            <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                <mat-form-field class="w-100">
+                    <textarea placeholder="Post content" matInput rows="4" ngModel name="content"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                <button class="btn-project" mat-raised-button  color="primary" type="submit">Submit Review</button>
+              </div>
+            </form>
+      
+      </div>
+  
+  
+      <div class="mainOrder-wrapper pl-15 ml-16" fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50">
+        <div class="main-order " >
+          <div class="order-box">
+              <div class="title-box">
+                  <div>Product <span class="tl-amount"> Total</span></div>
+              </div>
+              <ul class="price-list" >
+                <li *ngFor="let p of cart">
+                  {{p.product.name}} × {{p.data.quantity}}
+                  <span>
+                    {{p.product.price.sale * p.data.quantity | currency }}
+                    </span>
+                </li>
+            </ul>
+            
+            <ul class="total-amount">
+              <li>
+                Subtotal <span class="amount">{{subTotal | currency}}</span>
+              </li>
+              <li>
+                Shipping
+               <div class="shipping">
+                  <div class="shopping-option">
+                    <mat-radio-group>
+                      <mat-radio-button *ngFor="let payment of payments" [value]="payment">{{payment}}</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+  
+               </div>
+              </li>
+          </ul>
+          <ul class="total">
+            <li>Total <span class="count">{{ total | currency}}</span></li>
+        </ul>
+        <div class="paymentFinal">
+          <mat-radio-group fxLayout="column" fxLayoutGap="8px" [(ngModel)]="paymentMethod">
+            <mat-radio-button value="paypal">Paypal</mat-radio-button>
+            
+            <mat-radio-button value="card">Credit Card</mat-radio-button>
+            
+            <mat-radio-button value="bank">Bank Transfer</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="order">
+          <button class="btn-project" mat-raised-button color="primary" type="submit">PLACE ORDER</button>
+        </div>
+           </div>
+      </div>
+      </div>
+      </div>
+    
+  </mat-card>
+    <!-- <div fxFlex="50" [@animate]="{value:'*',params:{delay: '100ms', x:'50px'}}">
+      <mat-card class="default">
+        <mat-card-title>
+          Your order
+        </mat-card-title>
+        <mat-card-content class="p-0">
+          <mat-list class="compact-list mb-1">
+            <mat-divider></mat-divider>
+            <mat-list-item class="" *ngFor="let p of cart">
+
+              <img mat-list-avatar class="mr-1" [src]="p.product.photo" alt="">
+              <div fxLayout="row" fxFlex="100">
+                <h6 class="m-0 mr-1 text-muted">
+                  <small>{{p.product.name}} x {{p.data.quantity}}</small>
+                </h6>
+                <span fxFlex></span>
+                <div class="text-muted">{{p.product.price.sale * p.data.quantity | currency }}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item>
+              <div fxFlex="56px"></div>
+              <div fxLayout="row" fxFlex="100">
+                <h6 class="m-0 mr-1 text-muted">
+                  <small>
+                    <strong>Subtotal:</strong>
+                  </small>
+                </h6>
+                <span fxFlex></span>
+                <div class="text-muted">{{subTotal | currency}}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item>
+              <div fxFlex="56px"></div>
+              <div fxLayout="row" fxFlex="100">
+                <h6 class="m-0 mr-1 text-muted">
+                  <small>
+                    <strong>Vat:</strong>
+                  </small>
+                </h6>
+                <span fxFlex></span>
+                <div class="text-muted">{{vat}}%</div>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item>
+              <div fxFlex="56px"></div>
+              <div fxLayout="row" fxFlex="100">
+                <h6 class="m-0 mr-1 text-muted">
+                  <small>
+                    <strong>Shipping:</strong>
+                  </small>
+                </h6>
+                <span fxFlex></span>
+                <div class="text-muted">{{shipping}}</div>
+              </div>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item>
+              <div fxFlex="56px"></div>
+              <div fxLayout="row" fxFlex="100">
+                <h6 class="m-0 mr-1 text-muted">
+                  <small>
+                    <strong>Total:</strong>
+                  </small>
+                </h6>
+                <span fxFlex></span>
+                <div class="text-muted">{{total | currency}}</div>
+              </div>
+            </mat-list-item>
+          </mat-list>
+
+          <div class="p-1">
+            <mat-radio-group fxLayout="column" fxLayoutGap="8px" [(ngModel)]="paymentMethod">
+              <mat-radio-button value="paypal">Paypal</mat-radio-button>
+              
+              <mat-radio-button value="card">Credit Card</mat-radio-button>
+              
+              <mat-radio-button value="bank">Bank Transfer</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-card-actions>
+            <span fxFlex></span>
+            <button mat-raised-button color="primary" routerLink="/shop/cart">Continue shopping</button>
+            <button mat-raised-button color="warn" (click)="placeOrder()">Place Order</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+  </div>
+
+  <div *ngIf="!cart.length" [@animate]="{value:'*',params:{delay: '100ms', y:'-50px'}}">
+    <mat-card class="text-center">
+      <h5 class="mb-1">Your cart is empty</h5>
+      <button mat-raised-button color="accent" routerLink="/shop"> Continue Shopping</button>
+    </mat-card>
+  </div>
+</div>

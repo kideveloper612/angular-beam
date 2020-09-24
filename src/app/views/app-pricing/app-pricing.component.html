@@ -1,0 +1,93 @@
+
+  <div class="text-center">
+    <h1 class="card-title-text">Plans and Pricing</h1>
+  <div fxLayout="row" fxLayoutAlign="center center"> <p>Monthly</p> <mat-slide-toggle [(ngModel)]="isAnnualSelected" color="primary" class="mb-1 mr-8 ml-8"></mat-slide-toggle><p>Annual</p></div>
+  </div>
+    
+
+   <div class="container">
+      <!-- Pricing box -->
+      <div class="" fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+          <mat-card class="plan-pricing text-center pt-44 pb-44 pr-32 pl-32">
+              <div class="card-title-text">
+                <h2 class="fw-600">Personal</h2>
+                <div class="text-muted">Perfect for an individual or a small<br> team starting to get bigger</div>
+              </div>
+              <div class="devider mat-bg-primary"></div>
+            <mat-card-content>
+              <h1 class="text-32">
+                <strong>$ 
+                <span *ngIf="!isAnnualSelected">{{30}} /Month</span>
+                <span *ngIf="isAnnualSelected">{{30 * 12 * .9}} /Year</span>
+                </strong>
+              </h1>
+              <mat-list dense class="mb-1">
+                <mat-list-item>
+                  <span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Disk Space</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30 Email Accounts</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Monthly Bandwidth</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>06 Subdomains</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>10 Domains</mat-list-item>
+              </mat-list>
+              <button mat-flat-button color="primary">Sign Up</button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Pricing box -->
+        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+          <mat-card class="plan-pricing text-center pt-44 pb-44 pr-32 pl-32">
+            <div class="card-title-text">
+              <h2 class="fw-600">Premium Plan            </h2>
+              <div class="text-muted">Perfect for an individual or a small<br> team starting to get bigger</div>
+            </div>
+            <div class="devider mat-bg-primary"></div>
+            <mat-card-content>
+              <h1>
+                <strong>$ 
+                <span *ngIf="!isAnnualSelected">{{60}} /Mo</span>
+                <span *ngIf="isAnnualSelected">{{60 * 12 * .9}} /Yr</span>
+                </strong>
+              </h1>
+              <mat-list dense class="mb-1">
+                <mat-list-item>
+                  <span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Disk Space</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30 Email Accounts</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Monthly Bandwidth</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>06 Subdomains</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>10 Domains</mat-list-item>
+              </mat-list>
+              <button mat-flat-button color="primary">Sign Up</button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Pricing box -->
+        <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+          <mat-card class="plan-pricing text-center pt-44 pb-44 pr-32 pl-32">
+            <div class="card-title-text">
+              <h2 class="fw-600">Business Plan</h2>
+              <div class="text-muted">Perfect for an individual or a small<br> team starting to get bigger</div>
+            </div>
+            <div class="devider mat-bg-primary"></div>
+            <mat-card-content>
+              <h1>
+                <strong>$ 
+                <span *ngIf="!isAnnualSelected">{{160}} /Mo</span>
+                <span *ngIf="isAnnualSelected">{{160 * 12 * .9}} /Yr</span>
+                </strong>
+              </h1>
+              <mat-list dense class="mb-1">
+                <mat-list-item>
+                  <span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Disk Space</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30 Email Accounts</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>30GB Monthly Bandwidth</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>06 Subdomains</mat-list-item>
+                <mat-list-item><span class="material-icons mat-color-primary mr-8 text-18 fw-800">done</span>10 Domains</mat-list-item>
+              </mat-list>
+              <button mat-flat-button color="primary">Sign Up</button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      
+    </div>

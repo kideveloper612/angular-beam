@@ -1,0 +1,101 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+               (closed)="events.push('close!')">
+               <marco-sidebar name="layout-left-sidebar-card" class="default-bg-mobile">
+              
+                <div class="px-24 py-36">
+                  <h1>Demo Sidebar </h1>
+                
+                  <mat-list>
+                    <mat-list-item>  Item 1</mat-list-item>
+                    <mat-list-item>Item 2</mat-list-item>
+                    <mat-list-item>Item 3</mat-list-item>
+                    <mat-list-item>Item 4</mat-list-item>
+                  </mat-list>
+                </div>
+              </marco-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="page-layout overflow-hidden pb-8">
+      <button class="py-20" mat-button (click)="sidenav.toggle()">  <mat-icon>menu</mat-icon></button>
+    
+      <!-- Left Sidebar -->
+      
+    
+      <!-- body content -->
+      <div class="content">
+    
+    
+        <!-- content card -->
+        <div class="content-body">
+          <div class=" no-shadow">
+            <!-- card header -->
+            <div class="card-header px-24 py-8 border-bottom">
+              <button
+                fxHide
+                fxShow.lt-md
+                mat-icon-button
+                marcoSidebarToggler="layout-left-sidebar-card"
+                class="mr-8"
+              >
+                <mat-icon>menu</mat-icon>
+              </button>
+    
+              <h1>Demo Content</h1>
+            </div>
+            <!-- Card body -->
+            <div class="card-body p-24">
+              <p>Pellentesque habitant morbi tristique senectus et netus et <code>malesuada fames</code> ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
+              <p>
+                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur vitae sagittis odio. Suspendisse ullamcorper nunc non pellentesque laoreet. Curabitur eu tortor id quam pretium mattis. Proin ut quam velit.
+              </p>
+              <h2>Header Level 2</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </p>
+              <img src="../../../../assets/images/backgrounds/nature.jpg" alt="">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </p>
+              <blockquote>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </blockquote>
+              <h3>Header Level 3</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </p>
+              <h4>Header Level 4</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </p>
+              <h5>Header Level 5</h5>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                commodi omnis consequuntur sint quos deleniti, accusantium iusto
+                earum quia pariatur, quasi ea expedita fuga libero! Porro nisi dicta
+                nemo laudantium.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+

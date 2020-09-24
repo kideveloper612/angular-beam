@@ -1,0 +1,114 @@
+<div class="m-333">
+  
+  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">{{"ADD"  }} {{"MEMBER"  }}</button>
+</div> 
+ <!-- <mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}"> 
+
+  <mat-card-content class="p-0">
+    <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="items"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [scrollbarH]="true"
+          [limit]="10"
+          [rowHeight]="90">
+          <ngx-datatable-column name="Image" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Name" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.name }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Age" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.age }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Balance" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.balance | currency }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Company" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.company }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Status" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <mat-chip mat-sm-chip [color]="'primary'" [selected]="row.isActive">{{row.isActive ? 'active' : 'inactive'}}</mat-chip>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Actions" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row)"><mat-icon>edit</mat-icon></button>
+              <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)"><mat-icon>delete</mat-icon></button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+  </mat-card-content>
+</mat-card>  -->
+
+<div class="users" fxLayout="column">
+    <div fxLayout="row wrap" fxFlex="100" [@animate]="{value:'*',params:{y:'25px',delay:'300ms'}}">
+      <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="25"  *ngFor="let product of items | paginate: { itemsPerPage: 8, currentPage: currentPage }" >
+        <mat-card class="default">
+          <div class="p-1" fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="100" class=" p-1">
+            <div class="vert-icon">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openPopUp(product)">
+                  <mat-icon class="material-icons-two-tone" >edit</mat-icon>
+                  <span>Edit profile</span>
+                </button>
+                <button mat-menu-item (click)="deleteItem(product)">
+                  <mat-icon class="material-icons-two-tone">delete</mat-icon>
+                  <span>Delete profile</span>
+                </button>
+              
+              </mat-menu>
+            </div>
+           
+            <div class="profile-head text-center">
+              <img class="w-6 h-6 rounded-circle mb-4" [src]="product?.img" alt="">
+              <h4 class="fw-600 mb-0"> {{ product?.name }}</h4>
+              <p class="text-muted">{{ product?.email }}</p>
+            </div>    
+            <div class="profile-body" fxLayout="row" fxLayoutAlign="space-around start">
+              <div class="text-left" fxFlex="50">
+                <div class="text-left">  
+                  <small class="text-muted">Age</small>
+                  <p class="fw-600">{{ product?.age }}</p>
+                </div>
+                <div class="text-left">  
+                  <small class="text-muted">Employer</small>
+                  <p class="fw-600">{{ product?.company }}</p>
+                </div>
+              </div>
+              <div class="text-left" fxFlex="50">
+                <div class="text-left">  
+                  <small class="text-muted">Balance</small>
+                  <p class="fw-600">{{ product?.balance }}</p>
+                </div>
+                <div class="text-left">  
+                  <small class="text-muted ">Address</small>
+                  <p class="fw-600 width-120">{{ product?.address }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    
+    </div>
+    <div class="products-pagination">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+/*---- Calendar -----*/
+.card-title-text.calendar-title {
+  padding: .5rem 1.5rem !important;
+  background-image: url('assets/images/backgrounds/landscape.jpg') !important;
+  height: 10rem;
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+  &::before {
+    content: '';
+    background-color: rgba(0,0,0, .3);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+  }
+  .margin-auto {
+    margin-top: auto !important;
+    button {
+      box-shadow: none !important;
+      
+    }
+  }
+ 
+}
+
+.calendar-wrapper {
+  width: 33.3333%;
+  float: left;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: auto;
+  h5{
+    color: #fff !important;
+    font-size: 18px;
+  }
+  button {
+    color: #fff !important;
+  }
+}
+.detail-calendar-view {
+  margin-top: auto;
+  button {
+    width: 83px;
+    border-radius: 4px;
+    color: #fff !important;
+    font-size: 18px;
+    &:nth-child(1) {
+      border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    }
+    &:nth-child(2) {
+      border-radius: 0!important;
+      border-left: none!important;
+      border-right: none!important;
+    }
+    &:nth-child(3) {
+      border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    }
+  }
+}
+.cal-event-action .material-icons {
+  vertical-align: sub;
+  margin: 6px;
+}
+.cal-open-day-events {
+  box-shadow: none !important;
+}
+
+.calendar-form-dialog {
+  .mat-dialog-container {
+    padding: 0;
+  }
+}
+.color-picker-input.mat-input-element {
+  padding: 4px 0 !important;
+}
+
+@media (max-width: 767px) {
+  .calendar-wrapper {
+      width: 100%;
+  }
+}

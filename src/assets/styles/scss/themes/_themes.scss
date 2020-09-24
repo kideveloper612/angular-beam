@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Keep atleast one file
+@import "marco-teal";
+@import "marco-blue";
+@import "marco-light-purple";
+@import "marco-dark";
+@import "marco-green";
+@import "marco-orange";
+@import "marco-indigo";
+@import "marco-red";
+@import "marco-pink";
+@import "marco-amber";
+
+$background: map-get($marco-theme, background);
+$foreground: map-get($marco-theme, foreground);

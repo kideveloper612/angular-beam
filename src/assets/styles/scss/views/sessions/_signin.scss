@@ -1,0 +1,16 @@
+.page-login {
+    background-image: url('assets/images/marco-login-bg.jpg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .signIn-wrapper {
+        
+            width: 100%;
+            max-width: 20rem;
+            margin: 0 auto;
+            .mat-card {
+                margin: 0;
+            }
+     
+    }
+}

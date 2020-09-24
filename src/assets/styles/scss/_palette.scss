@@ -1,0 +1,141 @@
+@each $colorName, $matColor in $material-colors {
+  $color500: map-get($matColor, 500);
+  $foreground500: map-get(map-get($matColor, contrast), 500);
+  .#{''+$colorName+''} {
+    background-color: $color500 !important;
+
+    // Material CDK Table
+    .mat-table {
+      background: transparent !important;
+    }
+    .ngx-datatable.material *,
+    .mat-table,
+    .mat-cell,
+    .mat-header-cell {
+      color: $foreground500 !important;
+    }
+    .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover,
+    .ngx-datatable.material:not(.cell-selection)
+      .datatable-body-row:hover
+      .datatable-row-group {
+      background: $color500, 5;
+    }
+    .detail-calendar-view {
+      button {
+        border: 1px solid $foreground500 !important;
+        width: 83px;
+        border-radius: 4px;
+        background-color: $color500 !important;
+      }
+    }
+  }
+  
+  // Text color
+  .text-#{''+$colorName+''} {
+    color: $color500;
+  }
+  // Sidebar backgrounds
+  .sidebar-#{''+$colorName+''} {
+    .navigation-wrapper {
+      background: $color500 !important;
+
+      a .icon-name,
+      .sidenav-hold .sidenav li a,
+      .sidenav li.open > div > a > span:not(.menuitem-badge),
+      .sidenav li.open > a > span,
+      .icon-menu .mat-raised-button,
+      .app-user .app-user-name,
+      .app-user .user-email,
+      .branding .app-logo-text {
+        color: $foreground500 !important;
+      }
+      a:hover {
+        background: rgba(darken($color500, 20), .3) !important;
+        opacity: 1;
+      }
+      a .mat-icon, a .item-name {
+        opacity: .7;
+      }
+      a:hover {
+        .mat-icon {
+          opacity: 1;
+        }
+         .item-name{
+          opacity: 1;
+        }
+        .sidenav-hold .sidenav li.open a .mat-icon:not(.menu-caret) {
+          color: $color500 !important;
+        }
+      } 
+      .icon-menu .mat-raised-button,
+      .branding {
+        background: rgba($color500, .96) !important;
+      }
+      .app-user {
+        // background: darken($color500, 5) !important;
+      }
+      li.open {
+        // background: rgba($color500, .3) !important;
+        > a {
+          background: rgba(darken($color500, 20), .2) !important;
+        }
+      }
+      .text-muted {
+        color: desaturate($foreground500, 40) !important;
+        text-transform: uppercase;
+      }
+    }
+  }
+ // Header backgrounds
+ .marco-dark {
+  .topbar-#{''+$colorName+''} {
+    .topbar.mat-toolbar {
+      background: #0b2239 !important;
+      color: #fff !important;
+    }
+   
+  }
+ }
+  .topbar-#{''+$colorName+''} {
+    .topbar.mat-toolbar {
+      background: $color500 !important;
+      color: $foreground500 !important;
+      svg {
+        fill: $foreground500 ;
+      }
+    }
+  }
+
+
+    // Footer background
+    .footer-#{''+$colorName+''} {
+      .main-footer {
+        background: $color500 !important;
+        color: $foreground500 !important;
+      }
+    }
+
+  // Generate classes for each color shades
+  $contrastMap: map-get($matColor, contrast);
+  @each $shade, $value in $matColor {
+    @if $shade == contrast {
+      
+
+    } @else {
+      .#{''+$colorName+''}-#{$shade} {
+        background-color: $value !important;
+      }
+      // Foreground text color
+      .#{''+$colorName+''}-#{$shade}-fg {
+        color: map-get($contrastMap, $shade) !important;
+      }
+
+      // Text color
+      .text-#{''+$colorName+''}-#{$shade} {
+        color: $value !important;
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,284 @@
+<div class="header-topnav mat-elevation-z2">
+    <div class="topnav">
+      <!-- App Logo -->
+      <div class="topbar-branding">
+        <img src="assets/images/marco.png" alt="" class="app-logo">
+      </div>
+      <ul fxLayout="row"  fxLayout.xs="row" fxLayoutAlign="space-between center" class="menu" *ngIf="!layoutConf.isMobile">
+       <a mat-button [routerLink]="['/dashboard/default']" routerLinkActive="renata" class="mat-button" routerLinkActiveOptions="{exact:true}">Dashboard</a>
+        <a [matMenuTriggerFor]="menu" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" mat-button class="mat-button">Apps<mat-icon class="caret">keyboard_arrow_down</mat-icon></a>
+        <mat-menu #menu="matMenu" class="app-dropdown">
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}"  [routerLink]="['/chat']" >Chat</a>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}"  [routerLink]="['/calendar']">Calendar</a>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/todo/list']" >Todo</a>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [matMenuTriggerFor]="vertebrates"  >Ecommerce</a>
+          <mat-menu #vertebrates="matMenu" class="app-dropdown">
+            <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/shop']">Products</a>
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}"  >Product Details</a>
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/shop/cart']">Cart</a>
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/shop/checkout']">Checkout</a>
+          </mat-menu>
+          <a mat-menu-item [matMenuTriggerFor]="users" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Users</a>
+          <mat-menu #users="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/users/list']">User List</a>
+            <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/users/list']">User Grid</a>
+          </mat-menu>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/inbox']" >Inbox</a>
+        </mat-menu>
+        
+        
+        <a [matMenuTriggerFor]="pages" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" mat-button class="mat-button bg-primary">Pages<mat-icon class="caret">keyboard_arrow_down</mat-icon></a>
+        <mat-menu #pages="matMenu" class="app-dropdown">
+          <a mat-menu-item [matMenuTriggerFor]="auth"  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Authentication</a> 
+          <mat-menu #auth="matMenu" class="app-dropdown">
+            <a [matMenuTriggerFor]="signUp" mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}"  [routerLink]="['/users/list']">Sign Up</a>
+            <a [matMenuTriggerFor]="signIn" mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" routerLinkActiveOptions="{exact:true}" [routerLink]="['/users/list']">Sign In</a>
+            <mat-menu #signUp="matMenu" class="app-dropdown">
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signup']">Sign Up</a>
+              <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signup2']">Sign Up 2</a>
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signup3']">Sign Up 3</a>
+              <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signup4']">Sign Up 4</a>
+            </mat-menu>
+            <mat-menu #signIn="matMenu" class="app-dropdown">
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signin']">Sign In</a>
+              <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signin2']">Sign In 2</a>
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signin3']">Sign In 3</a>
+              <a mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/signin4']">Sign In 4</a>
+            </mat-menu>
+            <a  mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/forgot-password']">Forgot</a>
+            <a  mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/404']">Error 404</a>
+            <a  mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/sessions/error']">Error 500</a>
+          </mat-menu>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/invoice/list']">Invoice</a> 
+          <a [matMenuTriggerFor]="profile" mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Profile</a>
+          <mat-menu #profile="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/profile/overview']">Overview</a>            
+          </mat-menu>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/pricing']">Pricing</a> 
+          <a [matMenuTriggerFor]="help" mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}">Help</a>
+          <mat-menu #help="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/help/help-home']">Home</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/help/faq']">FAQs</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/help/support']">Support</a>        
+          </mat-menu>
+        </mat-menu>
+        <a [matMenuTriggerFor]="UI" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}"  mat-button class="mat-button">UI Elements<mat-icon class="caret">keyboard_arrow_down</mat-icon></a>
+        <mat-menu #UI="matMenu" class="app-dropdown">
+          <a mat-menu-item [matMenuTriggerFor]="components" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Components</a>
+          <mat-menu #components="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/autocomplete']">Autocomplete</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/checkbox']">Checkbox</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/datepicker']">Datepicker</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/form-field']">Form Field</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/input-field']">Input Field</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/radio-button']">Radio Button</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/select']">Select</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/slider']">Slider</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/slider-toggle']">Slider Toggle</a> 
+            <a mat-menu-item [matMenuTriggerFor]="navigation" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Navigation</a>  
+            <mat-menu #navigation="matMenu" class="app-dropdown">
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/menu']">Menu</a>      
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/sidenav']">Sidenav</a>  
+              <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/toolbar']">Toolbar</a>        
+            </mat-menu>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/card']">Card</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/divider']">Divider</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/expansion-panel']">Expansion Panel</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/grid']">Grid</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/list']">List</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/stepper']">Stepper</a> 
+            <a mat-menu-item routerLinkActive="renatae" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/tab']">Tab</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/tree']">Tree</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/expansion-panel']">Expansion Panel</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/buttons']">Buttons</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/button-toggle']">Buttons Toggle</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/badge']">Badge</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/chips']">Chips</a> 
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/material/icons']">Icons</a>  
+          </mat-menu>
+          <a mat-menu-item [matMenuTriggerFor]="dialogs" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" >Dialogs</a>
+          <mat-menu #dialogs="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/dialogs/confirm']">Confirm</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/dialogs/loader']">Loader</a>  
+          </mat-menu>
+          <a mat-menu-item [matMenuTriggerFor]="layouts"  routerLinkActive="router-link-active" >Page Layouts</a>
+          <mat-menu #dialogs="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/page-layouts/left-sidebar-card']">Left sidebar card</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/page-layouts/full-width-card']">Full width card</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/page-layouts/full-width-card-tab']">Full width card tab</a>  
+          </mat-menu>
+          <a mat-menu-item [matMenuTriggerFor]="extras" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}">Extras</a>
+          <mat-menu #extras="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/others/gallery']">Gallery</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/others/colors']">Colors</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/others/blank']">Blank</a>  
+          </mat-menu>
+          <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/icons']" >Material icons</a>
+        </mat-menu>
+        <a [matMenuTriggerFor]="Forms" routerLinkActive="renata"  mat-button class="mat-button">Forms & Tables<mat-icon class="caret">keyboard_arrow_down</mat-icon></a>
+        <mat-menu #Forms="matMenu" class="app-dropdown">
+          <button [matMenuTriggerFor]="forms" mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}">Forms</button>
+          <mat-menu #forms="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/forms/basic']">Basic</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/forms/editor']">Editor</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/forms/upload']">Upload</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/forms/wizard']">Wizard</a>  
+          </mat-menu>
+          <button [matMenuTriggerFor]="tables" mat-menu-item  routerLinkActive="renata" routerLinkActiveOptions="{exact:true}">Tables</button>
+          <mat-menu #tables="matMenu" class="app-dropdown">
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/tables/fullscreen']">Fullscreen</a>      
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/tables/paging']">Paging</a>  
+            <a mat-menu-item routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" [routerLink]="['/tables/filter']">Filter</a>  
+          </mat-menu>
+        </mat-menu>
+        
+      </ul>
+     
+      <!-- <ul class="menu" *ngIf="!layoutConf.isMobile">
+        <li *ngFor="let item of menuItems; let i = index;">
+          <div *ngIf="item.type !== 'separator'" routerLinkActive="open">
+            <a matRipple routerLink="/{{item.state}}" *ngIf="item.type === 'link'">
+              <mat-icon>{{item.icon}}</mat-icon> 
+              {{item.name | translate}}
+            </a>
+            <div *ngIf="item.type === 'dropDown'">
+              <label matRipple for="drop-{{i}}" class="toggle"><mat-icon>{{item.icon}}</mat-icon> {{item.name | translate}}</label>
+              <a matRipple><mat-icon>{{item.icon}}</mat-icon> {{item.name | translate}}</a>
+              <input type="checkbox" id="drop-{{i}}" />
+              <ul>
+                <li *ngFor="let itemLvL2 of item.sub; let j = index;" routerLinkActive="open">
+                  <a matRipple routerLink="{{item.state ? '/'+item.state : ''}}/{{itemLvL2.state}}" 
+                  *ngIf="itemLvL2.type !== 'dropDown'">
+                    <mat-icon *ngIf="itemLvL2.icon">{{itemLvL2.icon}}</mat-icon>  
+                    {{itemLvL2.name | translate}}
+                  </a>
+                  
+                  <div *ngIf="itemLvL2.type === 'dropDown'">
+                    <label matRipple for="drop-{{i}}{{j}}" class="toggle">{{itemLvL2.name | translate}}</label>
+                    <a matRipple><mat-icon *ngIf="itemLvL2.icon">{{itemLvL2.icon}}</mat-icon>  {{itemLvL2.name | translate}}</a>
+                    <input type="checkbox" id="drop-{{i}}{{j}}" />
+                    
+                    <ul>
+                      <li *ngFor="let itemLvL3 of itemLvL2.sub" routerLinkActive="open">
+                        <a matRipple routerLink="{{item.state ? '/'+item.state : ''}}{{itemLvL2.state ? '/'+itemLvL2.state : ''}}/{{itemLvL3.state}}">
+                          <mat-icon *ngIf="itemLvL3.icon">{{itemLvL3.icon}}</mat-icon>
+                          {{itemLvL3.name | translate}}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul> -->
+      <span fxFlex></span>
+      <!-- End Navigation -->
+      
+      <!-- Language Switcher -->
+      <button
+      mat-icon-button
+      matTooltip="Notifications"
+      [matMenuTriggerFor]="notificationsMenu"
+      [style.overflow]="'visible'"
+      class="topbar-button-right"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6.5c-2.49 0-4 2.02-4 4.5v6h8v-6c0-2.48-1.51-4.5-4-4.5z" opacity=".3"/><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-11c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2v-5zm-2 6H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zM7.58 4.08L6.15 2.65C3.75 4.48 2.17 7.3 2.03 10.5h2c.15-2.65 1.51-4.97 3.55-6.42zm12.39 6.42h2c-.15-3.2-1.73-6.02-4.12-7.85l-1.42 1.43c2.02 1.45 3.39 3.77 3.54 6.42z"/></svg>
+      <span class="notification-number mat-bg-warn">1</span>
+    </button>
+      <mat-menu #notificationsMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
+        <div class="text-left mat-bg-primary p-16 ">
+          <h4 class="m-0">Notifications</h4>
+        </div>
+        <mat-nav-list class="notification-list" role="list">
+          <!-- Notification item -->
+          <mat-list-item *ngFor="let n of notifications" class="notific-item pb-12 pt-12 border-bottom" role="listitem" routerLinkActive="open">
+            <mat-icon [color]="n.color" [svgIcon]="n.icon" class="btn-icon notific-icon mr-1"></mat-icon>
+            <a [routerLink]="[n.route || '/dashboard']">
+              <div class="mat-list-text">
+                <h4 class="fw-500">{{n.message}}</h4>
+                <small class="time text-muted">{{n.time}}</small>
+              </div>
+            </a>
+            
+          </mat-list-item>
+          <div class="dropdown-footer text-center pb-12 pt-12">
+            <button mat-button color="primary">MARK ALL AS READ</button>
+          </div>
+        </mat-nav-list>
+    </mat-menu>
+         <!-- Notification toggle button -->
+         <button
+         mat-icon-button
+         matTooltip="Notifications"
+         (click)="toggleNotific()"
+         [style.overflow]="'visible'"
+         class="topbar-button-right"
+       >
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 1H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2zm0 14.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10v12.97z"/><path d="M5 19.97l5-2.15 5 2.15V7H5z" opacity=".3"/></svg>
+         <span class="notification-number mat-bg-warn">3</span>
+       </button>
+        
+     <!-- Top left user menu -->
+  <button
+  mat-button
+    [matMenuTriggerFor]="accountMenu"
+    class="topbar-button-right img-button"
+  >
+  <span>Michael Jordan</span>
+    <img class="profile-img" src="assets/images/face-7.jpg" alt="" />
+  </button>
+
+  <mat-menu #accountMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
+    <mat-toolbar color="primary">
+      <div class="text-left" fxLayout="row" fxLayoutAlign="start center">
+        <img class="profile-img rounded-circle w-12 h-12 mr-05" src="assets/images/face-7.jpg" alt="" />
+        <h5 class="m-0">Marko Apostolski</h5>
+
+      </div>
+    </mat-toolbar>
+    
+    <mat-nav-list class="notification-list" role="list">
+      <!-- Notification item -->
+      <button mat-menu-item [routerLink]="['/profile/overview']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="account_box" class="btn-icon" ></mat-icon>
+          <span>My Profile</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="inbox" class="btn-icon" ></mat-icon>
+          <span>My Inbox</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="receipt" class="btn-icon" ></mat-icon>
+          <span>My Tasks</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="library_books" class="btn-icon" ></mat-icon>
+          <span>Billing Information</span>
+        </div>
+      </button>
+      <div class="dropdown-footer text-center pb-12 pt-12">
+        <button mat-button color="primary" class="fw-500">Logout</button>
+      </div>
+    </mat-nav-list>
+</mat-menu>
+ 
+      <!-- Mobile screen menu toggle -->
+      <button 
+      mat-icon-button 
+      class="mr-1" 
+      (click)="toggleSidenav()" 
+      *ngIf="layoutConf.isMobile">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </div>
+</div>

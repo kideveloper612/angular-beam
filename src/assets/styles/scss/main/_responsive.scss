@@ -1,0 +1,79 @@
+@media(min-width: 761px) {
+    .crypto-value {
+        display: flex;
+        flex-direction: row;
+        .profile-info {
+            flex-basis: 50%;
+        }
+        .customer-info {
+            flex-basis: 25%;
+        }
+    }
+    .user-wrap {
+        display: flex;
+        flex-direction: row;
+        .user-goals {
+            flex-basis: 33.3%;
+        }
+        .user-analytics {
+            flex-basis: 100%;
+        }
+    }
+    .year-info-wrap {
+        display: flex;
+        flex-direction: row;
+        .yearly-info {
+            flex-basis: 33.3%;
+        }
+    }
+    .tables-wrap {
+        display: flex;
+        flex-direction: row;
+        .dispatched-orders {
+            flex-basis: 66.7%;
+          
+        }
+        .recent-users {
+            flex-basis: 33.3%;
+        
+        }
+       
+    }
+    }
+@media(max-width: 760px) {
+.crypto-value {
+    display: flex;
+    flex-direction: column;
+    .customer-info {
+        flex-basis: 100%;
+    }
+}
+ .user-wrap {
+    display: flex;
+    flex-direction: column;
+    .user-goals {
+        flex-basis: 100%;
+    }
+    .user-analytics {
+        flex-basis: 100%;
+    }
+}
+.year-info-wrap {
+    display: flex;
+    flex-direction: column;
+    .yearly-info {
+        flex-basis: 100%;
+    }
+}
+.tables-wrap {
+    display: flex;
+    flex-direction: column;
+    .dispatched-orders {
+        flex-basis: 100;
+    }
+    .recent-users {
+        flex-basis: 100%;
+    }
+   
+}
+}

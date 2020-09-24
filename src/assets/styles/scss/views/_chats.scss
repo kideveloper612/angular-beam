@@ -1,0 +1,91 @@
+/*---- Chats -----*/
+.chat-sidenav {
+  width: 400px;
+  border-right: 1px solid rgba(0, 0, 0, .12);
+  overflow: hidden !important;
+  border: 1px solid #dae1e7;
+}
+.chat-sidebar-toolbar,
+.chat-toolbar,
+.chat-sidebar-toolbar .mat-toolbar-row,
+.chat-toolbar .mat-toolbar-row {
+  height: auto !important;
+}
+.chat-sidebar-scroll {
+  position: relative;
+  height: calc(100% - 56px);
+  overflow-y: scroll;
+}
+.todo-tags {
+  .mat-chip:not(.mat-basic-chip) {
+
+      background: #efefef !important;
+  }
+}
+.chats-wrap {
+  box-shadow: none;
+  border: 1px solid #dae1e7;
+}
+.chat-intro {
+  height: calc(100vh - 240px);
+  background-image: url('assets/images/backgrounds/download.svg');
+}
+.talk-time {
+  width: 30%;
+  text-align: right;
+}
+.chats-wrap .conversations-hold {
+  padding-top: 1rem;
+  position: relative;
+  height: calc(100vh - 330px);
+  overflow-y: scroll;
+}
+.chats-wrap .conversations-hold .single-conversation {
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+.chats-wrap .conversations-hold .single-conversation .toolbar-avatar {
+  vertical-align: bottom;
+  margin-right: 1rem;
+}
+.chats-wrap .conversations-hold .single-conversation .chat-username {
+  margin: 0 0 .625rem;
+  font-size: .875rem;
+}
+.chats-wrap .conversations-hold .single-conversation .conversation-msg {
+  padding: .48rem .94rem;
+  display: inline-block;
+  border-radius: 22px;
+}
+.chats-wrap .conversations-hold .single-conversation.sender .conversation-msg {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+}
+
+.chats-wrap .conversations-hold .single-conversation .chat-date {
+  font-size: 11px;
+  padding: 2px;
+  margin: 0;
+  clear: both;
+}
+.chats-wrap .chat-input-actions {
+  padding: .6rem;
+}
+
+.chat-loader {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+[dir=rtl] {
+  .chat-sidenav {
+    border-right: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .chats-wrap .conversations-hold .single-conversation .toolbar-avatar {
+    margin-right: 0;
+    margin-left: 1rem;
+  }
+}

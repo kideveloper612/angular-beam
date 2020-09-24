@@ -1,0 +1,73 @@
+.topbar, .topnav {
+  &.mat-toolbar {
+    position: relative;
+    z-index: 1001;
+    border-bottom: 1px solid #e6e6e6 !important;
+  }
+  .mat-select-value {
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+     img {
+        max-width: 100%;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        margin-left: 10px;
+     }
+     svg {
+      width: 25px;
+      height: auto;
+     }
+    
+
+}
+.topbar:not(.topbar-white) {
+  svg {
+    // fill: #fff;
+    opacity: .75;
+}
+}
+.toggle-collapsed {
+  transform: rotate(0deg);
+  -webkit-transition: transform .3s cubic-bezier(.35,0,.25,1);
+  transition: transform .3s cubic-bezier(.35,0,.25,1);
+}
+.sidebar-compact .toggle-collapsed {
+  transform: rotate(180deg);
+}
+
+.search-bar {
+  .top-search-form {
+    position: relative;
+    background: #fff;
+    border-radius: 40px;
+    margin-right: 1rem;
+    display: block;
+    max-width: 220px;
+    margin-left: 20px;
+    box-shadow: inset 0 0 2px 2px rgba(136, 136, 136, 0.2);
+
+    .material-icons {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      margin-top: -12px;
+      color: rgba(0,0,0,.87);
+    }
+    input {
+      font-size: 1rem;
+      padding: .6rem .75rem;
+      z-index: 2;
+      cursor: text;
+      text-indent: 30px;
+      border: none;
+      background: transparent;
+      width: 100%;
+      outline: 0;
+    }
+  }
+
+}
+

@@ -1,0 +1,32 @@
+<!-- Left side topbar -->
+<mat-toolbar  class="chat-sidebar-toolbar p-16">
+  <a href="" class="toolbar-avatar online">
+    <img [src]="currentUser.avatar" alt="">
+    <span class="status-dot"></span>
+  </a>
+  <h6 class="m-0 pl-1 font-normal fz-1">{{currentUser.name}}</h6>
+</mat-toolbar>
+<div [perfectScrollbar] class="chat-sidebar-scroll">
+  <!-- Left side contact list -->
+
+  <mat-nav-list class="inbox-nav-list" role="list">
+    <mat-list-item
+    *ngFor="let contact of contacts"
+    (click)="getChatByContact(contact.id)" class="border-bottom">
+      <a 
+      mat-list-avatar 
+      [ngClass]="{online: contact.status === 'online'}"
+      class="toolbar-avatar">
+        <img [src]="contact.avatar" alt="">
+        
+        <span class="status-dot"></span>
+      </a>
+        <h4 class="fw-500" matLine>{{contact.name}}</h4>
+         <p matLine class="mr-1 text-muted">{{contact.message}}</p>
+      
+     <div class="talk-time"><small class="text-muted">{{contact.time}}</small></div> 
+    </mat-list-item>
+    
+  </mat-nav-list>
+</div>
+  

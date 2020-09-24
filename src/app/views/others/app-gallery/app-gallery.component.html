@@ -1,0 +1,51 @@
+<!-- <mat-card class="p-0">
+  <mat-card-title class="m-0">
+    <div class="card-title-text">Media gallery</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content class="p-0">
+    <div >
+      <mat-grid-tile *ngFor="let photo of photos">
+        <img [src]="photo.url" alt="">
+        <div class="gallery-control-wrap">
+          <div class="gallery-control">
+            <h4 class="photo-detail fz-1" [fxHide.lt-sm]="true">{{photo.name}}</h4>
+            <span fxFlex></span>
+            <button mat-icon-button [matMenuTriggerFor]="photoMenu" class="">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #photoMenu="matMenu">
+                <button mat-menu-item><mat-icon>send</mat-icon>Send as attachment</button>
+                <button mat-menu-item><mat-icon>favorite</mat-icon>Favorite</button>
+                <button mat-menu-item><mat-icon>delete</mat-icon>Delete</button>
+            </mat-menu>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-card> -->
+
+<div class="project-page">
+  <div class="single-project-item" *ngFor="let photo of photos">
+    <div class="img-holder">
+      <img [src]="photo.url" alt="">
+      <div class="image-overlay">
+          <div class="box">
+              <div class="content">
+                  <div class="top">
+                      <a href="#"><i class="fa fa-link"></i></a>
+                  </div>
+                  <!-- /.top -->
+                  <div class="bottom">
+                      <div class="title center">
+                        <h4 class="photo-detail fz-1" [fxHide.lt-sm]="true">{{photo.name}}</h4>
+                    
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

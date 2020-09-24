@@ -1,0 +1,39 @@
+.signup4-wrap {
+    background-image: url('assets/images/marco-login-bg.jpg');
+}
+.signup4-container {
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup4-header {
+    position: relative;
+    color: white;
+    padding: 35px;
+
+    & > div {
+        z-index: 2;
+    }
+}
+
+.signup4-header::before{
+    // background-color: rgba(3, 143, 222, 0.7);
+    content: '';
+    top: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+.signup4-small-image {
+    height: 24px;
+}
+
+
+.mat-flat-button, .mat-stroked-button {
+    padding: 0 2rem !important;
+}
+

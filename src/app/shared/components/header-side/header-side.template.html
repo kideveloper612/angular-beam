@@ -1,0 +1,142 @@
+<mat-toolbar class="topbar border-bottom-light">
+  <!-- Sidenav toggle button -->
+  <button
+    *ngIf="layoutConf.sidebarStyle !== 'compact'"
+    mat-icon-button
+    id="sidenavToggle"
+    (click)="toggleSidenav()"
+    matTooltip="Toggle Hide/Open"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+  <!-- Search form -->
+  <!-- <div fxFlex fxHide.lt-sm="true" class="search-bar">
+    <form class="top-search-form">
+      <mat-icon role="img">search</mat-icon>
+      <input autofocus="true" placeholder="Search" type="text" />
+    </form>
+  </div> -->
+
+  <span fxFlex></span>
+  <!-- Language Switcher -->
+ 
+
+
+
+  <marco-search-input-over placeholder="Country (e.g. US)" resultPage="/search">
+  </marco-search-input-over>
+  <!-- Open "views/search-view/result-page.component" to understand how to subscribe to input field value -->
+   <!-- Notification toggle button -->
+   <button
+   mat-icon-button
+   matTooltip="Notifications"
+   [matMenuTriggerFor]="notificationsMenu"
+   [style.overflow]="'visible'"
+   class="topbar-button-right"
+ >
+ <mat-icon svgIcon="notifications_active" class="btn-icon"  ></mat-icon>
+   <span class="notification-number mat-bg-warn" >4</span>
+ </button>
+ <mat-menu #notificationsMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
+    <div class="text-left mat-bg-primary p-16 ">
+      <h4 class="m-0">Notifications</h4>
+    </div>
+    <mat-nav-list class="notification-list" role="list">
+      <!-- Notification item -->
+      <mat-list-item *ngFor="let n of notifications" class="notific-item pb-12 pt-12 border-bottom" role="listitem" routerLinkActive="open">
+        <mat-icon [color]="n.color" [svgIcon]="n.icon" class="btn-icon notific-icon mr-1"></mat-icon>
+        <a [routerLink]="[n.route || '/dashboard']">
+          <div class="mat-list-text">
+            <h4 class="fw-500">{{n.message}}</h4>
+            <small class="time text-muted">{{n.time}}</small>
+          </div>
+        </a>
+        
+      </mat-list-item>
+      <div class="dropdown-footer text-center pb-12 pt-12">
+        <button mat-button color="primary">MARK ALL AS READ</button>
+      </div>
+    </mat-nav-list>
+</mat-menu>
+  <button
+  mat-icon-button
+  matTooltip="Notifications"
+  (click)="toggleNotific()"
+  [style.overflow]="'visible'"
+  class="topbar-button-right"
+>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 1H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2zm0 14.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10v12.97z"/><path d="M5 19.97l5-2.15 5 2.15V7H5z" opacity=".3"/></svg>
+  <span class="notification-number mat-bg-warn">3</span>
+</button>
+ 
+  <!-- Top left user menu -->
+  <button
+  mat-button
+    [matMenuTriggerFor]="accountMenu"
+    class="topbar-button-right img-button"
+  >
+  <span>Michael Jordan</span>
+    <img class="profile-img" src="assets/images/face-7.jpg" alt="" />
+  </button>
+
+  <mat-menu #accountMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
+    <mat-toolbar color="primary">
+      <div class="text-left" fxLayout="row" fxLayoutAlign="start center">
+        <img class="profile-img rounded-circle w-12 h-12 mr-05" src="assets/images/face-7.jpg" alt="" />
+        <h5 class="m-0">Marko Apostolski</h5>
+
+      </div>
+    </mat-toolbar>
+    
+    <mat-nav-list class="notification-list" role="list">
+      <!-- Notification item -->
+      <button mat-menu-item [routerLink]="['/profile/overview']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="account_box" class="btn-icon" ></mat-icon>
+          <span>My Profile</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="inbox" class="btn-icon" ></mat-icon>
+          <span>My Inbox</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="receipt" class="btn-icon" ></mat-icon>
+          <span>My Tasks</span>
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['/profile/settings']">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon svgIcon="library_books" class="btn-icon" ></mat-icon>
+          <span>Billing Information</span>
+        </div>
+      </button>
+      <div class="dropdown-footer text-center pb-12 pt-12">
+        <button mat-button color="primary" class="fw-500">Logout</button>
+      </div>
+    </mat-nav-list>
+</mat-menu>
+
+  <!-- <mat-menu #accountMenu="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/profile/overview']">
+      <mat-icon>account_box</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/profile/settings']">
+      <mat-icon>settings</mat-icon>
+      <span>Account Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+    <button mat-menu-item (click)="jwtAuth.signout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>{{ "SIGNOUT" | translate }}</span>
+    </button>
+  </mat-menu> -->
+</mat-toolbar>

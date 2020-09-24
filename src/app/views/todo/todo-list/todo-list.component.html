@@ -1,0 +1,143 @@
+<div class="todo-wrapper"  fxLayout="row">
+  <div class="todo-sidenav">
+    <div class="border-bottom">
+      <div class="pt-1 pb-1 pr-05 pl-05">
+        <button class="w-100 border-shadow-0" mat-raised-button color="primary" routerLink="/todo/add">
+          Add Task
+        </button>
+      </div>
+      <a (click)="onTodoOptionSelected($event)" mat-menu-item><mat-icon>filter</mat-icon> <span>All</span></a>
+    </div>
+    <div>
+       <div class="border-bottom">
+        <h4 class=" ml-1 mt-1 fw-500">Filters</h4>
+        <a (click)="onTodoOptionSelected($event)" mat-menu-item><mat-icon>star_border</mat-icon><span>Starred</span> </a>
+        <a (click)="onTodoOptionSelected($event)" mat-menu-item><mat-icon>error_outline</mat-icon><span>Important</span> </a>
+        <a (click)="onTodoOptionSelected($event)" mat-menu-item><mat-icon>check</mat-icon><span>Completed</span></a>
+        <a (click)="onTodoOptionSelected($event)" mat-menu-item><mat-icon>delete_outline</mat-icon><span>Trashed</span></a>
+       </div>
+      <h4 class=" ml-1 mt-1 fw-500">Labels</h4>
+      <a fxLayout="row" fxLayoutAlign="start center" (click)="onTodoOptionSelected($event)" mat-menu-item>
+       <div class="h-3 w-3 red-border rounded-circle border-2 border-solid mr-05"></div>Starred
+      </a>
+      <button (click)="onTodoOptionSelected($event)" mat-menu-item>
+        Unstarred
+      </button>
+      <button (click)="onTodoOptionSelected($event)" mat-menu-item>
+        Important
+      </button>
+      <button (click)="onTodoOptionSelected($event)" mat-menu-item>
+        Unimportant
+      </button>
+    </div>
+  </div>
+  
+  <div class="todo-content border-shadow-0">
+    <mat-toolbar fxLayoutGap="5px">
+      <!-- <mat-checkbox
+        [checked]="isMasterToggled"
+        [indeterminate]="
+          toggledItemNumber > 0 && toggledItemNumber < todoList.length
+        "
+        (change)="masterToggle()"
+      ></mat-checkbox> -->
+      <div class="search-box mat-elevation-z2 border-shadow-0 border" fxFlex="1 1 0%">
+        <button mat-icon-button><mat-icon>search</mat-icon></button>
+        <input
+          type="text"
+          (keyup)="updateSearchTerm(serachTerm.value)"
+          placeholder="Search"
+          #serachTerm
+        />
+      </div>
+      <mat-menu #tagMenu="matMenu">
+        <button mat-menu-item (click)="onTodoOptionSelected({ target: { innerText: 'All' } })">
+          all
+        </button>
+        <button mat-menu-item *ngFor="let tag of tagList" (click)="filterTodoListOnTag(tag)">
+          {{ tag.name }}
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div cdkDropList class="todo-list" (cdkDropListDropped)="drop($event)">
+      <div class="todo-box" *ngIf="todoList?.length < 1" fxLayout="row" fxLayoutAlign="center center">
+        Loading...
+      </div>
+      <div class="todo-box" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px"
+        *ngFor="let todo of (todoList | todoSearch: searchTerm)" cdkDrag cdkDragHandle>
+        <!-- <mat-checkbox
+          [checked]="todo?.selected"
+          (change)="toggleCheckBox(todo)"
+        ></mat-checkbox> -->
+        <mat-icon class="move-handler">open_with</mat-icon>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="1 1 0%">
+          <div style="cursor: pointer;" fxLayout="column" fxLayoutGap="8px" fxFlex="1 1 0%"
+            routerLink="/todo/list/{{ todo?.id }}">
+            <div class="title-wrap" fxLayout="row" xLayoutAlign="start center">
+              <h4 class="fw-500">{{ todo?.title }}</h4>
+              <div class="todo-tags  ml-1">
+                <mat-chip-list #chipList>
+                  <div *ngFor="let tag of todo?.tag">
+                    <mat-chip *ngIf="tagMap.get(tag)">
+                      {{ tagMap.get(tag) }}
+                    </mat-chip>
+                  </div>
+                </mat-chip-list>
+              </div>
+            </div>
+            
+            <span>{{ todo?.note }}</span>
+    
+            <!-- <div fxLayout="row" fxLayoutGap="5px">
+              <div class="tag" *ngFor="let tag of todo?.tag">
+                <div class="circle"></div>
+                <div>{{ tagMap.size > 0 ? tagMap.get(tag) : null }}</div>
+              </div>
+            </div> -->
+    
+            
+          </div>
+    
+          <div fxFlexAlign="end center" fxLayout="row">
+            <button mat-icon-button (click)="toggleImportant(todo)">
+              <mat-icon [ngClass]="{
+                  'fill-color-warn': todo?.important
+                }">{{ todo?.important ? "error" : "error_outline" }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleStar(todo)">
+              <mat-icon [ngClass]="{
+                  'fill-color-accent': todo?.starred
+                }">{{ todo?.starred ? "star" : "star_outline" }}</mat-icon>
+            </button>
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="menu2">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu2="matMenu" [xPosition]="'before'">
+                <button mat-menu-item (click)="toggleRead(todo)">
+                  <mat-icon>{{
+                    todo.completed ? "check_box" : "check_box_outline_blank"
+                  }}</mat-icon>
+                  <span style="vertical-align: middle;">{{
+                    todo.completed ? "Mark as unread" : "Mark as read"
+                  }}</span>
+                </button>
+                <button mat-menu-item (click)="toggleDone(todo)">
+                  <mat-icon>{{
+                    todo.done ? "check_box" : "check_box_outline_blank"
+                  }}</mat-icon>
+                  <span style="vertical-align: middle;">{{
+                    todo.done ? "Mark as Important" : "Mark as done"
+                  }}</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

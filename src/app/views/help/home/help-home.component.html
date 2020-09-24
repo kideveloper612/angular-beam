@@ -1,0 +1,100 @@
+<div class="help-center-wrapper">
+    <div class="container">
+        <div class="header-search mt-36">
+            <h2 class="fw-700 text-38 text-center">Hello, how can we help today?</h2>
+            <div class="search pt-12 pb-12 pl-16 pr-16 mt-24" fxLayout="row" fxLayoutAlign="center center">
+                <input type="search" id="site-search" name="q" aria-label="Search through site content"
+                    placeholder="Search through site content">
+
+            </div>
+        </div>
+        <div class="help-categories mt-48" fxLayout="row wrap">
+            <!-- Fullwidth chart -->
+            <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.sm="100">
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+                    <mat-card fxFlex="100" color="primary">
+                        <div class="text-center">
+                            <img width="170px" src="assets/images/illustrations/graphic-faq.png" alt="">
+                            <h4 class="fw-600 mt-16">FAQs</h4>
+                            <p class="text-muted">Frequently asked questions and answers</p>
+                        </div>
+                    </mat-card>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+                    <mat-card fxFlex="100" color="primary">
+                        <div class="text-center">
+                            <img width="170px" src="assets/images/illustrations/graphic-guids.png" alt="">
+                            <h4 class="fw-600 mt-16">Guids</h4>
+                            <p class="text-muted">Articles and resources to guide you</p>
+                        </div>
+                    </mat-card>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50">
+                    <mat-card fxFlex="100" color="primary">
+                        <div class="text-center">
+                            <img width="170px" src="assets/images/illustrations/graphic-support.png" alt="">
+                            <h4 class="fw-600 mt-16">Support</h4>
+                            <p class="text-muted">Contact us for more detailed support</p>
+                        </div>
+                    </mat-card>
+                </div>
+
+            </div>
+        </div>
+        <!-- Fullwidth chart -->
+
+        <div class="faq-part mt-48">
+            <h2 class="fw-700 text-38 text-center">Most frequently asked questions</h2>
+            <div class="most-popular-questions mt-36">
+                <div class="example-action-buttons mb-16">
+                    <a class="mr-16" color="primary" (click)="accordion.openAll()">Expand All</a>
+                    <a color="primary" (click)="accordion.closeAll()">Collapse All</a>
+                </div>
+                <mat-accordion class="example-headers-align" multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                How do I download the template?
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                           <p class="text-muted">Proin consequat at orci id rhoncus. Etiam id tortor urna. Proin tincidunt et orci et luctus. Donec sed aliquam risus. Proin ultricies sem eu nisl hendrerit, quis tincidunt sem ultricies. Pellentesque quis malesuada lacus, id volutpat est. In interdum dolor sit amet urna maximus porta. Donec sed maximus purus.</p>
+                     </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Can I get a refund?
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="text-muted">Proin consequat at orci id rhoncus. Etiam id tortor urna. Proin tincidunt et orci et luctus. Donec sed aliquam risus. Proin ultricies sem eu nisl hendrerit, quis tincidunt sem ultricies. Pellentesque quis malesuada lacus, id volutpat est. In interdum dolor sit amet urna maximus porta. Donec sed maximus purus.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Creating your first page
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="text-muted">Proin consequat at orci id rhoncus. Etiam id tortor urna. Proin tincidunt et orci et luctus. Donec sed aliquam risus. Proin ultricies sem eu nisl hendrerit, quis tincidunt sem ultricies. Pellentesque quis malesuada lacus, id volutpat est. In interdum dolor sit amet urna maximus porta. Donec sed maximus purus.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Customizing your template
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="text-muted">Proin consequat at orci id rhoncus. Etiam id tortor urna. Proin tincidunt et orci et luctus. Donec sed aliquam risus. Proin ultricies sem eu nisl hendrerit, quis tincidunt sem ultricies. Pellentesque quis malesuada lacus, id volutpat est. In interdum dolor sit amet urna maximus porta. Donec sed maximus purus.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Which payment methods are supported?
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p class="text-muted">Proin consequat at orci id rhoncus. Etiam id tortor urna. Proin tincidunt et orci et luctus. Donec sed aliquam risus. Proin ultricies sem eu nisl hendrerit, quis tincidunt sem ultricies. Pellentesque quis malesuada lacus, id volutpat est. In interdum dolor sit amet urna maximus porta. Donec sed maximus purus.</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+            </div>
+        </div>
+
+    </div>
+</div>
