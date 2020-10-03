@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      username: new FormControl('admin@admin.com', Validators.required),
+      email: new FormControl('admin@admin.com', Validators.required),
       password: new FormControl('12345678', Validators.required),
       rememberMe: new FormControl(true)
     });
@@ -60,7 +60,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.submitButton.disabled = true;
     this.progressBar.mode = 'indeterminate';
-    console.log('sign');
+    console.log('sign: ', signinData);
     
     this.jwtAuth.signin(signinData.username, signinData.password)
     .subscribe(response => {

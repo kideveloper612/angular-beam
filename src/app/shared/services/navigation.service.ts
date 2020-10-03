@@ -51,14 +51,14 @@ export class NavigationService {
     },
     {
       name: "Dashboard",
-      type: "dropDown",
+      type: "link",
       tooltip: "Dashboard",
       icon: "dashboard",
       state: "dashboard",
-      sub: [
-        { name: "Default", state: "default" },
+      // sub: [
+      //   { name: "Default", state: "default" },
         
-      ]
+      // ]
     },
     {
       type: "separator",
