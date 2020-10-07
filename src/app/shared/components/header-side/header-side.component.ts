@@ -12,8 +12,8 @@ export class HeaderSideComponent implements OnInit {
 
 
 
-   // Dummy notifications
-   notifications = [{
+  // Dummy notifications
+  notifications = [{
     message: 'New orders received',
     icon: 'assignment_ind',
     time: '3 min ago',
@@ -46,13 +46,13 @@ export class HeaderSideComponent implements OnInit {
   }]
 
   public marcoThemes;
-  public layoutConf:any;
+  public layoutConf: any;
   constructor(
     private themeService: ThemeService,
     private layout: LayoutService,
     private renderer: Renderer2,
     public jwtAuth: JwtAuthService
-  ) {}
+  ) { }
   ngOnInit() {
     this.marcoThemes = this.themeService.marcoThemes;
     this.layoutConf = this.layout.layoutConf;
@@ -65,7 +65,7 @@ export class HeaderSideComponent implements OnInit {
     this.notificPanel.toggle();
   }
   toggleSidenav() {
-    if(this.layoutConf.sidebarStyle === 'closed') {
+    if (this.layoutConf.sidebarStyle === 'closed') {
       return this.layout.publishLayoutChange({
         sidebarStyle: 'full'
       })
@@ -77,22 +77,26 @@ export class HeaderSideComponent implements OnInit {
 
   toggleCollapse() {
     // compact --> full
-    if(this.layoutConf.sidebarStyle === 'compact') {
+    if (this.layoutConf.sidebarStyle === 'compact') {
       return this.layout.publishLayoutChange({
         sidebarStyle: 'full',
         sidebarCompactToggle: false
-      }, {transitionClass: true})
+      }, { transitionClass: true })
     }
 
     // * --> compact
     this.layout.publishLayoutChange({
       sidebarStyle: 'compact',
       sidebarCompactToggle: true
-    }, {transitionClass: true})
+    }, { transitionClass: true })
 
   }
 
   onSearch(e) {
     //   console.log(e)
+  }
+
+  logout() {
+    this.jwtAuth.signout();
   }
 }

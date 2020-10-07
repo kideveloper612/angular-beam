@@ -21,7 +21,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     public themeService: ThemeService,
     private layout: LayoutService,
     public jwtAuth: JwtAuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.iconTypeMenuTitle = this.navService.iconTypeMenuTitle;
@@ -34,7 +34,9 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.layoutConf = this.layout.layoutConf;
   }
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    // console.log(this.jwtAuth.getUser())
+  }
   ngOnDestroy() {
     if (this.menuItemsSub) {
       this.menuItemsSub.unsubscribe();
@@ -44,14 +46,14 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     if (
       this.layoutConf.sidebarCompactToggle
     ) {
-        this.layout.publishLayoutChange({
+      this.layout.publishLayoutChange({
         sidebarCompactToggle: false
       });
     } else {
-        this.layout.publishLayoutChange({
-            // sidebarStyle: "compact",
-            sidebarCompactToggle: true
-          });
+      this.layout.publishLayoutChange({
+        // sidebarStyle: "compact",
+        sidebarCompactToggle: true
+      });
     }
   }
 }

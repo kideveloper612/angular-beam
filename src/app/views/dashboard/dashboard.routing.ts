@@ -10,7 +10,7 @@ export const DashboardRoutes: Routes = [
     path: "",
     component: DefaultDashboardComponent,
     canActivate: [UserRoleGuard],
-    data: { title: "Default", breadcrumb: "Main Dashboard", roles: config.authRoles.sa }
+    data: { title: "Default", breadcrumb: "Main Dashboard", roles: config.authRoles.admin }
   },
 
 ];

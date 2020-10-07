@@ -14,7 +14,6 @@ export class UserRoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     var user = this.jwtAuth.getUser();
-
     if (
       user &&
       route.data &&
@@ -24,6 +23,7 @@ export class UserRoleGuard implements CanActivate {
       return true;
     } else {
       this.snack.open('You do not have access to this page!', 'OK');
+      this.jwtAuth.signout();
       return false;
     }
   }

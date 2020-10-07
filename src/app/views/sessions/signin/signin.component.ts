@@ -34,8 +34,8 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      email: new FormControl('admin@admin.com', Validators.required),
-      password: new FormControl('12345678', Validators.required),
+      email: new FormControl('damianjab.dev@gmail.com', Validators.required),
+      password: new FormControl('12345', Validators.required),
       rememberMe: new FormControl(true)
     });
 
@@ -46,7 +46,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     // setTimeout(() => {
-      // this.autoSignIn();
+    // this.autoSignIn();
     // })
   }
 
@@ -60,24 +60,25 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.submitButton.disabled = true;
     this.progressBar.mode = 'indeterminate';
-    console.log('sign: ', signinData);
-    
-    this.jwtAuth.signin(signinData.username, signinData.password)
-    .subscribe(response => {
-      this.router.navigateByUrl(this.return);
-    }, err => {
-      this.submitButton.disabled = false;
-      this.progressBar.mode = 'determinate';
-      this.errorMsg = err.message;
-      // console.log(err);
-    })
+
+    this.jwtAuth.signin(signinData.email, signinData.password)
+      .subscribe(response => {
+        this.submitButton.disabled = false;
+        this.progressBar.mode = 'determinate';
+        this.router.navigateByUrl(this.return);
+      }, err => {
+        console.log(err);
+        this.submitButton.disabled = false;
+        this.progressBar.mode = 'determinate';
+        this.errorMsg = err.error.message;
+      })
   }
 
-  autoSignIn() {    
-    if(this.return === '/') {
+  autoSignIn() {
+    if (this.return === '/') {
       return
     }
-    this.marcoLoader.open(`Automatically Signing you in! \n Return url: ${this.return.substring(0, 20)}...`, {width: '320px'});
+    this.marcoLoader.open(`Automatically Signing you in! \n Return url: ${this.return.substring(0, 20)}...`, { width: '320px' });
     setTimeout(() => {
       this.signin();
       console.log('autoSignIn');

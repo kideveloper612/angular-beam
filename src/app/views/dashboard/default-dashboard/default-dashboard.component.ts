@@ -844,7 +844,6 @@ contacts: any[];
     };
   }
   setChartColor(theme) {
-    console.log(theme);
     
     this.lineChartColors = [{
       backgroundColor: tinyColor(theme.baseColor).setAlpha(.6),

@@ -1,0 +1,30 @@
+<div class="m-333">
+    <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">{{"ADD"  }}
+        {{"PRODUCT"  }}</button>
+</div>
+
+<mat-form-field class="margin-333" style="width: 100%">
+    <input type="number" matInput placeholder="Type to filter all columns" value="" (keyup)='updateFilter($event)'>
+</mat-form-field>
+
+<div class="mat-box-shadow margin-333">
+    <ngx-datatable class="material bg-white" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="50" [limit]="8" [rows]="productArray" [columns]="displayedColumns">
+        <ngx-datatable-column *ngFor="let column of displayedColumns; let i = index;" name="{{column.name}}"
+            prop="{{column.prop}}">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <div *ngIf="column.name === 'Actions'">
+                    <button (click)='editProduct(row)' class="actionBtn">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)='removeProduct(row)' class="actionBtn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="column.name !== 'Actions'">
+                    {{value}}
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

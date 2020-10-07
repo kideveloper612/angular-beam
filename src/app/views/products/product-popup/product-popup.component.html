@@ -1,0 +1,71 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+    <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="100" class="pr-1">
+            <mat-label>Section designation</mat-label>
+            <div class="sod-group">
+                <mat-form-field appearance="fill" class="full-width">
+                    <input type="number" matInput name="sodx" [formControl]="itemForm.controls['sodx']">
+                </mat-form-field>{{' '}}x{{' '}}
+                <mat-form-field appearance="fill" class="full-width">
+                    <input type="number" matInput name="sody" [formControl]="itemForm.controls['sody']">
+                </mat-form-field>{{' '}}x{{' '}}
+                <mat-form-field appearance="fill" class="full-width">
+                    <input type="number" matInput name="sodz" [formControl]="itemForm.controls['sodz']">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Mass per metre (kg/m)</mat-label>
+                <input type="number" matInput name="mpm" [formControl]="itemForm.controls['mpm']"
+                    placeholder="Mass per metre (kg/m)">
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Depth of section (mm)</mat-label>
+                <input type="number" matInput name="dos" [formControl]="itemForm.controls['dos']"
+                    placeholder="Depth of section (mm)">
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="100" class="pr-1">
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Width of section (mm)</mat-label>
+                <input type="number" matInput name="wos" [formControl]="itemForm.controls['wos']"
+                    placeholder="Width of section (mm)">
+            </mat-form-field>
+        </div>
+
+        <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Second mement of area, Axis y-y (cm^4)</mat-label>
+                <input type="number" matInput name="smoa" [formControl]="itemForm.controls['smoa']"
+                    placeholder="Second mement of area, Axis y-y (cm^4)">
+            </mat-form-field>
+        </div>
+        <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Plastic modules, Axis y-y (cm^3)</mat-label>
+                <input type="number" matInput name="pma" [formControl]="itemForm.controls['pma']"
+                    placeholder="Plastic modules, Axis y-y (cm^3)">
+            </mat-form-field>
+        </div>
+        <div class="width-100 " fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="pt-1 pr-1">
+                <!-- <mat-slide-toggle [formControl]="itemForm.controls['isActive']">Active Profile</mat-slide-toggle> -->
+            </div>
+            <div class="mt-1">
+                <button mat-raised-button color="primary"
+                    [disabled]="itemForm.invalid">{{data.isNew?'CREATE': 'UPDATE'}}</button>
+                <span fxFlex></span>
+                <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">CANCEL</button>
+            </div>
+        </div>
+
+    </div>
+</form>

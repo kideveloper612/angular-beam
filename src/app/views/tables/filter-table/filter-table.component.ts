@@ -18,6 +18,8 @@ export class FilterTableComponent implements OnInit {
   ngOnInit() {
     this.columns = this.service.getDataConf();
     this.rows = this.temp = this.service.getAll();
+    console.log(this.columns);
+    console.log(this.rows);
   }
 
   updateFilter(event) {
@@ -30,7 +32,7 @@ export class FilterTableComponent implements OnInit {
     if (!columns.length)
       return;
 
-    const rows = this.temp.filter(function(d) {
+    const rows = this.temp.filter(function (d) {
       for (let i = 0; i <= columns.length; i++) {
         let column = columns[i];
         // console.log(d[column]);

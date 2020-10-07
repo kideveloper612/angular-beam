@@ -14,117 +14,122 @@ export const rootRouterConfig: Routes = [
   //   loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule),
   //   data: { title: 'Choose A Demo' }
   // },
-  { 
-    path: '', 
-    redirectTo: 'dashboard', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   },
   {
-    path: '', 
+    path: '',
     component: AuthLayoutComponent,
     children: [
-      { 
-        path: 'sessions', 
+      {
+        path: 'sessions',
         loadChildren: () => import('./views/sessions/sessions.module').then(m => m.SessionsModule),
-        data: { title: 'Session'} 
+        data: { title: 'Session' }
       }
     ]
   },
   {
-    path: '', 
+    path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { 
-        path: 'dashboard', 
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule), 
-        data: { title: 'Dashboard', breadcrumb: 'Dashboard'}
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        data: { title: 'Dashboard', breadcrumb: 'Dashboard' }
       },
       {
-        path: 'material', 
-        loadChildren: () => import('./views/material-example-view/material-example-view.module').then(m => m.MaterialExampleViewModule), 
-        data: { title: 'Material', breadcrumb: 'Materail'}
+        path: 'products',
+        loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule),
+        data: { title: 'Products', breadcrumb: 'Products' }
       },
       {
-        path: 'dialogs', 
-        loadChildren: () => import('./views/app-dialogs/app-dialogs.module').then(m => m.AppDialogsModule), 
-        data: { title: 'Dialogs', breadcrumb: 'Dialogs'}
+        path: 'material',
+        loadChildren: () => import('./views/material-example-view/material-example-view.module').then(m => m.MaterialExampleViewModule),
+        data: { title: 'Material', breadcrumb: 'Materail' }
       },
       {
-        path: 'profile', 
-        loadChildren: () => import('./views/profile/profile.module').then(m => m.ProfileModule), 
-        data: { title: 'Profile', breadcrumb: 'Profile'}
+        path: 'dialogs',
+        loadChildren: () => import('./views/app-dialogs/app-dialogs.module').then(m => m.AppDialogsModule),
+        data: { title: 'Dialogs', breadcrumb: 'Dialogs' }
       },
       {
-        path: 'others', 
-        loadChildren: () => import('./views/others/others.module').then(m => m.OthersModule), 
-        data: { title: 'Others', breadcrumb: 'Others'}
+        path: 'profile',
+        loadChildren: () => import('./views/profile/profile.module').then(m => m.ProfileModule),
+        data: { title: 'Profile', breadcrumb: 'Profile' }
       },
       {
-        path: 'tables', 
-        loadChildren: () => import('./views/tables/tables.module').then(m => m.TablesModule), 
-        data: { title: 'Tables', breadcrumb: 'Tables'}
+        path: 'others',
+        loadChildren: () => import('./views/others/others.module').then(m => m.OthersModule),
+        data: { title: 'Others', breadcrumb: 'Others' }
       },
       {
-        path: 'pricing', 
-        loadChildren: () => import('./views/app-pricing/app-pricing.module').then(m => m.AppPricingModule), 
-        data: { title: 'Pricing', breadcrumb: 'Pricing'}
+        path: 'tables',
+        loadChildren: () => import('./views/tables/tables.module').then(m => m.TablesModule),
+        data: { title: 'Tables', breadcrumb: 'Tables' }
       },
-      
       {
-        path: 'forms', 
-        loadChildren: () => import('./views/forms/forms.module').then(m => m.AppFormsModule), 
-        data: { title: 'Forms', breadcrumb: 'Forms'}
+        path: 'pricing',
+        loadChildren: () => import('./views/app-pricing/app-pricing.module').then(m => m.AppPricingModule),
+        data: { title: 'Pricing', breadcrumb: 'Pricing' }
+      },
+
+      {
+        path: 'forms',
+        loadChildren: () => import('./views/forms/forms.module').then(m => m.AppFormsModule),
+        data: { title: 'Forms', breadcrumb: 'Forms' }
       },
       {
         path: 'chart',
-        loadChildren: () => import('./views/chart-example-view/chart-example-view.module').then(m => m.ChartExampleViewModule), 
-        data: { title: 'Charts', breadcrumb: 'Charts'}
+        loadChildren: () => import('./views/chart-example-view/chart-example-view.module').then(m => m.ChartExampleViewModule),
+        data: { title: 'Charts', breadcrumb: 'Charts' }
       },
       {
-        path: 'charts', 
-        loadChildren: () => import('./views/charts/charts.module').then(m => m.AppChartsModule), 
-        data: { title: 'Charts', breadcrumb: 'Charts'}
+        path: 'charts',
+        loadChildren: () => import('./views/charts/charts.module').then(m => m.AppChartsModule),
+        data: { title: 'Charts', breadcrumb: 'Charts' }
       },
-      
+
       {
-        path: 'help', 
-        loadChildren: () => import('./views/help/help.module').then(m => m.AppHelpModule), 
-        data: { title: 'Help', breadcrumb: 'Help'}
-      },
-      {
-        path: 'inbox', 
-        loadChildren: () => import('./views/app-inbox/app-inbox.module').then(m => m.AppInboxModule), 
-        data: { title: 'Inbox', breadcrumb: 'Inbox'}
+        path: 'help',
+        loadChildren: () => import('./views/help/help.module').then(m => m.AppHelpModule),
+        data: { title: 'Help', breadcrumb: 'Help' }
       },
       {
-        path: 'calendar', 
-        loadChildren: () => import('./views/app-calendar/app-calendar.module').then(m => m.AppCalendarModule), 
-        data: { title: 'Calendar', breadcrumb: 'Calendar'}
+        path: 'inbox',
+        loadChildren: () => import('./views/app-inbox/app-inbox.module').then(m => m.AppInboxModule),
+        data: { title: 'Inbox', breadcrumb: 'Inbox' }
       },
       {
-        path: 'chat', 
-        loadChildren: () => import('./views/app-chats/app-chats.module').then(m => m.AppChatsModule), 
-        data: { title: 'Chat', breadcrumb: 'Chat'}
+        path: 'calendar',
+        loadChildren: () => import('./views/app-calendar/app-calendar.module').then(m => m.AppCalendarModule),
+        data: { title: 'Calendar', breadcrumb: 'Calendar' }
       },
       {
-        path: 'users', 
-        loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule), 
-        data: { title: 'User', breadcrumb: 'User'}
+        path: 'chat',
+        loadChildren: () => import('./views/app-chats/app-chats.module').then(m => m.AppChatsModule),
+        data: { title: 'Chat', breadcrumb: 'Chat' }
       },
       {
-        path: 'shop', 
-        loadChildren: () => import('./views/shop/shop.module').then(m => m.ShopModule), 
-        data: { title: 'Shop', breadcrumb: 'Shop'}
+        path: 'users',
+        loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule),
+        data: { title: 'User', breadcrumb: 'User' }
       },
       {
-        path: 'search', 
+        path: 'shop',
+        loadChildren: () => import('./views/shop/shop.module').then(m => m.ShopModule),
+        data: { title: 'Shop', breadcrumb: 'Shop' }
+      },
+      {
+        path: 'search',
         loadChildren: () => import('./views/search-view/search-view.module').then(m => m.SearchViewModule)
       },
       {
         path: 'invoice',
         loadChildren: () => import('./views/invoice/invoice.module').then(m => m.InvoiceModule),
-        data: { title: 'Invoice', breadcrumb: 'Pages'}
+        data: { title: 'Invoice', breadcrumb: 'Pages' }
       },
       {
         path: 'todo',
@@ -133,27 +138,27 @@ export const rootRouterConfig: Routes = [
       {
         path: 'orders',
         loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule),
-        data: { title: 'Orders', breadcrumb: 'Orders'}
+        data: { title: 'Orders', breadcrumb: 'Orders' }
       },
       {
         path: 'page-layouts',
         loadChildren: () => import('./views/page-layouts/page-layouts.module').then(m => m.PageLayoutsModule)
       },
-      
+
       {
-        path: 'icons', 
-        loadChildren: () => import('./views/mat-icons/mat-icons.module').then(m => m.MatIconsModule), 
-        data: { title: 'Icons', breadcrumb: 'Maticons'}
+        path: 'icons',
+        loadChildren: () => import('./views/mat-icons/mat-icons.module').then(m => m.MatIconsModule),
+        data: { title: 'Icons', breadcrumb: 'Maticons' }
       },
       {
-        path: 'colors', 
-        loadChildren: () => import('./views/colors/colors.module').then(m => m.ColorsModule), 
-        data: { title: 'Colors', breadcrumb: 'Colors'}
+        path: 'colors',
+        loadChildren: () => import('./views/colors/colors.module').then(m => m.ColorsModule),
+        data: { title: 'Colors', breadcrumb: 'Colors' }
       }
     ]
   },
-  { 
-    path: '**', 
+  {
+    path: '**',
     redirectTo: 'sessions/404'
   }
 ];

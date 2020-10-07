@@ -26,7 +26,7 @@ interface IBadge {
 
 @Injectable()
 export class NavigationService {
-  constructor() {}
+  constructor() { }
   iconMenu: IMenuItem[] = [
     {
       name: "Home",
@@ -57,8 +57,36 @@ export class NavigationService {
       state: "dashboard",
       // sub: [
       //   { name: "Default", state: "default" },
-        
+
       // ]
+    },
+    {
+      name: "Products",
+      type: "link",
+      tooltip: "Dashboard",
+      icon: "business",
+      state: "products",
+    },
+    {
+      name: "Suppliers",
+      type: "link",
+      tooltip: "Suppliers",
+      icon: "store",
+      state: "suppliers",
+    },
+    {
+      name: "Customers",
+      type: "link",
+      tooltip: "Customers",
+      icon: "face",
+      state: "customers",
+    },
+    {
+      name: "Payments",
+      type: "link",
+      tooltip: "Dashboard",
+      icon: "attach_money",
+      state: "payments",
     },
     {
       type: "separator",
@@ -87,7 +115,7 @@ export class NavigationService {
       state: "todo",
       badges: [{ color: "#7367f0", value: "4" }]
     },
-    
+
     {
       name: "E-commerce",
       type: "dropDown",
@@ -107,10 +135,10 @@ export class NavigationService {
       tooltip: "Users",
       icon: "face",
       state: "users",
-     
+
       sub: [
         { name: "List", state: "list" },
-        // { name: "User grid", state: "analytics" },
+        { name: "User grid", state: "analytics" },
       ]
     },
     {
@@ -132,23 +160,25 @@ export class NavigationService {
       icon: "https",
       state: "auth",
       sub: [
-        { name: "Sign up", type: "dropDown", 
-        sub: [
-          { name: "Sign up", state: "signup" },
-          { name: "Sign up 2", state: "signup2" },
-          { name: "Sign up 3", state: "signup3" },
-          { name: "Sign up 4", state: "signup4" },
-        ]
-      },
-      { name: "Sign in", type: "dropDown", 
-      sub: [
-        { name: "Sign in", state: "signin" },
-        { name: "Sign in 2", state: "signin2" },
-        { name: "Sign in 3", state: "signin3" },
-        { name: "Sign in 4", state: "signin4" },
-      ]
-    },
-        
+        {
+          name: "Sign up", type: "dropDown",
+          sub: [
+            { name: "Sign up", state: "signup" },
+            { name: "Sign up 2", state: "signup2" },
+            { name: "Sign up 3", state: "signup3" },
+            { name: "Sign up 4", state: "signup4" },
+          ]
+        },
+        {
+          name: "Sign in", type: "dropDown",
+          sub: [
+            { name: "Sign in", state: "signin" },
+            { name: "Sign in 2", state: "signin2" },
+            { name: "Sign in 3", state: "signin3" },
+            { name: "Sign in 4", state: "signin4" },
+          ]
+        },
+
         { name: "FORGOT", state: "forgot-password" },
         { name: "Error 404", state: "404" },
         { name: "Error 500", state: "error" },
@@ -162,15 +192,15 @@ export class NavigationService {
       state: "invoice/list",
       badges: [{ color: "#4caf50", value: "2" }],
     },
-   
-    
+
+
     {
       name: "Profile",
       type: "dropDown",
       tooltip: "Profile",
       icon: "person",
       state: "profile",
-      
+
       sub: [
         { name: "Overview", state: "overview" },
         { name: "Settings", state: "settings" },
@@ -184,8 +214,8 @@ export class NavigationService {
       icon: "attach_money",
       state: "pricing"
     },
-    
-    
+
+
     {
       name: "Help",
       type: "dropDown",
@@ -199,9 +229,9 @@ export class NavigationService {
       ]
     },
 
-    
-    
-    
+
+
+
     {
       type: "separator",
       name: "UI ELEMENTS"
@@ -212,19 +242,19 @@ export class NavigationService {
       tooltip: "Material",
       icon: "favorite",
       state: "material",
-      
+
       sub: [
-        
-            { name: "Autocomplete", state: "autocomplete" },
-            { name: "Checkbox", state: "checkbox" },
-            { name: "Datepicker", state: "datepicker" },
-            { name: "Form Field", state: "form-field" },
-            { name: "Input Field", state: "input-field" },
-            { name: "Radio Button", state: "radio-button" },
-            { name: "Select", state: "select" },
-            { name: "Slider", state: "slider" },
-            { name: "Slider Toggle", state: "slider-toggle" },
-         
+
+        { name: "Autocomplete", state: "autocomplete" },
+        { name: "Checkbox", state: "checkbox" },
+        { name: "Datepicker", state: "datepicker" },
+        { name: "Form Field", state: "form-field" },
+        { name: "Input Field", state: "input-field" },
+        { name: "Radio Button", state: "radio-button" },
+        { name: "Select", state: "select" },
+        { name: "Slider", state: "slider" },
+        { name: "Slider Toggle", state: "slider-toggle" },
+
         {
           name: "Navigation",
           type: "dropDown",
@@ -234,33 +264,34 @@ export class NavigationService {
             { name: "Toolbar", state: "toolbar" }
           ]
         },
-            { name: "Card", state: "card" },
-            { name: "Divider", state: "divider" },
-            { name: "Expansion Panel", state: "expansion-panel" },
-            { name: "Grid", state: "grid" },
-            { name: "List", state: "list" },
-            { name: "Stepper", state: "stepper" },
-            { name: "Tab", state: "tab-group" },
-            { name: "Tree", state: "tree" }
-         ,
-        
-       
-            { name: "BUTTONS", state: "buttons" },
-            { name: "Button Toggle", state: "button-toggle" },
-            { name: "Badge", state: "badge" },
-            { name: "Chips", state: "chips" },
-            { name: "Icons", state: "icons" },
-            { name: "Progress Spinner", state: "progress-spinner" },
-            { name: "Progress Bar", state: "progress-bar" },
-            { name: "Ripples", state: "ripples" 
-          
+        { name: "Card", state: "card" },
+        { name: "Divider", state: "divider" },
+        { name: "Expansion Panel", state: "expansion-panel" },
+        { name: "Grid", state: "grid" },
+        { name: "List", state: "list" },
+        { name: "Stepper", state: "stepper" },
+        { name: "Tab", state: "tab-group" },
+        { name: "Tree", state: "tree" }
+        ,
+
+
+        { name: "BUTTONS", state: "buttons" },
+        { name: "Button Toggle", state: "button-toggle" },
+        { name: "Badge", state: "badge" },
+        { name: "Chips", state: "chips" },
+        { name: "Icons", state: "icons" },
+        { name: "Progress Spinner", state: "progress-spinner" },
+        { name: "Progress Bar", state: "progress-bar" },
+        {
+          name: "Ripples", state: "ripples"
+
         },
-       
-            { name: "Tooltip", state: "tooltip" },
-            { name: "Bottom Sheet", state: "bottom-sheet" },
-            { name: "Dialog", state: "dialog" },
-            { name: "Snackbar", state: "snackbar" },
-         
+
+        { name: "Tooltip", state: "tooltip" },
+        { name: "Bottom Sheet", state: "bottom-sheet" },
+        { name: "Dialog", state: "dialog" },
+        { name: "Snackbar", state: "snackbar" },
+
         {
           name: "Data Table",
           type: "dropDown",
@@ -284,8 +315,8 @@ export class NavigationService {
         { name: "LOADER", state: "loader" }
       ]
     },
-    
-   
+
+
     {
       name: "Page Layouts",
       type: "dropDown",
@@ -296,11 +327,11 @@ export class NavigationService {
         { name: "Full width card", state: "full-width-card" },
         { name: "Full width card tab", state: "full-width-card-tab" },
 
- 
+
       ]
     },
-   
-   
+
+
 
     {
       name: "Others",
@@ -321,11 +352,11 @@ export class NavigationService {
       icon: "store",
       state: "icons"
     },
- 
+
     {
       type: "separator",
       name: "Forms & Table"
-    },  {
+    }, {
       name: "Forms",
       type: "dropDown",
       tooltip: "Forms",
@@ -347,6 +378,7 @@ export class NavigationService {
       sub: [
         { name: "FULLSCREEN", state: "fullscreen" },
         { name: "PAGING", state: "paging" },
+        { name: "MATERIAL Table", state: "mat-table" },
         { name: "FILTER", state: "filter" }
       ]
     },
@@ -460,7 +492,7 @@ export class NavigationService {
         { name: "SNACKBAR", state: "snackbar" }
       ]
     },
-  
+
     {
       name: "MAP",
       type: "link",
@@ -475,7 +507,7 @@ export class NavigationService {
       icon: "show_chart",
       state: "charts"
     },
-    
+
     {
       type: "separator",
       name: "Other components"
@@ -514,7 +546,7 @@ export class NavigationService {
       tooltip: "Material Icons",
       icon: "store",
       state: "icons"
-    },{
+    }, {
       name: "Colors",
       type: "link",
       tooltip: "Colors",
@@ -699,7 +731,7 @@ export class NavigationService {
       icon: "store",
       state: "icons"
     },
-    
+
     {
       name: "DOC",
       type: "extLink",
@@ -721,5 +753,5 @@ export class NavigationService {
   // You can remove this method and customizer component.
   // Or you can customize this method to supply different menu for
   // different user type.
-  
+
 }
