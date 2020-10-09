@@ -1,0 +1,84 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input
+        appearance="fill"
+        matInput
+        name="username"
+        [formControl]="itemForm.controls['name']"
+        placeholder="Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Age</mat-label>
+        <input
+        matInput
+        type="number"
+        name="age"
+        [formControl]="itemForm.controls['age']"
+        placeholder="Age">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+        matInput
+        type="email"
+        name="email"
+        [formControl]="itemForm.controls['email']"
+        placeholder="Email">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Company</mat-label>
+        <input
+        matInput
+        name="company"
+        [formControl]="itemForm.controls['company']"
+        placeholder="Company">
+      </mat-form-field>
+    </div>
+  
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Address</mat-label>
+        <input
+        matInput
+        name="address"
+        [formControl]="itemForm.controls['address']"
+        placeholder="address">
+      </mat-form-field>
+    </div>
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Balance</mat-label>
+        <input
+        matInput
+        name="balance"
+        [formControl]="itemForm.controls['balance']"
+        placeholder="Balance">
+      </mat-form-field>
+    </div>
+    <div class="width-100 " fxLayout="row" fxLayoutAlign="space-between center">
+      <div  class="pt-1 pr-1">
+        <mat-slide-toggle [formControl]="itemForm.controls['isActive']">Active Profile</mat-slide-toggle>
+      </div>
+      <div  class="mt-1">
+        <button mat-raised-button color="primary" [disabled]="itemForm.invalid">SAVE CHANGES</button>
+        <span fxFlex></span>
+        <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">CANCEL</button>
+      </div>
+    </div>
+    
+  </div>
+  </form>

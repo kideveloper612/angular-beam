@@ -4,7 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppComfirmComponent } from 'app/shared/services/app-confirm/app-confirm.component';
 import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
+import { Subscription } from 'rxjs';
 import { ProductsService } from '../../shared/services/products.service';
 import { ProductPopupComponent } from './product-popup/product-popup.component';
 
@@ -53,6 +55,8 @@ export class ProductsComponent implements OnInit {
   ];
   productArray: any[];
   temp: any[];
+
+  public getProductsSub: Subscription;
   constructor(private productSvc: ProductsService,
     private dialog: MatDialog,
     private loader: AppLoaderService,
@@ -62,9 +66,15 @@ export class ProductsComponent implements OnInit {
     this.refresh();
   }
 
+  ngOnDestroy() {
+    if (this.getProductsSub) {
+      this.getProductsSub.unsubscribe()
+    }
+  }
+
   refresh(): void {
     this.loader.open();
-    this.productSvc.getProducts()
+    this.getProductsSub = this.productSvc.getProducts()
       .subscribe(response => {
         this.processResponse(response);
         this.loader.close();
@@ -119,23 +129,34 @@ export class ProductsComponent implements OnInit {
     this.openPopUp(product, false);
   }
   removeProduct(product: any) {
-    this.productSvc.removeProduct(product._id)
-      .subscribe(response => {
-        if (response.status == 'success') {
-          this.processResponse(response);
-          this.snack.open('Product removed!', 'OK', { duration: 4000 })
-        }
-        else {
-          this.snack.open('Failed!', 'OK', { duration: 4000 })
-        }
-        this.loader.close();
+    let dialogRef: MatDialogRef<any> = this.dialog.open(AppComfirmComponent, {
+      width: '300px',
+      disableClose: false,
+      data: { title: 'Do you really want to remove the product?' }
+    })
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if (!res)
+          return;
+        this.productSvc.removeProduct(product._id)
+          .subscribe(response => {
+            if (response.status == 'success') {
+              this.processResponse(response);
+              this.snack.open('Product removed!', 'OK', { duration: 4000 })
+            }
+            else {
+              this.snack.open('Failed!', 'OK', { duration: 4000 })
+            }
+            this.loader.close();
+          })
       })
+
   }
   openPopUp(data: any = {}, isNew?) {
     let title = isNew ? 'Add a new product' : 'Update an existing product';
     let dialogRef: MatDialogRef<any> = this.dialog.open(ProductPopupComponent, {
       width: '720px',
-      disableClose: true,
+      disableClose: false,
       data: { title: title, payload: data, isNew: isNew }
     })
     dialogRef.afterClosed()

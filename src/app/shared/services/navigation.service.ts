@@ -75,14 +75,14 @@ export class NavigationService {
       state: "suppliers",
     },
     {
-      name: "Customers",
+      name: "Users",
       type: "link",
       tooltip: "Customers",
       icon: "face",
-      state: "customers",
+      state: "users",
     },
     {
-      name: "Payments",
+      name: "Orders",
       type: "link",
       tooltip: "Dashboard",
       icon: "attach_money",
@@ -90,7 +90,7 @@ export class NavigationService {
     },
     {
       type: "separator",
-      name: "APPS"
+      name: "Extra features"
     },
     {
       name: "Chat",
@@ -130,11 +130,11 @@ export class NavigationService {
       ]
     },
     {
-      name: "Users",
+      name: "Users-Card",
       type: "dropDown",
-      tooltip: "Users",
+      tooltip: "Users-Card",
       icon: "face",
-      state: "users",
+      state: "users-card",
 
       sub: [
         { name: "List", state: "list" },

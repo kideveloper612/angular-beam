@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,12 +17,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedModule } from '../../shared/shared.module';
-import { UserListComponent } from './user-lists/user-list.component';
+import { SuppliersRoutes } from './suppliers-routing.module';
+import { SuppliersComponent } from './suppliers.component';
+import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
+import { RouterModule } from '@angular/router';
 
-import { UsersRoutes } from './users.routing';
-import { UserPopupComponent } from './user-lists/user-popup/user-popup.component'
 
 @NgModule({
+  declarations: [SuppliersComponent, SupplierDetailComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -44,9 +45,8 @@ import { UserPopupComponent } from './user-lists/user-popup/user-popup.component
     MatSnackBarModule,
     MatSlideToggleModule,
     SharedModule,
-    RouterModule.forChild(UsersRoutes)
+    RouterModule.forChild(SuppliersRoutes)
   ],
-  declarations: [UserListComponent, UserPopupComponent],
-  entryComponents: [UserPopupComponent]
+  entryComponents: [SupplierDetailComponent]
 })
-export class UsersModule { }
+export class SuppliersModule { }

@@ -113,8 +113,18 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Chat', breadcrumb: 'Chat' }
       },
       {
+        path: 'suppliers',
+        loadChildren: () => import('./views/suppliers/suppliers.module').then(m => m.SuppliersModule),
+        data: { title: 'Suppliers', breadcrumb: 'Suppliers' }
+      },
+      {
         path: 'users',
         loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule),
+        data: { title: 'Users', breadcrumb: 'Users' }
+      },
+      {
+        path: 'users-card',
+        loadChildren: () => import('./views/users-card/users.module').then(m => m.UsersModule),
         data: { title: 'User', breadcrumb: 'User' }
       },
       {
@@ -157,9 +167,9 @@ export const rootRouterConfig: Routes = [
       }
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'sessions/404'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'sessions/404'
+  // }
 ];
 

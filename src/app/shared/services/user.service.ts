@@ -8,16 +8,13 @@ import { environment } from 'environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class UserService {
 
-  constructor(private jwtAuthSvc: JwtAuthService,
-    private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-  }
-
-  getProducts() {
+  getUsers() {
     let data = new FormData();
-    return this.http.post(`${environment.apiURL}/getProducts`, data)
+    return this.http.post(`${environment.apiURL}/getUsers`, data)
       .pipe(
         map((res: any) => {
           return res;
@@ -28,17 +25,17 @@ export class ProductsService {
       );
   }
 
-  insertProduct(data: any) {
+  insertUser(data: any) {
     let form_data = new FormData();
-    form_data.append('sodx', data.sodx);
-    form_data.append('sody', data.sody);
-    form_data.append('sodz', data.sodz);
-    form_data.append('mpm', data.mpm);
-    form_data.append('dos', data.dos);
-    form_data.append('wos', data.wos);
-    form_data.append('smoa', data.smoa);
+    form_data.append('name', data.name);
+    form_data.append('email', data.email);
+    form_data.append('phoneNumber', data.phoneNumber);
+    form_data.append('role', data.role);
+    if (data.verified)
+      form_data.append('verified', data.verified);
     form_data.append('pma', data.pma);
-    return this.http.post(`${environment.apiURL}/insertProduct`, form_data)
+    form_data.append('imgFile', data.imgFile)
+    return this.http.post(`${environment.apiURL}/insertUser`, form_data)
       .pipe(
         map((res: any) => {
           return res;
@@ -48,17 +45,20 @@ export class ProductsService {
         })
       );
   }
-  updateProduct(id: String, data: any) {
+
+  updateUser(id, data: any) {
     let form_data = new FormData();
-    form_data.append('sodx', data.sodx);
-    form_data.append('sody', data.sody);
-    form_data.append('sodz', data.sodz);
-    form_data.append('mpm', data.mpm);
-    form_data.append('dos', data.dos);
-    form_data.append('wos', data.wos);
-    form_data.append('smoa', data.smoa);
-    form_data.append('pma', data.pma);
-    return this.http.post(`${environment.apiURL}/updateProduct/${id}`, form_data)
+    form_data.append('name', data.name);
+    form_data.append('email', data.email);
+    form_data.append('phoneNumber', data.phoneNumber);
+    form_data.append('role', data.role);
+    if (data.verified)
+      form_data.append('verified', data.verified);
+    // else
+    // form_data.append('verified', null);
+    form_data.append('postCode', data.postCode);
+    form_data.append('imgFile', data.imgFile);
+    return this.http.post(`${environment.apiURL}/updateUser/${id}`, form_data)
       .pipe(
         map((res: any) => {
           return res;
@@ -68,8 +68,9 @@ export class ProductsService {
         })
       );
   }
-  removeProduct(id: String) {
-    return this.http.delete(`${environment.apiURL}/removeProduct/${id}`)
+
+  removeUser(id) {
+    return this.http.delete(`${environment.apiURL}/removeUser/${id}`)
       .pipe(
         map((res: any) => {
           return res;

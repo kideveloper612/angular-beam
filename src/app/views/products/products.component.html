@@ -14,10 +14,10 @@
             prop="{{column.prop}}">
             <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                 <div *ngIf="column.name === 'Actions'">
-                    <button (click)='editProduct(row)' class="actionBtn">
+                    <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="editProduct(row)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button (click)='removeProduct(row)' class="actionBtn">
+                    <button mat-icon-button mat-sm-button color="warn" (click)="removeProduct(row)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

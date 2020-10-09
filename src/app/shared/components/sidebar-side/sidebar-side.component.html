@@ -1,33 +1,32 @@
 <div class="sidebar-panel">
     <div id="scroll-area" [perfectScrollbar] class="navigation-wrapper" fxLayout="column">
         <div class="sidebar-wrapper">
-            
+
             <!-- App Logo -->
             <div class="branding">
                 <img src="assets/images/marco.png" alt="" class="app-logo">
                 <span class="app-logo-text">marco</span>
-                
+
                 <span style="margin: auto" *ngIf="layoutConf.sidebarStyle !== 'compact'"></span>
-                <div 
-                class="sidebar-compact-switch"
-                [ngClass]="{active: layoutConf.sidebarCompactToggle}"
-                (click)="toggleCollapse()" 
-                *ngIf="layoutConf.sidebarStyle !== 'compact'"><span></span></div>
+                <div class="sidebar-compact-switch" [ngClass]="{active: layoutConf.sidebarCompactToggle}"
+                    (click)="toggleCollapse()" *ngIf="layoutConf.sidebarStyle !== 'compact'"><span></span></div>
             </div>
-        
+
             <!-- Sidebar user -->
             <div class="app-user">
                 <div class="app-user-photo">
-                <img src="assets/images/face-7.jpg" class="mat-elevation-z1" alt="">
+                    <img [src]="jwtAuth?.user?.imagePath?jwtAuth?.user?.imagePath:'assets/images/avatar_placeholder.png'"
+                        class="mat-elevation-z1" alt="">
                 </div>
                 <span class="app-user-name fw-400">
-                {{jwtAuth?.user?.name}}
+                    {{jwtAuth?.user?.name}}
                 </span>
                 <small class="user-email">{{jwtAuth?.user?.email}}</small>
-        
+
             </div>
             <!-- Navigation -->
-            <app-sidenav [items]="menuItems" [hasIconMenu]="hasIconTypeMenuItem" [iconMenuTitle]="iconTypeMenuTitle"></app-sidenav>
+            <app-sidenav [items]="menuItems" [hasIconMenu]="hasIconTypeMenuItem" [iconMenuTitle]="iconTypeMenuTitle">
+            </app-sidenav>
         </div>
     </div>
 </div>

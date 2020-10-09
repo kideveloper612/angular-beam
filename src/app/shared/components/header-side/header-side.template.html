@@ -63,13 +63,15 @@
   <!-- Top left user menu -->
   <button mat-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right img-button">
     <span>{{jwtAuth?.user?.name}}</span>
-    <img class="profile-img" src="assets/images/face-7.jpg" alt="" />
+    <img class="profile-img"
+      [src]="jwtAuth?.user?.imagePath? jwtAuth?.user?.imagePath: 'assets/images/avatar_placeholder.png'" alt="avatar" />
   </button>
 
   <mat-menu #accountMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
     <mat-toolbar color="primary">
       <div class="text-left" fxLayout="row" fxLayoutAlign="start center">
-        <img class="profile-img rounded-circle w-12 h-12 mr-05" src="assets/images/face-7.jpg" alt="" />
+        <img class="profile-img rounded-circle w-12 h-12 mr-05"
+          [src]="jwtAuth?.user?.imagePath? jwtAuth?.user?.imagePath: 'assets/images/avatar_placeholder.png'" alt="avatar" />
         <h5 class="m-0">{{jwtAuth?.user?.name}}</h5>
 
       </div>

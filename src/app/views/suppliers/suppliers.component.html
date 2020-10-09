@@ -1,0 +1,60 @@
+<div class="m-333">
+
+  <button mat-raised-button class="mb-05" color="primary"  [routerLink]="['/suppliers/create']">{{"ADD"  }}
+    {{"SUPPLIER"  }}</button>
+</div>
+
+
+
+<mat-form-field class="margin-333" style="width: 100%">
+  <input matInput placeholder="Type to filter all columns" value="" (keyup)='updateFilter($event)'>
+</mat-form-field>
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+
+  <mat-card-content class="p-0">
+    <ngx-datatable class="material ml-0 mr-0" [rows]="userArray" [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [scrollbarH]="true" [limit]="10" [rowHeight]="80">
+      <ngx-datatable-column name="№" [flexGrow]="1" matColumnDef="index">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.index }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Avatar" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <img class="avatar rounded-circle"
+            [src]="row?.imagePath? row?.imagePath : 'assets/images/avatar_placeholder.png'" alt="avatar">
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.name }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Email" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.email }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Phone number" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.phoneNumber }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Post code" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.postCode }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Actions" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1" [routerLink]="['/suppliers/update/', row._id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </mat-card-content>
+</mat-card>
