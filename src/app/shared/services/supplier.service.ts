@@ -24,17 +24,9 @@ export class SupplierService {
       );
   }
 
-  insertUser(data: any) {
-    let form_data = new FormData();
-    form_data.append('name', data.name);
-    form_data.append('email', data.email);
-    form_data.append('phoneNumber', data.phoneNumber);
-    form_data.append('role', data.role);
-    if (data.verified)
-      form_data.append('verified', data.verified);
-    form_data.append('pma', data.pma);
-    form_data.append('imgFile', data.imgFile)
-    return this.http.post(`${environment.apiURL}/insertUser`, form_data)
+  getSupplier(id) {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getSupplier/${id}`, data)
       .pipe(
         map((res: any) => {
           return res;
@@ -45,19 +37,15 @@ export class SupplierService {
       );
   }
 
-  updateUser(id, data: any) {
+  insertSupplier(data: any) {
     let form_data = new FormData();
     form_data.append('name', data.name);
     form_data.append('email', data.email);
     form_data.append('phoneNumber', data.phoneNumber);
-    form_data.append('role', data.role);
-    if (data.verified)
-      form_data.append('verified', data.verified);
-    // else
-    // form_data.append('verified', null);
     form_data.append('postCode', data.postCode);
     form_data.append('imgFile', data.imgFile);
-    return this.http.post(`${environment.apiURL}/updateUser/${id}`, form_data)
+    form_data.append('products', JSON.stringify(data.products))
+    return this.http.post(`${environment.apiURL}/insertSupplier`, form_data)
       .pipe(
         map((res: any) => {
           return res;
@@ -68,8 +56,27 @@ export class SupplierService {
       );
   }
 
-  removeUser(id) {
-    return this.http.delete(`${environment.apiURL}/removeUser/${id}`)
+  updateSupplier(id, data: any) {
+    let form_data = new FormData();
+    form_data.append('name', data.name);
+    form_data.append('email', data.email);
+    form_data.append('phoneNumber', data.phoneNumber);
+    form_data.append('postCode', data.postCode);
+    form_data.append('products', JSON.stringify(data.products))
+    form_data.append('imgFile', data.imgFile);
+    return this.http.post(`${environment.apiURL}/updateSupplier/${id}`, form_data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
+  removeSupplier(id) {
+    return this.http.delete(`${environment.apiURL}/removeSupplier/${id}`)
       .pipe(
         map((res: any) => {
           return res;

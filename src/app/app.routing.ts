@@ -66,6 +66,11 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Others', breadcrumb: 'Others' }
       },
       {
+        path: 'orders',
+        loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule),
+        data: { title: 'Orders', breadcrumb: 'Orders' }
+      },
+      {
         path: 'tables',
         loadChildren: () => import('./views/tables/tables.module').then(m => m.TablesModule),
         data: { title: 'Tables', breadcrumb: 'Tables' }

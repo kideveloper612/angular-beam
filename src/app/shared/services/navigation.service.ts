@@ -84,9 +84,9 @@ export class NavigationService {
     {
       name: "Orders",
       type: "link",
-      tooltip: "Dashboard",
+      tooltip: "Orders",
       icon: "attach_money",
-      state: "payments",
+      state: "orders",
     },
     {
       type: "separator",

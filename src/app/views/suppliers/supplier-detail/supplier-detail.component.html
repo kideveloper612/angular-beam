@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="left-panel" [@animate]="{value:'*',params:{delay: '100ms', x:'50px'}}">
-        <mat-card>
-            <form [formGroup]="itemForm" (ngSubmit)="submit()">
+        <form [formGroup]="itemForm" (ngSubmit)="submit()">
+            <mat-card>
                 <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
                     <div fxFlex="100" class="pr-1 avatar-container mb-1">
@@ -41,8 +41,9 @@
                     </div>
 
                 </div>
-            </form>
-        </mat-card>
+            </mat-card>
+
+        </form>
     </div>
 
     <div class="right-panel">
@@ -51,11 +52,10 @@
                 <div class="product-details">
                     <h2 class="fw-600">Prices</h2>
                 </div>
-                <div fxFlex="100" class="pr-1" *ngFor="let product of productArray; let index">
+                <div fxFlex="100" class="pr-1" *ngFor="let product of productArray; let i = index">
                     <mat-form-field class="full-width" appearance="fill">
-                        <mat-label>{{product.sodx}} x {{product.sody}} x {{product.sodz}}</mat-label>
-                        <input matInput name="phoneNumber" type="number"
-                            [formControl]="itemForm.controls['phoneNumber']" placeholder="Phone number">
+                        <mat-label>Price of {{product.sodx}} x {{product.sody}} x {{product.sodz}}</mat-label>
+                        <input matInput type="number" [(ngModel)]="priceList[i]">
                     </mat-form-field>
                 </div>
             </div>
@@ -63,12 +63,12 @@
     </div>
 
 </div>
-
 <div class="width-100 " fxLayout="row" fxLayoutAlign="space-between center">
     <div class="pt-1 pr-1">
     </div>
     <div class="mt-1">
-        <button mat-raised-button color="primary" [disabled]="itemForm.invalid">{{isNew? 'CREATE' : 'UPDATE'}}</button>
+        <button mat-raised-button color="primary" (click)="submit()"
+            [disabled]="itemForm.invalid || isInvalidPrice()">{{isNew? 'CREATE' : 'UPDATE'}}</button>
         <span fxFlex></span>
         <button mat-button color="warn" type="button" (click)="goBack()">CANCEL</button>
     </div>

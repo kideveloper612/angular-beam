@@ -21,8 +21,10 @@ export class SupplierDetailComponent implements OnInit {
   public imgURL: any;
   public isNew: Boolean = true;
   private getProductsSub: Subscription;
+  private getSupplierSub: Subscription;
   public productArray: any[];
   private user_id: any;
+  public priceList: any[];
   @ViewChild('FileSelectInputDialog') FileSelectInputDialog: ElementRef;
   constructor(
     private fb: FormBuilder,
@@ -43,10 +45,8 @@ export class SupplierDetailComponent implements OnInit {
       try {
         let ue_array = url.split('/');
         this.user_id = ue_array[ue_array.length - 1];
-        if (!this.user_id)
-          return
+
       } catch (err) {
-        return;
       }
     }
 
@@ -58,29 +58,54 @@ export class SupplierDetailComponent implements OnInit {
     if (this.getProductsSub) {
       this.getProductsSub.unsubscribe()
     }
+    if (this.getSupplierSub) {
+      this.getSupplierSub.unsubscribe()
+    }
   }
   getProducts() {
     this.loader.open();
     this.getProductsSub = this.productSvc.getProducts()
       .subscribe(response => {
-        if (response.status == "success")
+        if (response.status == "success") {
           this.productArray = response.data;
-        else
+          this.priceList = new Array(this.productArray.length).fill('0');
+          if (!this.isNew && this.user_id) {
+            this.getSupplier(this.user_id);
+          } else {
+            this.loader.close();
+          }
+        }
+        else {
           this.productArray = [];
-        this.loader.close();
+          this.loader.close();
+        }
       }, err => {
         this.productArray = [];
         this.loader.close();
       })
   }
   getSupplier(id) {
-    this.loader.open();
-    this.getProductsSub = this.productSvc.getProducts()
+    this.getSupplierSub = this.supplierSvc.getSupplier(id)
       .subscribe(response => {
-        if (response.status == "success")
-          this.productArray = response.data;
-        else
-          this.productArray = [];
+        if (response.status == "success") {
+          let user = response.data;
+          this.imgURL = user.imagePath;
+          this.itemForm.setControl('name', new FormControl(user.name));
+          this.itemForm.setControl('phoneNumber', new FormControl(user.phoneNumber))
+          this.itemForm.setControl('postCode', new FormControl(user.postCode))
+          this.itemForm.setControl('email', new FormControl(user.email))
+          for (let i = 0; i < this.priceList.length; i++) {
+            let product = this.productArray[i];
+            for (let j = 0; j < user.products.length; j++) {
+              let priceItem = user.products[j];
+              if (product._id == priceItem.product) {
+                this.priceList[i] = priceItem.price;
+                break;
+              }
+            }
+          }
+        }
+
         this.loader.close();
       }, err => {
         this.productArray = [];
@@ -88,8 +113,6 @@ export class SupplierDetailComponent implements OnInit {
       })
   }
   buildItemForm(item: any) {
-    if (item)
-      this.imgURL = item.imagePath;
     this.itemForm = this.fb.group({
       name: [item?.name || '', Validators.required],
       email: [item?.email || '', Validators.required],
@@ -118,6 +141,63 @@ export class SupplierDetailComponent implements OnInit {
     e.click();
   }
   public goBack() {
-    this.location.back();
+    this.router.navigateByUrl('/suppliers');
+  }
+
+  submit() {
+    console.log(this.priceList, this.itemForm.value);
+    let priceEle: any[] = new Array();
+    for (let i = 0; i < this.priceList.length; i++) {
+      let item: any = {
+        product: this.productArray[i]._id,
+        price: this.priceList[i]
+      }
+      priceEle.push(item);
+    }
+    let data: any = {
+      ...this.itemForm.value,
+      products: priceEle
+    }
+    this.loader.open();
+    if (this.isNew) {
+      this.supplierSvc.insertSupplier(data)
+        .subscribe(data => {
+          this.loader.close();
+          if (data.status == 'success') {
+            this.snack.open('Member Added!', 'OK', { duration: 4000 })
+            this.goBack();
+          }
+          else
+            this.snack.open(data.msg, 'OK', { duration: 4000 })
+        }, err => {
+          this.snack.open('Failed', 'OK', { duration: 4000 })
+          this.loader.close();
+        })
+    } else {
+      this.supplierSvc.updateSupplier(this.user_id, data)
+        .subscribe(data => {
+          console.log(data);
+          this.loader.close();
+          if (data.status == 'success') {
+            this.snack.open('Member Updated!', 'OK', { duration: 4000 });
+            this.goBack();
+          }
+          else
+            this.snack.open(data.msg, 'OK', { duration: 4000 })
+        }, err => {
+          this.snack.open('Failed', 'OK', { duration: 4000 })
+          this.loader.close();
+        })
+    }
+  }
+
+  public isInvalidPrice() {
+    if (!this.priceList)
+      return true;
+    for (let i = 0; i < this.priceList.length; i++) {
+      if (!this.priceList[i])
+        return true;
+    }
+    return false
   }
 }

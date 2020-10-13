@@ -62,8 +62,8 @@ export class UserListComponent implements OnInit, OnDestroy {
       name: 'Actions'
     }
   ];
-  userArray: any[];
-  temp: any[];
+  public userArray: any[];
+  public temp: any[];
   constructor(
     private dialog: MatDialog,
     private snack: MatSnackBar,

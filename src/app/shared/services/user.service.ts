@@ -25,6 +25,19 @@ export class UserService {
       );
   }
 
+  getAllUsers() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getAllUsers`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
   insertUser(data: any) {
     let form_data = new FormData();
     form_data.append('name', data.name);

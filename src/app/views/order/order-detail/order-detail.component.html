@@ -1,4 +1,208 @@
-<p>
-  order-detail works!
-</p>
-<button mat-flat-button color="primary" routerLink="/orders/2/costs">Costs</button>
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div class="main-container">
+    <div class="left-panel" [@animate]="{value:'*',params:{delay: '100ms', x:'50px'}}">
+      <mat-card>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column">
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Post code</mat-label>
+              <input appearance="fill" matInput name="postCode" (keyup)="inputPostCode($event)"
+                [formControl]="itemForm.controls['postCode']" placeholder="Name">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Customer</mat-label>
+              <mat-select [formControl]="itemForm.controls['cid']">
+                <mat-option *ngFor="let option of customerArray" [value]="option._id">{{ option.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Supplier</mat-label>
+              <mat-select [formControl]="itemForm.controls['sid']">
+                <mat-option *ngFor="let option of filteredSupplierArray" [value]="option._id">{{ option.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Product</mat-label>
+              <mat-select [formControl]="itemForm.controls['pid']">
+                <mat-option *ngFor="let option of productArray" [value]="option._id">{{ option.sodx }} x
+                  {{ option.sody }} x {{ option.sodz }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Transaction id</mat-label>
+              <input matInput name="tid" [formControl]="itemForm.controls['tid']">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Price (£)</mat-label>
+              <input matInput name="price" [formControl]="itemForm.controls['price']">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Payment method</mat-label>
+              <mat-select [formControl]="itemForm.controls['pby']">
+                <mat-option *ngFor="let option of paymentMethods" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" class="pr-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Status</mat-label>
+              <mat-select [formControl]="itemForm.controls['status']">
+                <mat-option *ngFor="let option of statusList" [value]="option">{{ option }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="right-panel">
+      <mat-card>
+        <div class="prices-group-container">
+          <div class="product-details">
+            <h2 class="fw-600">Order content</h2>
+          </div>
+          <div class="product-details">
+            <h3 class="fw-500 mb-1">Floor</h3>
+          </div>
+          <div fxFlex="100" class="pr-1 mb-1">
+            <mat-checkbox matInput [formControl]="itemForm.controls['supportFloor']" (click)="checkSupportFloor()">
+              Support floor</mat-checkbox>
+          </div>
+          <div *ngIf="itemForm?.value?.supportFloor" class="group-container">
+            <div fxFlex="100" class="pr-1">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Floor type</mat-label>
+                <mat-select [formControl]="itemForm.controls['floorType']">
+                  <mat-option *ngFor="let option of floorList" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="product-details">
+              <h4 class="fw-500 mb-1">Span of floor</h4>
+            </div>
+            <div class="item-row">
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Side1 (m)</mat-label>
+                  <input type="number" matInput name="floorSpanSide1"
+                    [formControl]="itemForm.controls['floorSpanSide1']">
+                </mat-form-field>
+              </div>
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Side2 (m)</mat-label>
+                  <input type="number" matInput name="floorSpanSide2"
+                    [formControl]="itemForm.controls['floorSpanSide2']">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-details">
+            <h3 class="fw-500 mb-1">Roof</h3>
+          </div>
+          <div fxFlex="100" class="pr-1 mb-1">
+            <mat-checkbox matInput [formControl]="itemForm.controls['supportRoof']" (click)="checkSupportRoof()">Support
+              roof</mat-checkbox>
+          </div>
+
+          <div *ngIf="itemForm?.value?.supportRoof" class="group-container">
+            <div fxFlex="100" class="pr-1">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Roof type</mat-label>
+                <mat-select [formControl]="itemForm.controls['roofType']">
+                  <mat-option *ngFor="let option of roofList" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="product-details">
+              <h4 class="fw-500 mb-1">Span of roof</h4>
+            </div>
+            <div class="item-row">
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Side1 (m)</mat-label>
+                  <input type="number" matInput name="roofSpanSide1" [formControl]="itemForm.controls['roofSpanSide1']">
+                </mat-form-field>
+              </div>
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Side2 (m)</mat-label>
+                  <input type="number" matInput name="roofSpanSide2" [formControl]="itemForm.controls['roofSpanSide2']">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-details">
+            <h3 class="fw-500 mb-1">Wall</h3>
+          </div>
+          <div fxFlex="100" class="pr-1 mb-1">
+            <mat-checkbox matInput [formControl]="itemForm.controls['supportWall']" (click)="checkSupportWall()">Support
+              wall</mat-checkbox>
+          </div>
+          <div *ngIf="itemForm?.value?.supportWall" class="group-container">
+            <div class="product-details">
+              <h4 class="fw-500 mb-1">Span of wall</h4>
+            </div>
+            <div class="item-row">
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Thickness (m)</mat-label>
+                  <input type="number" matInput name="thickness" [formControl]="itemForm.controls['thickness']">
+                </mat-form-field>
+              </div>
+              <div fxFlex="50" class="pr-1">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Height (m)</mat-label>
+                  <input type="number" matInput name="height" [formControl]="itemForm.controls['height']">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+
+          <div fxFlex="100" class="pr-1 mt-1">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Span of opening</mat-label>
+              <input type="number" matInput name="openingSpan" [formControl]="itemForm.controls['openingSpan']">
+            </mat-form-field>
+          </div>
+
+          <!-- <div fxFlex="100" class="pr-1 mt-1 full-width"> -->
+            <!-- <mat-form-field appearance="fill" class="full-width"> -->
+            <!-- <div class="product-details"> -->
+              <!-- <h4 class="fw-500 mb-1">Price will be calculated automatically</h4> -->
+            <!-- </div> -->
+            <!-- <input type="number" matInput name="price" [formControl]="itemForm.controls['price']" [value]="calcPrice()"> -->
+            <!-- </mat-form-field> -->
+          <!-- </div> -->
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+</form>
+<div class=" width-100 " fxLayout=" row" fxLayoutAlign="space-between center">
+  <div class="pt-1 pr-1">
+  </div>
+  <div class="mt-1">
+    <button mat-raised-button color="primary" (click)="submit()"
+      [disabled]="itemForm.invalid">{{isNew? 'CREATE' : 'UPDATE'}}</button>
+    <span fxFlex></span>
+    <button mat-button color="warn" type="button" (click)="goBack()">CANCEL</button>
+  </div>
+</div>
