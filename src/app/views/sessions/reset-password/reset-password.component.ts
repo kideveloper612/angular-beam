@@ -5,13 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
 import { JwtAuthService } from 'app/shared/services/auth/jwt-auth.service';
+
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   userEmail;
+  newPassword;
+  confirmNewPassword;
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;
   @ViewChild(MatButton) submitButton: MatButton;
   constructor(
@@ -22,15 +25,18 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (!this.jwtAuthSvc.getEmailForResetPassword() || !this.jwtAuthSvc.getEmailVerified()) {
+      this.router.navigateByUrl('sessions/forgot-password');
+    }
   }
   submitEmail() {
     this.submitButton.disabled = true;
     this.progressBar.mode = 'indeterminate'; //determinate
-    this.jwtAuthSvc.sendVerificationCode(this.userEmail)
+    this.jwtAuthSvc.resetPassword(this.newPassword)
       .subscribe(data => {
         if (data.status == 'success') {
-          this.snack.open('Verification code has been sent!', 'OK', { duration: 4000 });
-          this.router.navigateByUrl("sessions/verification");
+          this.snack.open('Password has been changed successfully!', 'OK', { duration: 4000 });
+          this.router.navigateByUrl("sessions/signin");
         }
         else {
           this.snack.open(data.msg, 'OK', { duration: 4000 })

@@ -21,6 +21,8 @@ import { Signup4Component } from './signup4/signup4.component';
 import { Signin3Component } from './signin3/signin3.component';
 import { Signin4Component } from './signin4/signin4.component';
 import { Signin2Component } from './signin2/signin2.component';
+import { VerificationComponent } from './verification/verification.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -32,6 +34,6 @@ import { Signin2Component } from './signin2/signin2.component';
     PerfectScrollbarModule,
     RouterModule.forChild(SessionsRoutes)
   ],
-  declarations: [ForgotPasswordComponent,ComingSoonComponent, SigninComponent, SignupComponent, NotFoundComponent, ErrorComponent, Signup2Component, Signup3Component, Signup4Component, Signin3Component, Signin4Component, Signin2Component]
+  declarations: [ForgotPasswordComponent,ComingSoonComponent, SigninComponent, SignupComponent, NotFoundComponent, ErrorComponent, Signup2Component, Signup3Component, Signup4Component, Signin3Component, Signin4Component, Signin2Component, VerificationComponent, ResetPasswordComponent]
 })
 export class SessionsModule { }
