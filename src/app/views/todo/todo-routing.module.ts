@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TodoComponent,
+    // component: TodoComponent,
+    component: ComingSoonComponent,
     children: [
       {
         path: '',

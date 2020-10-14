@@ -1,5 +1,6 @@
 export const config = {
-  apiUrl: 'http://localhost:5000/api',
+  // apiUrl: 'http://localhost:5000/api',
+  apiUrl: 'https://myonlinebeam.com/api',
   // apiUrl: 'http://192.168.110.122:5000/api/',
   // apiUrl: 'http://ui-lib-demo-api.herokuapp.com',
   authRoles: {

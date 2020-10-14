@@ -4,6 +4,7 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ChatService } from './chat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chats',
@@ -27,8 +28,9 @@ export class AppChatsComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private mediaObserver: MediaObserver, 
-    public chatService: ChatService
+    private mediaObserver: MediaObserver,
+    public chatService: ChatService,
+    private router: Router
   ) {
     // console.log(chatService.chats)
     this.user = chatService.user

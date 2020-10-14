@@ -118,6 +118,11 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Chat', breadcrumb: 'Chat' }
       },
       {
+        path: 'notifications',
+        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule),
+        data: { title: 'Notifications', breadcrumb: 'Notifications' }
+      },
+      {
         path: 'suppliers',
         loadChildren: () => import('./views/suppliers/suppliers.module').then(m => m.SuppliersModule),
         data: { title: 'Suppliers', breadcrumb: 'Suppliers' }
@@ -172,9 +177,9 @@ export const rootRouterConfig: Routes = [
       }
     ]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'sessions/404'
-  // }
+  {
+    path: '**',
+    redirectTo: 'sessions/404'
+  }
 ];
 
