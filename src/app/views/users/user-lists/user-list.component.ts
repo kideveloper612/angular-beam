@@ -80,6 +80,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   }
   refresh() {
+    this.loader.open();
     this.getUsersSub = this.userSvc.getUsers()
       .subscribe(response => {
         this.processResponse(response);

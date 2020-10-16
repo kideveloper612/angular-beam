@@ -57,7 +57,7 @@ export class OrderService {
     form_data.append('cid', data.cid);
     form_data.append('sid', data.sid);
     form_data.append('pid', data.pid);
-    form_data.append('price', data.price);
+    form_data.append('amount', data.amount);
     form_data.append('tid', data.tid);
     form_data.append('pby', data.pby);
     form_data.append('status', data.status);
@@ -93,7 +93,7 @@ export class OrderService {
     form_data.append('cid', data.cid);
     form_data.append('sid', data.sid);
     form_data.append('pid', data.pid);
-    form_data.append('price', data.price);
+    form_data.append('amount', data.amount);
     form_data.append('tid', data.tid);
     form_data.append('pby', data.pby);
     form_data.append('status', data.status);

@@ -35,6 +35,7 @@ export class OrderListComponent implements OnInit {
     }
   }
   refresh() {
+    this.loader.open();
     this.getOrdersSub = this.orderSvc.getOrders()
       .subscribe(response => {
         console.log(response)

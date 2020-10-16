@@ -78,6 +78,7 @@ export class SuppliersComponent implements OnInit {
     }
   }
   refresh() {
+    this.loader.open();
     this.getUsersSub = this.supplierSvc.getSuppliers()
       .subscribe(response => {
         this.processResponse(response);
@@ -105,7 +106,7 @@ export class SuppliersComponent implements OnInit {
     if (response.status == 'success')
       this.userArray = this.temp = customArray;
   }
-  
+
   deleteItem(user: any) {
     let dialogRef: MatDialogRef<any> = this.dialog.open(AppComfirmComponent, {
       width: '300px',

@@ -175,7 +175,7 @@ export class OrderDetailComponent implements OnInit {
       cid: [item?.customer || '', Validators.required],
       sid: [item?.supplier || '', Validators.required],
       pid: [item?.product || '', Validators.required],
-      price: [item?.price || '', Validators.required],
+      amount: [item?.amount || '', Validators.required],
       tid: [item?.tid || '', Validators.required],
       pby: [item?.pby || '', Validators.required],
       status: [item?.status || '', Validators.required],

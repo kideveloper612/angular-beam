@@ -14,7 +14,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  appTitle = 'marco';
+  appTitle = 'mybeam';
   pageTitle = '';
 
   constructor(
