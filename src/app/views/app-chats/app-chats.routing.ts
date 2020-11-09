@@ -4,5 +4,5 @@ import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.compone
 import { AppChatsComponent } from './app-chats.component';
 
 export const ChatsRoutes: Routes = [
-  { path: '', component: ComingSoonComponent, data: { title: 'Chat' } }
+  { path: '', component: AppChatsComponent, data: { title: 'Chat' } }
 ];

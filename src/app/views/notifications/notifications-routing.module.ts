@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.component';
+import { NotificationsComponent } from './notifications.component';
 
 
 // const routes: Routes = [];
@@ -13,7 +14,7 @@ import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.compone
 
 
 export const NotificationsRoutingModule: Routes = [
-  { path: '', component: ComingSoonComponent },
+  { path: '', component: NotificationsComponent },
   // {
   //   path: 'create',
   //   component: SupplierDetailComponent,

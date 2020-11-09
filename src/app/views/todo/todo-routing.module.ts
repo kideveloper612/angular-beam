@@ -8,8 +8,8 @@ import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.compone
 const routes: Routes = [
   {
     path: '',
-    // component: TodoComponent,
-    component: ComingSoonComponent,
+    component: TodoComponent,
+    // component: ComingSoonComponent,
     children: [
       {
         path: '',

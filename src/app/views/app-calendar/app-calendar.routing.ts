@@ -4,5 +4,5 @@ import { ComingSoonComponent } from '../sessions/coming-soon/coming-soon.compone
 import { AppCalendarComponent } from './app-calendar.component';
 
 export const CalendarRoutes: Routes = [
-  { path: '', component: ComingSoonComponent, data: { title: 'Calendar' } }
+  { path: '', component: AppCalendarComponent, data: { title: 'Calendar' } }
 ];
