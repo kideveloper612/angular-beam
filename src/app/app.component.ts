@@ -6,6 +6,7 @@ import { RoutePartsService } from "./shared/services/route-parts.service";
 // import { ThemeService } from './shared/services/theme.service';
 
 import { filter } from 'rxjs/operators';
+import { MessagingService } from './shared/services/messaging.service';
 // import { LayoutService } from './shared/services/layout.service';
 
 @Component({
@@ -16,19 +17,23 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit, AfterViewInit {
   appTitle = 'mybeam';
   pageTitle = '';
-
+  message;
   constructor(
-    public title: Title, 
-    private router: Router, 
+    public title: Title,
+    private router: Router,
     private activeRoute: ActivatedRoute,
     private routePartsService: RoutePartsService,
     // private themeService: ThemeService,
     // private layout: LayoutService,
-    // private renderer: Renderer2
+    // private renderer: Renderer2,
+    private messagingService: MessagingService
   ) { }
 
   ngOnInit() {
     this.changePageTitle();
+    this.messagingService.requestPermission();
+    this.messagingService.receiveMessage();
+    this.message = this.messagingService.currentMessage
   }
   ngAfterViewInit() {
   }
@@ -39,12 +44,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         return this.title.setTitle(this.appTitle);
       // Extract title from parts;
       this.pageTitle = routeParts
-                      .reverse()
-                      .map((part) => part.title )
-                      .reduce((partA, partI) => {return `${partA} > ${partI}`});
+        .reverse()
+        .map((part) => part.title)
+        .reduce((partA, partI) => { return `${partA} > ${partI}` });
       this.pageTitle += ` | ${this.appTitle}`;
       this.title.setTitle(this.pageTitle);
     });
   }
-  
+
 }

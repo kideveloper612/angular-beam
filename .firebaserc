@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "push-notifications-cc667": {
+      "hosting": {
+        "marco": [
+          "push-notifications-cc667"
+        ]
+      }
+    }
+  }
+}
