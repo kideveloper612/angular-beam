@@ -4,7 +4,7 @@
     <div class="topbar-branding">
       <img src="assets/images/logo.png" alt="" class="app-logo">
     </div>
-    <ul fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space-between center" class="menu" *ngIf="!layoutConf.isMobile">
+    <!-- <ul fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space-between center" class="menu" *ngIf="!layoutConf.isMobile">
       <a mat-button [routerLink]="['/dashboard/default']" routerLinkActive="renata" class="mat-button"
         routerLinkActiveOptions="{exact:true}">Dashboard</a>
       <a [matMenuTriggerFor]="menu" routerLinkActive="renata" routerLinkActiveOptions="{exact:true}" mat-button
@@ -218,7 +218,7 @@
         </mat-menu>
       </mat-menu>
 
-    </ul>
+    </ul> -->
 
     <!-- <ul class="menu" *ngIf="!layoutConf.isMobile">
         <li *ngFor="let item of menuItems; let i = index;">
@@ -263,23 +263,23 @@
     <!-- End Navigation -->
 
     <!-- Language Switcher -->
-    <button mat-icon-button matTooltip="Notifications" [matMenuTriggerFor]="notificationsMenu"
+    <!-- <button mat-icon-button matTooltip="Notifications" [matMenuTriggerFor]="notificationsMenu"
       [style.overflow]="'visible'" class="topbar-button-right">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M12 6.5c-2.49 0-4 2.02-4 4.5v6h8v-6c0-2.48-1.51-4.5-4-4.5z" opacity=".3" />
         <path
           d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-11c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2v-5zm-2 6H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zM7.58 4.08L6.15 2.65C3.75 4.48 2.17 7.3 2.03 10.5h2c.15-2.65 1.51-4.97 3.55-6.42zm12.39 6.42h2c-.15-3.2-1.73-6.02-4.12-7.85l-1.42 1.43c2.02 1.45 3.39 3.77 3.54 6.42z" />
-        </svg>
+      </svg>
       <span class="notification-number mat-bg-warn">1</span>
-    </button>
-    <mat-menu #notificationsMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
+    </button> -->
+    <!-- <mat-menu #notificationsMenu="matMenu" xPosition="before" class="pt-0 notification-wrap">
       <div class="text-left mat-bg-primary p-16 ">
         <h4 class="m-0">Notifications</h4>
       </div>
-      <mat-nav-list class="notification-list" role="list">
-        <!-- Notification item -->
-        <mat-list-item *ngFor="let n of notifications" class="notific-item pb-12 pt-12 border-bottom" role="listitem"
+      <mat-nav-list class="notification-list" role="list"> -->
+    <!-- Notification item -->
+    <!-- <mat-list-item *ngFor="let n of notifications" class="notific-item pb-12 pt-12 border-bottom" role="listitem"
           routerLinkActive="open">
           <mat-icon [color]="n.color" [svgIcon]="n.icon" class="btn-icon notific-icon mr-1"></mat-icon>
           <a [routerLink]="[n.route || '/dashboard']">
@@ -294,9 +294,9 @@
           <button mat-button color="primary">MARK ALL AS READ</button>
         </div>
       </mat-nav-list>
-    </mat-menu>
+    </mat-menu> -->
     <!-- Notification toggle button -->
-    <button mat-icon-button matTooltip="Notifications" (click)="toggleNotific()" [style.overflow]="'visible'"
+    <!-- <button mat-icon-button matTooltip="Notifications" (click)="toggleNotific()" [style.overflow]="'visible'"
       class="topbar-button-right">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px">
         <path d="M0 0h24v24H0V0z" fill="none" />
@@ -304,7 +304,7 @@
           d="M19 1H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2zm0 14.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10v12.97z" />
         <path d="M5 19.97l5-2.15 5 2.15V7H5z" opacity=".3" /></svg>
       <span class="notification-number mat-bg-warn">3</span>
-    </button>
+    </button> -->
 
     <!-- Top left user menu -->
     <button mat-button [matMenuTriggerFor]="accountMenu" class="topbar-button-right img-button">

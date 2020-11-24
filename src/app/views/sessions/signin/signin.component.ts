@@ -69,7 +69,6 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
         this.progressBar.mode = 'determinate';
         this.router.navigateByUrl(this.return);
       }, err => {
-        console.log(err);
         this.submitButton.disabled = false;
         this.progressBar.mode = 'determinate';
         this.errorMsg = err.error.message;

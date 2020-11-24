@@ -34,10 +34,10 @@ export class UserPopupComponent implements OnInit {
     this.imgURL = item.imagePath;
     this.itemForm = this.fb.group({
       name: [item?.name || '', Validators.required],
-      email: [item?.email || '', Validators.required],
-      role: [item?.role || '', Validators.required],
+      email: [{ value: item?.email || '', disabled: this.data.title == 'My Profile' }, Validators.required],
+      role: [{ value: item?.role || '', disabled: this.data.title == 'My Profile' }, Validators.required],
       phoneNumber: [item?.phoneNumber || ''],
-      verified: [item?.verified || false]
+      verified: [{ value: item?.verified, disabled: this.data.title == 'My Profile' } || false]
     })
   }
 

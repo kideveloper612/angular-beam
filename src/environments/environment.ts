@@ -9,13 +9,13 @@ export const environment = {
   production: false,
   apiURL: config.apiUrl,
   firebase: {
-    apiKey: "AIzaSyBnpa9DGWxuagB8devIJ02wrfXKJGQH9Ic",
-    authDomain: "helloworld-87777.firebaseapp.com",
-    databaseURL: "https://helloworld-87777.firebaseio.com",
-    projectId: "helloworld-87777",
-    storageBucket: "helloworld-87777.appspot.com",
-    messagingSenderId: "342939091174",
-    appId: "1:342939091174:web:db2d6bdfd9bf04cab93b27",
-    measurementId: "G-C4XHY5X831"
+    apiKey: "AIzaSyCrhKQrvxm9mVTpwyrZZZp-dBWQANGdOeo",
+    authDomain: "push-notifications-cc667.firebaseapp.com",
+    databaseURL: "https://push-notifications-cc667.firebaseio.com",
+    projectId: "push-notifications-cc667",
+    storageBucket: "push-notifications-cc667.appspot.com",
+    messagingSenderId: "740226695970",
+    appId: "1:740226695970:web:7b6664526a7e4e4807db7b",
+    measurementId: "G-J88SVY2G3H"
   }
 };

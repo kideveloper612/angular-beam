@@ -20,6 +20,8 @@ import { AppInboxComponent } from './app-inbox.component';
 import { MailComposeComponent } from './mail-compose.component';
 import { InboxRoutes } from "./app-inbox.routing";
 import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
     MatTooltipModule,
     MatExpansionModule,
     FlexLayoutModule,
+    MatFormFieldModule,
+    MatSelectModule,
     QuillModule,
     SharedPipesModule,
     RouterModule.forChild(InboxRoutes)

@@ -6,6 +6,7 @@ import { map, catchError, delay } from "rxjs/operators";
 import { User } from "../../models/user.model";
 import { of, BehaviorSubject, throwError } from "rxjs";
 import { environment } from "environments/environment";
+import { MessagingService } from "../messaging.service";
 
 // ================= you will get those data from server =======
 
@@ -53,6 +54,27 @@ export class JwtAuthService {
       );
   }
 
+
+
+  public update(data: any) {
+    let form_data = new FormData();
+    form_data.append('name', data.name);
+    form_data.append('email', data.email);
+    form_data.append('phoneNumber', data.phoneNumber);
+    form_data.append('role', data.role);
+    form_data.append('imgFile', data.imgFile);
+    return this.http.post(`${environment.apiURL}/update`, form_data)
+      .pipe(
+        map((res: any) => {
+          this.setUserAndToken(res.data.token, res.data, !!res);
+          return res;
+        }),
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
   /*
     checkTokenIsValid is called inside constructor of
     shared/components/layouts/admin-layout/admin-layout.component.ts
@@ -61,6 +83,22 @@ export class JwtAuthService {
     let data = new FormData();
     let token = this.getJwtToken();
     data.append('token', token);
+    return this.http.post(`${environment.apiURL}/validateToken`, data)
+      .pipe(
+        map((res: any) => {
+          this.setUserAndToken(res.data.token, res.data, !!res);
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+  public registerFcmToken(fcmToken) {
+    let data = new FormData();
+    let token = this.getJwtToken();
+    data.append('token', token);
+    data.append('fcmToken', fcmToken);
     return this.http.post(`${environment.apiURL}/validateToken`, data)
       .pipe(
         map((res: any) => {

@@ -88,41 +88,41 @@ export class NavigationService {
       icon: "attach_money",
       state: "orders",
     },
+    // {
+    //   type: "separator",
+    //   name: "Extra features"
+    // },
     {
-      type: "separator",
-      name: "Extra features"
-    },
-    {
-      name: "Chat",
+      name: "Inbox",
       type: "link",
-      tooltip: "Chat",
+      tooltip: "Inbox",
       icon: "chat",
-      state: "chat",
-      badges: [{ color: "primary", value: "New" }],
+      state: "inbox",
+      // badges: [{ color: "primary", value: "New" }],
     },
-    {
-      name: "Calendar",
-      type: "link",
-      tooltip: "Calendar",
-      icon: "date_range",
-      state: "calendar"
-    },
-    {
-      name: "Todo",
-      type: "link",
-      tooltip: "Todo",
-      icon: "center_focus_strong",
-      state: "todo",
-      badges: [{ color: "#7367f0", value: "4" }]
-    },
-    {
-      name: "Notifications",
-      type: "link",
-      tooltip: "notifications",
-      icon: "notifications_active",
-      state: "notifications",
-      badges: [{ color: "#03a9f4", value: "3" }]
-    },
+    // {
+    //   name: "Calendar",
+    //   type: "link",
+    //   tooltip: "Calendar",
+    //   icon: "date_range",
+    //   state: "calendar"
+    // },
+    // {
+    //   name: "Todo",
+    //   type: "link",
+    //   tooltip: "Todo",
+    //   icon: "center_focus_strong",
+    //   state: "todo",
+    //   badges: [{ color: "#7367f0", value: "4" }]
+    // },
+    // {
+    //   name: "Notifications",
+    //   type: "link",
+    //   tooltip: "notifications",
+    //   icon: "notifications_active",
+    //   state: "notifications",
+    //   badges: [{ color: "#03a9f4", value: "3" }]
+    // },
 
     //   {
     //     name: "E-commerce",

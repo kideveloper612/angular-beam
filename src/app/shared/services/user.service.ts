@@ -82,6 +82,22 @@ export class UserService {
       );
   }
 
+  updateMyProfile(id, data: any) {
+    let form_data = new FormData();
+    form_data.append('name', data.name);
+    form_data.append('phoneNumber', data.phoneNumber);
+    form_data.append('imgFile', data.imgFile);
+    return this.http.post(`${environment.apiURL}/updateUser/${id}`, form_data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
   removeUser(id) {
     return this.http.delete(`${environment.apiURL}/removeUser/${id}`)
       .pipe(
