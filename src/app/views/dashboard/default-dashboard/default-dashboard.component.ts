@@ -898,9 +898,9 @@ export class DefaultDashboardComponent implements OnInit {
             }
             let processedItem = {
               index: i + 1,
-              customer: item.customer.name,
-              supplier: item.supplier.name,
-              product: item.product.sodx + " × " + item.product.sody + " × " + item.product.sodz,
+              customer: item.customer ? item.customer.name : 'Removed customer',
+              supplier: item.supplier ? item.supplier.name : 'Removed supplier',
+              product: item.product ? item.product.sodx + " × " + item.product.sody + " × " + item.product.sodz : 'Removed product',
               amount: item.amount,
               status: item.status,
               createdAt: item.createdAt,
