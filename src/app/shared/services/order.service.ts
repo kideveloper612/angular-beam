@@ -120,4 +120,46 @@ export class OrderService {
         })
       );
   }
+
+
+
+  getNumberOfOrders() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getNumberOfOrders`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
+  getTotalAmount() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getTotalAmount`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+
+  }
+  getRecentOrders() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getRecentOrders`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+
+  }
 }

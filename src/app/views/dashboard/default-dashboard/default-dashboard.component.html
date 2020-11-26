@@ -1,142 +1,122 @@
 <div class="crypto-value">
-  <div class="profile-info"  
-  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+  <div class="profile-info" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
     <mat-card class="mat-bg-primary">
       <div class="card-body-content" [style.height]="'126px'">
         <div fxLayout="row" fxLayoutAlign="space-between start" class="">
           <div>
-            <h5 class=" fw-500">Achivement</h5>
-            <h2 class="fw-600 text-30 mb-16">Cheers MyBeam!</h2>
-            <p>You have 3 more projects to finish and already completed 69% from your motnhly level. Keep going to your goal!</p>
-          </div> 
-          <div  class="pl-20">
-            <img src="../../../../assets/images/illustrations/skatch.svg" alt="" style="height: 200px; width: 400px; margin-top: -16px;">
+            <h5 class=" fw-500"></h5>
+            <h2 class="fw-600 text-30 mb-16">Champion MyBeam!</h2>
+            <!-- <p>You have 3 more projects to finish and already completed 69% from your motnhly level. Keep going to your goal!</p> -->
           </div>
-          
-         
+          <div class="pl-20">
+            <img src="../../../../assets/images/illustrations/skatch.svg" alt=""
+              style="height: 200px; width: 400px; margin-top: -16px;">
+          </div>
+
+
         </div>
       </div>
     </mat-card>
-</div>
-  <div class="customer-info"    
-  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
-    <mat-card >
+  </div>
+  <div class="customer-info" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+    <mat-card>
       <div class="card-body-content" [style.height]="'126px'">
         <div fxLayout="row" fxLayoutAlign="space-between start">
           <div>
-            <h5 class=" fw-500">NEW CUSTOMERS </h5>
-        
-            <h2 class="fw-600 text-30">3,897</h2>
-            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
-          </div> 
-        
-            <div id="chart">
-              <apx-chart
-                [series]="customerOptions.series"
-                [chart]="customerOptions.chart"
-                [xaxis]="customerOptions.xaxis"
-                [dataLabels]="customerOptions.dataLabels"
-                [grid]="customerOptions.grid"
-                [tooltip]="customerOptions.tooltip"
-                [stroke]="customerOptions.stroke"
-              ></apx-chart>
-            </div>
-         
+            <h5 class="fw-500">CUSTOMERS </h5>
+
+            <h2 class="fw-600 text-30">{{numberOfCustomers}}</h2>
+            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row">
+              <mat-icon class="mr-4">trending_up</mat-icon>20%
+            </span>
+          </div>
+
+          <div id="chart">
+            <apx-chart [series]="customerOptions.series" [chart]="customerOptions.chart" [xaxis]="customerOptions.xaxis"
+              [dataLabels]="customerOptions.dataLabels" [grid]="customerOptions.grid"
+              [tooltip]="customerOptions.tooltip" [stroke]="customerOptions.stroke"></apx-chart>
+          </div>
+
         </div>
       </div>
     </mat-card>
-</div>
+  </div>
 
-<div class="customer-info"  
-  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
-    <mat-card >
+  <div class="customer-info" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+    <mat-card>
       <div class="card-body-content" [style.height]="'126px'">
         <div fxLayout="row" fxLayoutAlign="space-between start">
           <div>
             <h5 class=" fw-500">GROWTH </h5>
             <h2 class="fw-600 text-30">66.6%</h2>
-            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row"><mat-icon class="mr-4">trending_up</mat-icon>20%</span>
-          </div> 
-        
-            <div id="chart">
-              <apx-chart
-                [series]="customerOptions.series"
-                [chart]="customerOptions.chart"
-                [xaxis]="customerOptions.xaxis"
-                [dataLabels]="customerOptions.dataLabels"
-                [grid]="customerOptions.grid"
-                [tooltip]="customerOptions.tooltip"
-                [stroke]="customerOptions.stroke"
-              ></apx-chart>
-            </div>
-         
+            <span fxLayoutAlign="start center" class="text-cyan-600" fxLayout="row">
+              <mat-icon class="mr-4">trending_up</mat-icon>20%
+            </span>
+          </div>
+
+          <div id="chart">
+            <apx-chart [series]="customerOptions.series" [chart]="customerOptions.chart" [xaxis]="customerOptions.xaxis"
+              [dataLabels]="customerOptions.dataLabels" [grid]="customerOptions.grid"
+              [tooltip]="customerOptions.tooltip" [stroke]="customerOptions.stroke"></apx-chart>
+          </div>
+
         </div>
-      </div>
-    </mat-card>
-</div>
-
-</div>
-
-
-
-
- 
-  <div class="user-wrap"
-  [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
-  
-
-  <div class="user-analytics">
-    <mat-card fxFlex="100" >
-      <div fxLayout.gt-sm="row" fxLayout="column">
-        <div fxFlex="40" fxLayout="column">
-          <h2 class="fw-600">Dashboard</h2>
-          <div fxLayout.gt-sm="row" class="mt-28">
-            <div fxLayout="column" fxFlex="50">
-              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
-                <span class="text-32 fw-500 mat-cl-primary">3453</span>
-                <p class="text-muted">Number of Purchases</p>
-              </div>
-              <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
-                <span class="text-32 fw-500 mat-cl-primary">€22.567.768.11</span>
-                <p class="text-muted">Total Sales Value</p>
-              </div>
-            </div>
-            <div fxLayout="column" fxFlex="50">
-              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
-                <span class="text-32 fw-500 mat-cl-primary">3453</span>
-                <p class="text-muted">Avarage Sales</p>
-              </div>
-              <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
-                <span class="text-32 fw-500 mat-cl-primary">€2.324.567</span>
-                <p class="text-muted">Financial Fee</p>
-              </div>
-            </div>
-          </div>
-         
-          <div fxLayout="column" class="mt-auto mb-24">
-            <a class="w-100"
-            mat-raised-button
-            color="primary"
-            href=""
-            >Check more details</a>
-          </div>
-        </div>
-       
-          <div id="chart" fxFlex="60">
-            <apx-chart
-              [series]="chartOptionsThree.series"
-              [chart]="chartOptionsThree.chart"
-              [xaxis]="chartOptionsThree.xaxis"
-              [stroke]="chartOptionsThree.stroke"
-              [tooltip]="chartOptionsThree.tooltip"
-              [dataLabels]="chartOptionsThree.dataLabels"
-            ></apx-chart>
-          </div>
       </div>
     </mat-card>
   </div>
 
- 
+</div>
+
+
+
+
+
+<div class="user-wrap" [@animate]="{value:'*',params:{scale:'.9',delay:'300ms'}}">
+
+
+  <div class="user-analytics">
+    <mat-card fxFlex="100">
+      <div fxLayout.gt-sm="row" fxLayout="column">
+        <div fxFlex="40" fxLayout="column">
+          <h2 class="fw-600">Dashboard</h2>
+          <div fxLayout.gt-sm="row" class="mt-28">
+            <div fxLayout="column" fxFlex="100">
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">{{numberOfOrders}}</span>
+                <p class="text-muted">Number of Orders</p>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">£ {{totalAmount}}</span>
+                <p class="text-muted">Total Sales Value</p>
+              </div>
+            </div>
+            <!-- <div fxLayout="column" fxFlex="50">
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">3453</span>
+                <p class="text-muted">Avarage Sales</p>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                <span class="text-32 fw-500 mat-cl-primary">€2.324.567</span>
+                <p class="text-muted">Financial Fee</p>
+              </div>
+            </div> -->
+          </div>
+
+          <div fxLayout="column" class="mb-24">
+            <a class="w-100" mat-raised-button color="primary" [routerLink]="['/orders']">Check more details</a>
+          </div>
+        </div>
+
+        <div id="chart" fxFlex="60">
+          <apx-chart [series]="chartOptionsThree.series" [chart]="chartOptionsThree.chart"
+            [xaxis]="chartOptionsThree.xaxis" [stroke]="chartOptionsThree.stroke" [tooltip]="chartOptionsThree.tooltip"
+            [dataLabels]="chartOptionsThree.dataLabels"></apx-chart>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+
 
 
 </div>
@@ -147,7 +127,7 @@
 
 
 <!-- Fullwidth chart -->
-<div class="year-info-wrap" [@animate]="{value:'*',params:{y:'25px',delay:'300ms'}}">
+<!-- <div class="year-info-wrap" [@animate]="{value:'*',params:{y:'25px',delay:'300ms'}}">
 
   <div class="yearly-info" >
     
@@ -197,17 +177,17 @@
       
     </mat-card>
   </div>
-</div>
+</div> -->
 
 <!-- Table row -->
 
 <div fxLayout="row wrap" [@animate]="{value:'*',params:{delay:'800ms',scale:'.9'}}">
-  <div fxFlex="100"  fxFlex.gt-sm="66.6" fxFlex.sm="66.6">
+  <div fxFlex="100" fxFlex.gt-sm="66.6" fxFlex.sm="66.6">
     <mat-card class="p-0 ">
       <div class="card-title">
-        <h4 class="fw-500">Dispatched Orders</h4>
+        <h4 class="fw-500">Recent Orders</h4>
       </div>
-      
+
       <!-- <ngx-datatable class="material ml-0 mr-0" [rows]="activeTrades" [columnMode]="'flex'" [headerHeight]="50"
         [footerHeight]="0" [rowHeight]="'auto'">
 
@@ -247,79 +227,90 @@
       </ngx-datatable> -->
 
 
-<div class="table-wrap fix">
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100 border-shadow-0">
+      <div class="table-wrap fix" *ngIf="recentOrders && recentOrders.length>0">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100 border-shadow-0">
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.orderNo}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Assign </th>
-      <td mat-cell *matCellDef="let element"> {{element.operator}} </td>
-    </ng-container>
+          <!-- Position Column -->
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+            <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+          </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-      <td mat-cell *matCellDef="let element"><mat-chip [color]="element.color" selected>{{element.status}}</mat-chip> 
-      </td>
-    </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
+            <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+          </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="startDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
-      <td mat-cell *matCellDef="let element">{{element.startDate}}
-      </td>
-    </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</th>
+            <td mat-cell *matCellDef="let element"> {{element.supplier}} </td>
+          </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="endDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
-      <td mat-cell *matCellDef="let element">{{element.endDate}}
-      </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</div>
-      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
+            <td mat-cell *matCellDef="let element">{{element.product}}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+            <td mat-cell *matCellDef="let element">{{element.amount}}
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip [color]="element.color" selected>{{element.status}}</mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
+            <td mat-cell *matCellDef="let element">{{element.createdAt | date}}
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated At</th>
+            <td mat-cell *matCellDef="let element">{{element.updatedAt | date}}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
     </mat-card>
   </div>
-  <div fxFlex="100"  fxFlex.gt-sm="33.4" fxFlex.sm="33.4">
+  <div fxFlex="100" fxFlex.gt-sm="33.4" fxFlex.sm="33.4">
     <mat-card class="p-0 ">
       <div class="card-title">
         <h4 class="fw-500">Recent Users</h4>
       </div>
       <div class="card-body">
         <mat-nav-list class="inbox-nav-list" role="list">
-          <mat-list-item
-          *ngFor="let contact of contacts"
-           class="border-bottom">
-            <a 
-            mat-list-avatar 
-            [ngClass]="{online: contact.status === 'online'}"
-            class="toolbar-avatar">
-              <img [src]="contact.avatar" alt="">
-              
-              <span class="status-dot"></span>
+          <mat-list-item *ngFor="let customer of recentCustomers" class="border-bottom">
+            <a mat-list-avatar [ngClass]="{online: customer.status === 'online'}" class="toolbar-avatar">
+              <img style="height: 100%;" [src]="customer.imagePath? customer.imagePath: 'assets/images/avatar_placeholder.png'" alt="">
+
+              <!-- <span class="status-dot"></span> -->
             </a>
-              <h4 class="fw-500" matLine>{{contact.name}}</h4>
-               <p matLine class="mr-1 text-muted">{{contact.message}}</p>
-            
-           <div class="talk-time"><small class="text-muted">{{contact.time}}</small></div> 
+            <h4 class="fw-500" matLine>{{customer.name}}</h4>
+            <p matLine class="mr-1 text-muted">{{customer.email}}</p>
+
+            <div class="talk-time"><small class="text-muted">{{customer.createdAt | relativeTime}}</small></div>
           </mat-list-item>
-          
+
         </mat-nav-list>
       </div>
     </mat-card>

@@ -38,6 +38,32 @@ export class UserService {
       );
   }
 
+  getRecentCustomers() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getRecentCustomers`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
+  getNumberOfCustomers() {
+    let data = new FormData();
+    return this.http.post(`${environment.apiURL}/getNumberOfCustomers`, data)
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((error) => {
+          return of(error);
+        })
+      );
+  }
+
   insertUser(data: any) {
     let form_data = new FormData();
     form_data.append('name', data.name);

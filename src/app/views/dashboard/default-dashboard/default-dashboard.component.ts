@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { marcoAnimations } from 'app/shared/animations/marco-animations';
 import { ThemeService } from 'app/shared/services/theme.service';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import tinyColor from 'tinycolor2';
 import { series } from "./data";
 
@@ -23,64 +23,19 @@ import {
   ApexTitleSubtitle,
   ApexGrid,
 } from "ng-apexcharts";
+import { OrderService } from 'app/shared/services/order.service';
+import { UserService } from 'app/shared/services/user.service';
+import { Subscription } from 'rxjs';
 
 export interface PeriodicElement {
   orderNo: string,
-    projectName: string,
-    startDate: string,
-    endDate: string,
-    status: string,
-    color: string,
-    operator: string,
+  projectName: string,
+  startDate: string,
+  endDate: string,
+  status: string,
+  color: string,
+  operator: string,
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-    {
-    orderNo: "#678788",
-    projectName: 'MarcoUI jQuery',
-    startDate: '23/07/2019',
-    endDate: '12/10/2018',
-    status: 'Released',
-    color: 'badge-success',
-    operator: 'M. Apostolski'
-  },
-  {
-    orderNo: "#678788",
-    projectName: 'MarcoUI jQuery',
-    startDate: '23/07/2019',
-    endDate: '12/10/2018',
-    status: 'Review',
-    color: 'badge-review',
-    operator: 'S. Apostolska'
-  },
-  {
-    orderNo: "#678788",
-    projectName: 'MarcoUI jQuery',
-    startDate: '23/07/2019',
-    endDate: '12/10/2018',
-    status: 'Pending',
-    color: 'badge-pending',
-    operator: 'E. Ravnjanski'
-  },
-  {
-    orderNo: "#678788",
-    projectName: 'MarcoUI jQuery',
-    startDate: '23/07/2019',
-    endDate: '12/10/2018',
-    status: 'Releised',
-    color: 'badge-success',
-    operator: 'L. Apostolski'
-  },
-  {
-    orderNo: "#678788",
-    projectName: 'MarcoUI jQuery',
-    startDate: '23/07/2019',
-    endDate: '12/10/2018',
-    status: 'Releised',
-    color: 'badge-success',
-    operator: 'L. Apostolski'
-  }
-];
-
 // this.activeTrades = [
 //   {
 //     orderNo: "#678788",
@@ -176,20 +131,36 @@ export type RadialChartOptions = {
   animations: marcoAnimations
 })
 export class DefaultDashboardComponent implements OnInit {
-contacts: any[];
+  contacts: any[];
   activeTrades: any[];
   trafficSourcesChart: any;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'startDate', 'endDate'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['index', 'customer', 'supplier', 'product', 'amount', 'status', 'createdAt', 'updatedAt'];
+  dataSource = new MatTableDataSource([]);
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  numberOfOrders = 0;
+  isLoadingNumberOfOrders: boolean = false;
+  getNumberOfOrdersSub: Subscription;
+  totalAmount = 0.0
+  isLoadingTotalAmount: boolean = false;
+  getTotalAmountSub: Subscription;
+  recentOrders: any[] = [];
+  isLoadingRecentOrders: boolean = false;
+  getRecentOrdersSub: Subscription;
+
+  numberOfCustomers = 0;
+  isLoadingNumberOfCustomers: boolean = false;
+  getNumberOfCustomersSub: Subscription;
+  recentCustomers: any[] = [];
+  isLoadingRecentCustomers: boolean = false;
+  getRecentCustomersSub: Subscription;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild("chart") chart: ChartComponent;
 
   public chartOptionsThree: Partial<ChartOptionsThree>;
   public customerOptions: Partial<CustomerOptions>;
   public customerOptionsTwo: Partial<CustomerOptionsTwo>;
   public RadialChartOptions: Partial<RadialChartOptions>;
-  
+
 
 
   sharedChartOptions: any = {
@@ -201,7 +172,7 @@ contacts: any[];
     }
   };
   setBarColor(theme) {
-    this.lineBarColors =  [{
+    this.lineBarColors = [{
       backgroundColor: tinyColor(theme.baseColor).setAlpha(1),
       borderColor: '#3f51b5',
       pointBackgroundColor: '#3f51b5',
@@ -227,7 +198,7 @@ contacts: any[];
   fill: {
     colors: ['#F44336', '#E91E63', '#9C27B0']
   }
-  lineChartSteppedData: Array <any> = [{
+  lineChartSteppedData: Array<any> = [{
     data: [4, 6, 4, 8, 4, 4, 9],
     label: 'Order',
     borderWidth: 0,
@@ -274,45 +245,45 @@ contacts: any[];
   };
 
 
- 
 
- /*
-  * Bar Chart
-  */
- barChartLabels: string[] = ['1', '2', '3', '4', '5', '6', '7'];
- barChartType = 'bar';
- barChartLegend = true;
- barChartData: any[] = [{
-   data: [2, 6, 7, 8, 4, 5, 5],
-   label: 'Series A',
-   borderWidth: 0
- }, {
-   data: [5, 4, 4, 3, 6, 2, 5],
-   label: 'Series B',
-   borderWidth: 0
- }];
- barChartOptions: any = Object.assign({
-   scaleShowVerticalLines: false,
-   scales: {
-     xAxes: [{
-       gridLines: {
-         color: 'rgba(0,0,0,0.02)',
-         zeroLineColor: 'rgba(0,0,0,0.02)'
-       }
-     }],
-     yAxes: [{
-       gridLines: {
-         color: 'rgba(0,0,0,0.02)',
-         zeroLineColor: 'rgba(0,0,0,0.02)'
-       },
-       position: 'left',
-       ticks: {
-         beginAtZero: true,
-         suggestedMax: 9
-       }
-     }]
-   }
- }, this.sharedChartOptions);
+
+  /*
+   * Bar Chart
+   */
+  barChartLabels: string[] = ['1', '2', '3', '4', '5', '6', '7'];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartData: any[] = [{
+    data: [2, 6, 7, 8, 4, 5, 5],
+    label: 'Series A',
+    borderWidth: 0
+  }, {
+    data: [5, 4, 4, 3, 6, 2, 5],
+    label: 'Series B',
+    borderWidth: 0
+  }];
+  barChartOptions: any = Object.assign({
+    scaleShowVerticalLines: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'rgba(0,0,0,0.02)',
+          zeroLineColor: 'rgba(0,0,0,0.02)'
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          color: 'rgba(0,0,0,0.02)',
+          zeroLineColor: 'rgba(0,0,0,0.02)'
+        },
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          suggestedMax: 9
+        }
+      }]
+    }
+  }, this.sharedChartOptions);
 
 
 
@@ -321,13 +292,13 @@ contacts: any[];
   public lineBarColors: Array<any> = [];
   public lineChartLegend: boolean = false;
   public lineChartType: string = 'line';
-  
+
 
   // Chart grid options
   doughnutChartColors1: any[] = [{
     backgroundColor: ['#fff', 'rgba(0, 0, 0, .24)',]
   }];
-    doughnutChartColors2: any[] = [{
+  doughnutChartColors2: any[] = [{
     backgroundColor: ['rgba(0, 0, 0, .5)', 'rgba(0, 0, 0, .15)',]
   }];
   total1: number = 500;
@@ -448,8 +419,10 @@ contacts: any[];
   }]
 
   constructor(
-    private themeService: ThemeService
-  ) { 
+    private themeService: ThemeService,
+    private orderService: OrderService,
+    private userService: UserService
+  ) {
     this.customerOptionsTwo = {
       series: [
         {
@@ -461,14 +434,14 @@ contacts: any[];
         height: 150,
         type: "bar",
         events: {
-          click: function(chart, w, e) {
+          click: function (chart, w, e) {
             // console.log(chart, w, e)
           }
         }
       },
       colors: [
         "#008FFB"
-     
+
       ],
       plotOptions: {
         bar: {
@@ -513,7 +486,7 @@ contacts: any[];
         }
       }
     };
-   
+
     this.customerOptions = {
       series: [
         {
@@ -580,7 +553,7 @@ contacts: any[];
       dataLabels: {
         enabled: false
       },
-      
+
       stroke: {
         curve: "smooth"
       },
@@ -601,7 +574,7 @@ contacts: any[];
       },
       tooltip: {
         x: {
-          format: "dd/MM/yy HH:mm"
+          format: "dd/MM/yyyy HH:mm"
         }
       }
     };
@@ -646,7 +619,7 @@ contacts: any[];
         labels: {
           useSeriesColors: true
         },
-        formatter: function(seriesName, opts) {
+        formatter: function (seriesName, opts) {
           return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
         },
         itemMargin: {
@@ -682,67 +655,45 @@ contacts: any[];
     return series;
   }
 
+  ngOnDestroy() {
+    if (this.getTotalAmountSub) {
+      this.getTotalAmountSub.unsubscribe();
+    }
+    if (this.getRecentOrdersSub) {
+      this.getRecentOrdersSub.unsubscribe();
+    }
+    if (this.getNumberOfOrdersSub) {
+      this.getNumberOfOrdersSub.unsubscribe();
+    }
+    if (this.getNumberOfCustomersSub) {
+      this.getNumberOfCustomersSub.unsubscribe();
+    }
+    if (this.getRecentCustomersSub) {
+      this.getRecentCustomersSub.unsubscribe();
+    }
+  }
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.themeService.onThemeChange.subscribe(activeTheme => {
       this.setChartColor(activeTheme);
       this.setBarColor(activeTheme);
     });
-    this.setChartColor(this.themeService.activatedTheme);  
-    this.setBarColor(this.themeService.activatedTheme);  
+    this.setChartColor(this.themeService.activatedTheme);
+    this.setBarColor(this.themeService.activatedTheme);
 
-      this.themeService.onThemeChange.subscribe(activeTheme => {
-        this.initTrafficSourcesChart(activeTheme)
-      });
+    this.themeService.onThemeChange.subscribe(activeTheme => {
+      this.initTrafficSourcesChart(activeTheme)
+    });
 
-      this.initTrafficSourcesChart(this.themeService.activatedTheme)
-     
+    this.initTrafficSourcesChart(this.themeService.activatedTheme)
 
-      
 
-      
-      this.contacts = [
-        {
-          name: "Dino Donel",
-          avatar: "assets/images/faces/13.jpg",
-          status: "online",
-          message: "You did great with the last presentation, looking forward to working with you on the next project.",
-          time: "11min ago",
-          mood: ""
-        },
-        {
-          name: "Jasmin Sugare",
-          avatar: "assets/images/faces/16.jpg",
-          status: "offline",
-          message: "It was a trap, we don't beleve that",
-          time: "2 hours ago",
-          mood: ""
-        },
-        {
-          name: "Elena Ravnjanski",
-          avatar: "assets/images/faces/10.jpg",
-          status: "online",
-          message: "Looking forward to seeing you, We will have wanderful time together",
-          time: "3 hours ago",
-          mood: ""
-        },
-        {
-          name: "Marko Apostolski",
-          avatar: "assets/images/faces/9.jpg",
-          status: "offline",
-          message: "Marko is an awesome guy, he is really polite",
-          time: "2 days ago",
-          mood: ""
-        },
-        {
-          name: "Laze Apostolski",
-          avatar: "assets/images/faces/5.jpg",
-          status: "offline",
-          message: "What are your plans for tomorrow night? How about to go on a drink?",
-          time: "2 days ago",
-          mood: ""
-        }
-      ];
+    this.getNumberOfCustomers();
+    this.getRecentCustomers();
+    this.getNumberOfOrders();
+    this.getTotalAmount();
+    this.getRecentOrders();
+
   }
 
 
@@ -844,7 +795,7 @@ contacts: any[];
     };
   }
   setChartColor(theme) {
-    
+
     this.lineChartColors = [{
       backgroundColor: tinyColor(theme.baseColor).setAlpha(.6),
       borderColor: tinyColor(theme.baseColor).setAlpha(1),
@@ -859,11 +810,11 @@ contacts: any[];
       pointBorderColor: 'rgba(0, 0, 0, 0)',
       pointHoverBackgroundColor: 'rgba(0, 0, 0, 0.1)',
       pointHoverBorderColor: 'rgba(0, 0, 0, 0)'
-    }]    
+    }]
   }
 
-   // Dummy notifications
-   notifications = [{
+  // Dummy notifications
+  notifications = [{
     message: 'New orders received',
     icon: 'assignment_ind',
     route: '/inbox',
@@ -885,5 +836,124 @@ contacts: any[];
     color: 'accent'
   }]
 
+  public getNumberOfOrders() {
+    this.isLoadingNumberOfOrders = true;
+    this.getNumberOfOrdersSub = this.orderService.getNumberOfOrders()
+      .subscribe(response => {
+        if (response.status == "success") {
+          this.numberOfOrders = response.data;
+        }
+        else {
+          this.numberOfOrders = 0;
+        }
+        this.isLoadingNumberOfOrders = false;
+      }, err => {
+        this.numberOfOrders = 0;
+        this.isLoadingNumberOfOrders = false;
+      })
+  }
 
+  public getTotalAmount() {
+    this.isLoadingTotalAmount = true;
+    this.getTotalAmountSub = this.orderService.getTotalAmount()
+      .subscribe(response => {
+        if (response.status == "success") {
+          this.totalAmount = response.data;
+        }
+        else {
+          this.totalAmount = 0.0;
+        }
+        this.isLoadingTotalAmount = false;
+      }, err => {
+        this.totalAmount = 0;
+        this.isLoadingTotalAmount = false;
+      })
+
+  }
+  public getRecentOrders() {
+    this.isLoadingRecentOrders = true;
+    this.getRecentOrdersSub = this.orderService.getRecentOrders()
+      .subscribe(response => {
+        let dataSouceData: any[] = [];
+        if (response.status == "success") {
+          this.recentOrders = response.data;
+          console.log('this.recentOrders: ', this.recentOrders)
+          for (let i = 0; i < this.recentOrders.length; i++) {
+            let item = this.recentOrders[i];
+
+            let color = ''
+            switch (item.status) {
+              case 'Confirmed':
+                color = 'badge-review';
+                break;
+              case 'Delivery date given':
+                color = 'badge-pending';
+                break;
+              case 'Completed':
+                color = 'badge-success';
+                break;
+              default:
+                color = 'badge-review';
+                break
+            }
+            let processedItem = {
+              index: i + 1,
+              customer: item.customer.name,
+              supplier: item.supplier.name,
+              product: item.product.sodx + " × " + item.product.sody + " × " + item.product.sodz,
+              amount: item.amount,
+              status: item.status,
+              createdAt: item.createdAt,
+              updatedAt: item.updatedAt,
+              color: color //'badge-success' 'badge-review' 'badge-pending'
+            }
+
+            dataSouceData.push(processedItem);
+          }
+        }
+        else {
+          this.recentOrders = [];
+        }
+        this.dataSource = new MatTableDataSource(dataSouceData)
+        this.isLoadingRecentOrders = false;
+      }, err => {
+        this.recentOrders = [];
+        this.isLoadingRecentOrders = false;
+      })
+
+  }
+
+  public getNumberOfCustomers() {
+    this.isLoadingNumberOfCustomers = true;
+    this.getNumberOfCustomersSub = this.userService.getNumberOfCustomers()
+      .subscribe(response => {
+        if (response.status == "success") {
+          console.log(response)
+          this.numberOfCustomers = response.data;
+        }
+        else {
+          this.numberOfCustomers = 0;
+        }
+        this.isLoadingNumberOfCustomers = false;
+      }, err => {
+        this.numberOfCustomers = 0;
+        this.isLoadingNumberOfCustomers = false;
+      })
+  }
+  public getRecentCustomers() {
+    this.isLoadingRecentCustomers = true;
+    this.getRecentCustomersSub = this.userService.getRecentCustomers()
+      .subscribe(response => {
+        if (response.status == "success") {
+          this.recentCustomers = response.data;
+        }
+        else {
+          this.recentCustomers = [];
+        }
+        this.isLoadingRecentCustomers = false;
+      }, err => {
+        this.recentOrders = [];
+        this.isLoadingRecentCustomers = false;
+      })
+  }
 }
