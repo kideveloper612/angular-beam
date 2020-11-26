@@ -4,8 +4,8 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
     <div fxFlex="100" class="pr-1 avatar-container mb-1">
-      <img class="profile-avatar rounded-circle" [src]="imgURL? imgURL: 'assets/images/avatar_placeholder.png'" style="max-width: 100%; max-height: 
-       100%;" (click)="openFileDialog()">
+      <img class="profile-avatar rounded-circle" [src]="imgURL? imgURL: 'assets/images/avatar_placeholder.png'" 
+      style="width: 180px; height: 180px;" (click)="openFileDialog()">
       <input #FileSelectInputDialog (change)="onSelectFile($event)" required accept=".png, .jpg, .jpeg" type="file"
         style="display: none;" />
     </div>

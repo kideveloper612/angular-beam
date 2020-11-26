@@ -490,7 +490,7 @@ export class DefaultDashboardComponent implements OnInit {
     this.customerOptions = {
       series: [
         {
-          name: "Desktops",
+          name: "Customers",
           data: [10, 41, 35, 251, 49, 62, 69, 91, 248]
         }
       ],
@@ -538,11 +538,11 @@ export class DefaultDashboardComponent implements OnInit {
     this.chartOptionsThree = {
       series: [
         {
-          name: "series1",
+          name: "Orders",
           data: [31, 40, 28, 51, 42, 109, 100]
         },
         {
-          name: "series2",
+          name: "Earnings",
           data: [11, 32, 45, 32, 34, 52, 41]
         }
       ],
