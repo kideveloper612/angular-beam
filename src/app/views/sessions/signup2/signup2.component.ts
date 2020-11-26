@@ -35,7 +35,7 @@ export class Signup2Component implements OnInit {
   onSubmit() {
     if (!this.signupForm.invalid) {
       // do what you wnat with your data
-      console.log(this.signupForm.value);
+      // console.log(this.signupForm.value);
     }
   }
 }

@@ -90,7 +90,7 @@ export class CheckoutComponent implements OnInit {
       shippingAddress = this.checkoutFormAlt.value;
     }
     
-    console.log(billingAddress, shippingAddress, this.paymentMethod)
+    // console.log(billingAddress, shippingAddress, this.paymentMethod)
   }
 
 }

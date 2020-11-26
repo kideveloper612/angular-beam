@@ -169,7 +169,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   buildItemForm(item: any) {
-    console.log(item);
+    // console.log(item);
     this.itemForm = this.fb.group({
       postCode: [item?.postCode || '', Validators.required],
       cid: [item?.customer || '', Validators.required],
@@ -262,7 +262,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.itemForm.value);
+    // console.log(this.itemForm.value);
 
     let data = this.itemForm.value;
     this.loader.open();
@@ -283,7 +283,7 @@ export class OrderDetailComponent implements OnInit {
     } else {
       this.orderSvc.updateOrder(this.order_id, data)
         .subscribe(data => {
-          console.log(data);
+          // console.log(data);
           this.loader.close();
           if (data.status == 'success') {
             this.snack.open('Order Updated!', 'OK', { duration: 4000 });

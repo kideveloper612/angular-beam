@@ -32,7 +32,7 @@ export class Signup3Component implements OnInit {
   onSubmit() {
     if (this.signupForm.valid) {
       // do what you want to do with your data
-      console.log(this.signupForm.value);
+      // console.log(this.signupForm.value);
     }
   }
   }

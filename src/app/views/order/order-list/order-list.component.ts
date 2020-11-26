@@ -38,7 +38,7 @@ export class OrderListComponent implements OnInit {
     this.loader.open();
     this.getOrdersSub = this.orderSvc.getOrders()
       .subscribe(response => {
-        console.log(response)
+        // console.log(response)
         this.processResponse(response);
         this.loader.close();
       }, err => {

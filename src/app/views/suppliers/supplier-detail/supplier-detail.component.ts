@@ -145,7 +145,7 @@ export class SupplierDetailComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.priceList, this.itemForm.value);
+    // console.log(this.priceList, this.itemForm.value);
     let priceEle: any[] = new Array();
     for (let i = 0; i < this.priceList.length; i++) {
       let item: any = {
@@ -176,7 +176,7 @@ export class SupplierDetailComponent implements OnInit {
     } else {
       this.supplierSvc.updateSupplier(this.user_id, data)
         .subscribe(data => {
-          console.log(data);
+          // console.log(data);
           this.loader.close();
           if (data.status == 'success') {
             this.snack.open('Member Updated!', 'OK', { duration: 4000 });

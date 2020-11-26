@@ -21,9 +21,9 @@ const messaging = firebase.messaging();
 //     );
 // });
 messaging.onBackgroundMessage(function (payload) {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    // console.log('[firebase-messaging-sw.js] Received background message ', payload);
     self.clients.matchAll(/* search options */).then((clients) => {
-        console.log(clients);
+        // console.log(clients);
         if (clients && clients.length) {
             // you need to decide which clients you want to send the message to..
             const client = clients[0];

@@ -877,7 +877,7 @@ export class DefaultDashboardComponent implements OnInit {
         let dataSouceData: any[] = [];
         if (response.status == "success") {
           this.recentOrders = response.data;
-          console.log('this.recentOrders: ', this.recentOrders)
+          // console.log('this.recentOrders: ', this.recentOrders)
           for (let i = 0; i < this.recentOrders.length; i++) {
             let item = this.recentOrders[i];
 
@@ -928,7 +928,7 @@ export class DefaultDashboardComponent implements OnInit {
     this.getNumberOfCustomersSub = this.userService.getNumberOfCustomers()
       .subscribe(response => {
         if (response.status == "success") {
-          console.log(response)
+          // console.log(response)
           this.numberOfCustomers = response.data;
         }
         else {
