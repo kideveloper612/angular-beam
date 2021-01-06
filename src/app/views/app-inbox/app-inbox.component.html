@@ -100,13 +100,13 @@
               <mat-icon>star_border</mat-icon>
             </button> -->
 
-            <span class="hide-on-open">{{message.customer.name}}</span>
+            <span class="hide-on-open">{{message?.customer?.name}}</span>
             <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center" class="show-on-open">
               <img
-                [src]="message.customer.imagePath? message.customer.imagePath: 'assets/images/avatar_placeholder.png'"
+                [src]="message?.customer?.imagePath? message.customer.imagePath: 'assets/images/avatar_placeholder.png'"
                 alt="" class="inbox-face mr-1">
               <div fxLayout="column">
-                <span class="m-0">{{message.customer.name}}</span>
+                <span class="m-0">{{message?.customer?.name}}</span>
                 <small class="text-muted m-0">{{message.updatedAt | date}}</small>
               </div>
             </div>

@@ -63,7 +63,7 @@ export class NavigationService {
     {
       name: "Products",
       type: "link",
-      tooltip: "Dashboard",
+      tooltip: "Products",
       icon: "business",
       state: "products",
     },
@@ -98,6 +98,14 @@ export class NavigationService {
       tooltip: "Inbox",
       icon: "chat",
       state: "inbox",
+      // badges: [{ color: "primary", value: "New" }],
+    },
+    {
+      name: "Broadcast",
+      type: "link",
+      tooltip: "Broadcast",
+      icon: "send",
+      state: "broadcast",
       // badges: [{ color: "primary", value: "New" }],
     },
     // {
