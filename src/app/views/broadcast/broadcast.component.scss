@@ -1,0 +1,22 @@
+.message-body {
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px white;
+    margin: 5px 0px;
+}
+
+.example-chip-list {
+    width: 100%;
+}
+
+.mat-chip:not(.mat-basic-chip) {
+    display: flex;
+}
+
+.isReceived {
+    background-color: aliceblue;
+}
+
+.isSent {
+    background-color: antiquewhite;
+}

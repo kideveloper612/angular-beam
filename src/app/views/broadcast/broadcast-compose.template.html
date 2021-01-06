@@ -1,0 +1,50 @@
+<form [formGroup]="mailForm" novalidate (submit)="sendEmail()">
+  <div class="pb-1">
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let to of toList" [selectable]="selectable" [removable]="removable" (removed)="remove(to)">
+          <span>{{to}}</span>
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="To..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <small *ngIf="toList.length==0" class="form-error-msg"> Receiver is required </small>
+    <!-- <small
+      *ngIf="mailForm.controls.to.errors && (mailForm.controls.to.dirty || mailForm.controls.to.touched) && (mailForm.controls.to.errors.email)"
+      class="form-error-msg"> Invaild email address </small> -->
+  </div>
+
+  <div class="pb-1">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput name="subject" formControlName="subject" placeholder="Subject" />
+    </mat-form-field>
+    <small *ngIf="mailForm.controls.subject.errors && 
+        (mailForm.controls.subject.dirty || mailForm.controls.subject.touched) && 
+        (mailForm.controls.subject.errors.required)" class="form-error-msg"> Subject is required </small>
+  </div>
+  <div class="pb-1">
+    <quill-editor theme="snow" formControlName="body" [modules]="{ toolbar: false }"></quill-editor>
+
+    <!-- <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Message</mat-label>
+      <input matInput name="message" formControlName="message" placeholder="Message" />
+    </mat-form-field> -->
+
+    <small *ngIf="mailForm.controls.body.errors && 
+        (mailForm.controls.body.dirty || mailForm.controls.body.touched) && 
+        (mailForm.controls.body.errors.required)" class="form-error-msg"> Message is required </small>
+  </div>
+
+  <div class="">
+    <button type="button" mat-button matDialogClose>Cancel</button>
+    <span fxFlex></span>
+    <!-- <button mat-icon-button><mat-icon>attachment</mat-icon></button> -->
+    <button mat-mini-fab class="mat-primary" type="submit">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</form>

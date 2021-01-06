@@ -1,0 +1,143 @@
+<mat-sidenav-container>
+  <!-- Inbox left side bar -->
+  <!-- <mat-sidenav #sidenav [opened]="isSidenavOpen" mode="side" class="inbox-sidenav"> -->
+  <!-- Compose button -->
+  <!-- left side buttons -->
+  <!-- <mat-nav-list class="inbox-nav-list" role="list">
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row" routerLinkActive="selected-inbox" >
+            <mat-icon svgIcon="inbox" class="btn-icon"  ></mat-icon>
+            <span>Inbox</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="collections" class="btn-icon"  ></mat-icon>
+            <span>All Mails</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="star" class="btn-icon"  ></mat-icon>
+            <span>Starred</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="folder" class="btn-icon"  ></mat-icon>
+            <span>Draft</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="send" class="btn-icon"  ></mat-icon>
+            <span>Send</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="primary-imenu-item" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="report" class="btn-icon"  ></mat-icon>
+            <span>Spam</span>
+          </a>
+        </mat-list-item>
+  
+        <mat-divider></mat-divider>
+        
+  
+        <mat-list-item class="" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="notification_important" class="btn-icon"  ></mat-icon>
+            <span>Important</span>
+          </a>
+  
+        </mat-list-item>
+        <mat-list-item class="" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="business_center" class="btn-icon"  ></mat-icon>
+            <span>Business</span>
+          </a>
+        </mat-list-item>
+        <mat-list-item class="" role="listitem" routerLinkActive="open">
+          <a fxLayout="row">
+            <mat-icon svgIcon="access_time" class="btn-icon"  ></mat-icon>
+            <span>Scheduled</span>
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav> -->
+
+  <div class="messages-wrap">
+    <button mat-raised-button style="margin-bottom: 20px;" color="primary" (click)="openComposeDialog()">Compose
+      <mat-icon>edit
+      </mat-icon>
+    </button>
+    <!-- <mat-toolbar color="primary" class="inbox-toolbar">
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow [fxShow.gt-sm]="isMobile">
+          <mat-icon>short_text</mat-icon>
+        </button>
+        <mat-checkbox (change)="selectToggleAll()" class="inbox-toggle-all mr-1"><small>All</small></mat-checkbox>
+        <button mat-icon-button matTooltip="Move to trash">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Mark as important" class="">
+          <mat-icon>folder_special</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Move to archive">
+          <mat-icon>archive</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Report spam">
+          <mat-icon>error</mat-icon>
+        </button>
+      </mat-toolbar> -->
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let broadcast of broadcasts" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <!-- <mat-checkbox [(ngModel)]="message.selected" (click)="stopProp($event)" class="mail-checkbox hide-on-open">
+              </mat-checkbox> -->
+            <!-- <button mat-icon-button matTooltip="Mark as important" (click)="stopProp($event)"
+                class="hide-on-open text-muted mr-1">
+                <mat-icon>star_border</mat-icon>
+              </button> -->
+
+          </mat-panel-title>
+          <mat-panel-description>
+            <span class="mail-subject text-sm mat-color-default">{{broadcast.subject}}</span>
+            <span fxFlex></span>
+            <span class="text-sm" fxHide.lt-sm="true">{{broadcast.updatedAt | relativeTime}}</span>
+            <button mat-icon-button [matMenuTriggerFor]="msgMenu" (click)="$event.stopPropagation()"
+              class="hidden-on-open">
+              <mat-icon class="text-muted">more_vert</mat-icon>
+            </button>
+            <mat-menu #msgMenu="matMenu">
+              <button mat-menu-item (click)="openReplyDialog(broadcast)">
+                <mat-icon>reply</mat-icon> Use as template
+              </button>
+              <!-- <button mat-menu-item>
+                  <mat-icon>archive</mat-icon> Archive
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete</mat-icon> Delete
+                </button> -->
+            </mat-menu>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="message-text">
+          <!-- <div *ngFor="let body of message.bodies"> -->
+          <div class="message-body" [ngClass]="'isSent'">
+            <div class="message-text" [innerHtml]="broadcast.body.content">
+              <!-- {{removeP_Tag(broadcast.body.content)}} -->
+            </div>
+            <!-- <div class="message-text" style="text-align: right;">
+              {{broadcast.body.createdAt | relativeTime}}
+            </div> -->
+          </div>
+          <!-- </div> -->
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+</mat-sidenav-container>

@@ -108,6 +108,11 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Inbox', breadcrumb: 'Inbox' }
       },
       {
+        path: 'broadcast',
+        loadChildren: () => import('./views/broadcast/broadcast.module').then(m => m.BroadcastModule),
+        data: { title: 'Broadcast', breadcrumb: 'Broadcast' }
+      },
+      {
         path: 'calendar',
         loadChildren: () => import('./views/app-calendar/app-calendar.module').then(m => m.AppCalendarModule),
         data: { title: 'Calendar', breadcrumb: 'Calendar' }
