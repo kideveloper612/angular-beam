@@ -71,10 +71,8 @@ export class BroadcastComponent implements OnInit {
   openReplyDialog(broadcast: any) {
     const matDialogConfig = new MatDialogConfig();
     matDialogConfig.width = '80%'
-    const dialogRef = this.composeDialog.open(BroadCastComposeComponent, {
-      width: '80%',
-      data: { ...broadcast }
-    });
+    matDialogConfig.data = { ...broadcast };
+    const dialogRef = this.composeDialog.open(BroadCastComposeComponent, matDialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.getAllBroadcasts();

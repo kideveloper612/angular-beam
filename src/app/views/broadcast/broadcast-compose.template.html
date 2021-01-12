@@ -1,17 +1,23 @@
 <form [formGroup]="mailForm" novalidate (submit)="sendEmail()">
   <div class="pb-1">
-    <mat-form-field class="example-chip-list" appearance="outline">
-      <mat-chip-list #chipList aria-label="Fruit selection">
-        <mat-chip *ngFor="let to of toList" [selectable]="selectable" [removable]="removable" (removed)="remove(to)">
-          <span>{{to}}</span>
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input placeholder="To..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
-      </mat-chip-list>
-    </mat-form-field>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+      <mat-form-field class="example-chip-list" appearance="outline">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let to of getToList()" [selectable]="selectable" [removable]="removable" (removed)="remove(to)">
+            <span>{{to}}</span>
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="To..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+      <button type="button" style="margin-left: 5px; padding: 10px; margin-bottom: 1.34375em;" (click)="importEmailsFromJson.click()">
+        <mat-icon>folder_open</mat-icon>
+      </button>
+    </div>
+    <input #importEmailsFromJson type="file" hidden="true" accept="application/JSON" (change)="importEmailFromJsonFile($event)"/>
 
-    <small *ngIf="toList.length==0" class="form-error-msg"> Receiver is required </small>
+    <small *ngIf="getToList().length==0" class="form-error-msg"> Receiver is required </small>
     <!-- <small
       *ngIf="mailForm.controls.to.errors && (mailForm.controls.to.dirty || mailForm.controls.to.touched) && (mailForm.controls.to.errors.email)"
       class="form-error-msg"> Invaild email address </small> -->
