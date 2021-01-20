@@ -136,8 +136,7 @@
         <div class="message-text">
           <div *ngFor="let body of message.bodies">
             <div class="message-body" [ngClass]="body.isCreatedByCustomer? 'isReceived': 'isSent'">
-              <div class="message-text">
-                {{body.body}}
+              <div class="message-text" [innerHtml]="body.body">
               </div>
               <div class="message-text" style="text-align: right;">
                 {{body.createdAt | relativeTime}}
