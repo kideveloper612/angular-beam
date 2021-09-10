@@ -36,6 +36,11 @@ export const rootRouterConfig: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: 'beam',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        data: { title: 'Dashboard', breadcrumb: 'Dashboard' }
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: { title: 'Dashboard', breadcrumb: 'Dashboard' }

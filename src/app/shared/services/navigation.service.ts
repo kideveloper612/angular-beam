@@ -50,6 +50,13 @@ export class NavigationService {
       state: "tour"
     },
     {
+      name: "My Beam",
+      type: "link",
+      tooltip: "My Beam",
+      icon: "highlight",
+      state: "beam",
+    },
+    {
       name: "Dashboard",
       type: "link",
       tooltip: "Dashboard",

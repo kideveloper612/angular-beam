@@ -9,8 +9,8 @@ export class SidenavComponent {
   @Input('hasIconMenu') public hasIconTypeMenuItem: boolean;
   @Input('iconMenuTitle') public iconTypeMenuTitle: string;
 
-  constructor() {}
-  ngOnInit() {}
+  constructor() { }
+  ngOnInit() { }
 
   // Only for demo purpose
   addMenuItem() {
@@ -21,8 +21,8 @@ export class SidenavComponent {
       icon: 'done',
       state: 'material',
       sub: [
-        {name: 'SUBITEM', state: 'cards'},
-        {name: 'SUBITEM', state: 'buttons'}
+        { name: 'SUBITEM', state: 'cards' },
+        { name: 'SUBITEM', state: 'buttons' }
       ]
     });
   }
