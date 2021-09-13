@@ -1,0 +1,56 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Horizontal</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-horizontal-stepper [linear]="true">
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Support Floor</ng-template>
+                    <h2 class="fw-500" matLine>Does your beam support a floor?</h2>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Support Roof</ng-template>
+                    <mat-form-field class="pt-1 pb-1">
+                        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                    </mat-form-field>
+                    <div fxLayout="row">
+                        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Support Wall</ng-template>
+                <div>
+                    <mat-icon class="pt-1" [style.fontSize]="'36px'">check</mat-icon>
+                </div>
+                <div class="pb-1 mb-1">Back</div>
+                <div fxLayout="row">
+                    <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                    <span fxFlex="8px"></span>
+                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Wall Span</ng-template>
+                <div>
+                    <mat-icon class="pt-1" [style.fontSize]="'36px'">check</mat-icon>
+                </div>
+                <div class="pb-1 mb-1"> You Are Done.</div>
+                <div fxLayout="row">
+                    <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                    <span fxFlex="8px"></span>
+                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card-content>
+</mat-card>

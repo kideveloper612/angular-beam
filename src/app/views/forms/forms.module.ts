@@ -33,7 +33,7 @@ import { WizardComponent } from './wizard/wizard.component';
     MatInputModule,
     MatListModule,
     MatCardModule,
-    MatDatepickerModule, 
+    MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
     MatRadioModule,
@@ -49,4 +49,5 @@ import { WizardComponent } from './wizard/wizard.component';
   ],
   declarations: [BasicFormComponent, RichTextEditorComponent, FileUploadComponent, WizardComponent]
 })
+
 export class AppFormsModule { }

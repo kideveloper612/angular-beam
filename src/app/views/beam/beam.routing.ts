@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-
-import { BeamComponent } from './beam.component';
-
+import { BeamWizardComponent } from './beam-wizard/beam-wizard.component';
 
 export const BeamRoute: Routes = [
-    { path: '', component: BeamComponent }
+    {
+        path: '',
+        component: BeamWizardComponent,
+        data: { title: 'Wizard', breadcrumb: 'WIZARD' }
+    },
 ];

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-beam',
   templateUrl: './beam.component.html',
   styleUrls: ['./beam.component.scss']
 })
+
 export class BeamComponent implements OnInit {
 
   constructor() { }
