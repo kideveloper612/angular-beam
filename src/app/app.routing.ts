@@ -37,8 +37,8 @@ export const rootRouterConfig: Routes = [
     children: [
       {
         path: 'beam',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
-        data: { title: 'Dashboard', breadcrumb: 'Dashboard' }
+        loadChildren: () => import('./views/beam/beam.module').then(m => m.BeamModule),
+        data: { title: 'My Beam', breadcrumb: 'Beam' }
       },
       {
         path: 'dashboard',

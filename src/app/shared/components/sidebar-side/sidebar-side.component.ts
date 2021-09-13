@@ -32,7 +32,6 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
         item => item.type === "icon"
       ).length;
     });
-    console.log(this.menuItems)
     this.layoutConf = this.layout.layoutConf;
   }
   ngAfterViewInit() {
