@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -40,6 +41,7 @@ import { BeamComponent } from './beam.component';
         MatIconModule,
         MatStepperModule,
         FlexLayoutModule,
+        MatGridListModule,
         QuillModule,
         NgxDatatableModule,
         FileUploadModule,

@@ -10,15 +10,31 @@ export class BeamWizardComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  forthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+  sixthFormGroup: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.firstFormGroup = this.fb.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['No', Validators.required]
     });
     this.secondFormGroup = this.fb.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: ['No', Validators.required]
+    });
+    this.thirdFormGroup = this.fb.group({
+      thirdCtrl: ['No', Validators.required]
+    });
+    this.forthFormGroup = this.fb.group({
+      forthCtrl: ['', Validators.required]
+    });
+    this.fifthFormGroup = this.fb.group({
+      fifthCtrl: ['', Validators.required]
+    });
+    this.sixthFormGroup = this.fb.group({
+      sixthCtrl: ['', Validators.required]
     });
   }
 

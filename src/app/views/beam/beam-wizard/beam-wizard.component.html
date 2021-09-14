@@ -8,48 +8,162 @@
             <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Support Floor</ng-template>
-                    <h2 class="fw-500" matLine>Does your beam support a floor?</h2>
-                    <div>
-                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    <div class="h1 my-24" matLine>Does your beam support a floor?</div>
+                    <div fxLayout="row wrap">
+                        <div class="margin-auto" fxFlex="100" fxFlex.gt-sm="80" fxFlex.gt-md="60">
+                            <mat-grid-list class="w-100" cols="2" rowHeight="2:1">
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/floor/IMG-1.JPG'" alt="Floor">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/floor/IMG-2.JPG'" alt="Floor">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/floor/IMG-3.JPG'" alt="Floor">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/floor/IMG-4.JPG'" alt="Floor">
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <input matInput formControlName="firstCtrl" required hidden>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
+                            matStepperNext>YES</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
+                            matStepperNext>NO</button>
                     </div>
                 </form>
             </mat-step>
+
             <mat-step [stepControl]="secondFormGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
                 <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel>Support Roof</ng-template>
-                    <mat-form-field class="pt-1 pb-1">
-                        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                    </mat-form-field>
-                    <div fxLayout="row">
-                        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                    <div class="h1 my-24" matLine>Does your beam support a roof?</div>
+                    <div fxLayout="row wrap">
+                        <div class="margin-auto" fxFlex="100" fxFlex.gt-sm="80" fxFlex.gt-md="60">
+                            <mat-grid-list class="w-100" cols="2" rowHeight="2:1">
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/roof/IMG-1.JPG'" alt="Roof">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/roof/IMG-2.JPG'" alt="Roof">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/roof/IMG-3.JPG'" alt="Roof">
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                    <img class="full-width" [src]="'assets/images/beam/roof/IMG-4.JPG'" alt="Roof">
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <input matInput formControlName="secondCtrl" required hidden>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
+                            matStepperNext>YES</button>
                         <span fxFlex="8px"></span>
-                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
+                            matStepperNext>NO</button>
                     </div>
                 </form>
             </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>Support Wall</ng-template>
-                <div>
-                    <mat-icon class="pt-1" [style.fontSize]="'36px'">check</mat-icon>
-                </div>
-                <div class="pb-1 mb-1">Back</div>
-                <div fxLayout="row">
-                    <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-                    <span fxFlex="8px"></span>
-                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-                </div>
+
+            <mat-step [stepControl]="thirdFormGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Support Wall</ng-template>
+                    <div class="h1 my-24" matLine>Does your beam support a wall?</div>
+                    <div fxLayout="row wrap">
+                        <div class="margin-auto" fxFlex="100" fxFlex.gt-sm="80" fxFlex.gt-md="60">
+                            <mat-grid-list class="w-100" cols="1" rowHeight="2:1">
+                                <mat-grid-tile>
+                                    <img class="full-width" style="height: 100%;"
+                                        [src]="'assets/images/beam/wall/wall.png'" alt="Roof">
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+                    <input matInput formControlName="thirdCtrl" required hidden>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
+                            matStepperPrevious>YES</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
+                            matStepperNext>NO</button>
+                    </div>
+                </form>
             </mat-step>
-            <mat-step>
-                <ng-template matStepLabel>Wall Span</ng-template>
-                <div>
-                    <mat-icon class="pt-1" [style.fontSize]="'36px'">check</mat-icon>
-                </div>
-                <div class="pb-1 mb-1"> You Are Done.</div>
-                <div fxLayout="row">
-                    <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-                    <span fxFlex="8px"></span>
-                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-                </div>
+
+            <mat-step [stepControl]="forthFormGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
+                <form [formGroup]="forthFormGroup">
+                    <ng-template matStepLabel>Wall Span</ng-template>
+                    <div class="h1 my-24" matLine>What is the span of the wall?</div>
+                    <mat-form-field class="pt-1 pb-1">
+                        <input type="number" matInput placeholder="Span of opening (m)" formControlName="forthCtrl"
+                            required>
+                    </mat-form-field>
+                    <div class="h6 mt-2" matLine>Note: Dims are in meters</div>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="200px" color="primary"
+                            class="mt-12" matStepperPrevious>Get the beam</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="200px" color="primary"
+                            class="mt-12" matStepperNext>Get only design</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="fifthFormGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
+                <form [formGroup]="fifthFormGroup">
+                    <ng-template matStepLabel>Post Code</ng-template>
+                    <div class="h1 my-24" matLine>Please insert your post code</div>
+                    <mat-form-field class="pt-1 pb-1">
+                        <input matInput placeholder="Nessct" formControlName="fifthCtrl" required>
+                    </mat-form-field>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
+                            matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="sixthFormGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
+                <ng-template matStepLabel>Purchase</ng-template>
+                <form [formGroup]="sixthFormGroup">
+                    <ng-template matStepLabel>Wall Span</ng-template>
+                    <div class="h4" matLine>Price (design calculation only)</div>
+                    <div class="h2 mb-12">$ 5.00</div>
+
+                    <mat-form-field class="pt-1 pb-1" appearance="fill">
+                        <mat-label>Address for calculation</mat-label>
+                        <textarea matInput formControlName="sixthCtrl" required></textarea>
+                    </mat-form-field>
+
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
+                            matStepperNext>YES</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
+                            matStepperNext>NO</button>
+                    </div>
+                </form>
             </mat-step>
         </mat-horizontal-stepper>
     </mat-card-content>
