@@ -1,10 +1,10 @@
 <mat-card class="p-0">
     <mat-card-title class="">
-        <div class="card-title-text">Horizontal</div>
+        <div class="card-title-text">Beam Card</div>
         <mat-divider></mat-divider>
     </mat-card-title>
     <mat-card-content>
-        <mat-horizontal-stepper [linear]="true">
+        <mat-horizontal-stepper [linear]="true" #stepper>
             <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Support Floor</ng-template>
@@ -27,10 +27,9 @@
                             </mat-grid-list>
                         </div>
                     </div>
-                    <input matInput formControlName="firstCtrl" required hidden>
                     <div fxLayout="column" fxLayout.gt-xs="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
-                            matStepperNext>YES</button>
+                            (click)="nextClick(3)">YES</button>
                         <span fxFlex="8px"></span>
                         <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
                             matStepperNext>NO</button>
@@ -38,9 +37,66 @@
                 </form>
             </mat-step>
 
+            <mat-step [stepControl]="firstFormSubOneGroup">
+                <form [formGroup]="firstFormSubOneGroup">
+                    <div class="h1 my-24" matLine>What type of floor?</div>
+                    <mat-radio-group class="justify-center" fxLayout="column" fxLayout.gt-xs="row wrap"
+                        formControlName="firstSubOneCtrl">
+                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="timber">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/floor-type/timber.JPG'"
+                                alt="Timber">
+                            <span class="dark-blue-400 dark-blue-400-fg">Timber</span>
+                        </mat-radio-button>&nbsp;
+                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="concrete">
+                            <img class="full-width" [src]="'assets/images/beam/floor-type/concrete.JPG'" alt="Concrete">
+                            <span class="dark-blue-400 dark-blue-400-fg">Concrete</span>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-md="80px" color="primary" class="mt-12"
+                            (click)="nextClick(3)">YES</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-md="80px" class="mt-12"
+                            matStepperNext>NO</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="firstFormSubTwoGroup">
+                <form [formGroup]="firstFormSubTwoGroup">
+                    <div class="h1 my-24" matLine>What is the span of the floor?</div>
+                    <div fxLayout="row wrap">
+                        <div fxFlex="100" fxFlex.gt-xs="50">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/floor-type/timber.JPG'"
+                                alt="Timber">
+                        </div>
+                        <div fxFlex="100" fxFlex.gt-xs="50">
+                            <div class="pb-1">
+                                <mat-form-field class="full-width" appearance="fill">
+                                    <input matInput formControlName="firstSubTwoCtrl" placeholder="First name" value="">
+                                </mat-form-field>
+                            </div>
+                            <div class="pb-1">
+                                <mat-form-field class="full-width" appearance="fill">
+                                    <input matInput formControlName="firstSubTwoCtrl" placeholder="First name" value="">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayout.gt-xs="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-md="80px" color="primary" class="mt-12"
+                            (click)="nextClick(3)">YES</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-stroked-button fxFlex="100" fxFlex.gt-md="80px" class="mt-12"
+                            matStepperNext>NO</button>
+                    </div>
+                </form>
+            </mat-step>
+
             <mat-step [stepControl]="secondFormGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
-                    <mat-icon>settings_backup_restore</mat-icon>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
                 </button>
                 <form [formGroup]="secondFormGroup">
                     <ng-template matStepLabel>Support Roof</ng-template>
@@ -63,7 +119,6 @@
                             </mat-grid-list>
                         </div>
                     </div>
-                    <input matInput formControlName="secondCtrl" required hidden>
                     <div fxLayout="column" fxLayout.gt-xs="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
                             matStepperNext>YES</button>
@@ -76,7 +131,8 @@
 
             <mat-step [stepControl]="thirdFormGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
-                    <mat-icon>settings_backup_restore</mat-icon>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
                 </button>
                 <form [formGroup]="thirdFormGroup">
                     <ng-template matStepLabel>Support Wall</ng-template>
@@ -91,7 +147,6 @@
                             </mat-grid-list>
                         </div>
                     </div>
-                    <input matInput formControlName="thirdCtrl" required hidden>
                     <div fxLayout="column" fxLayout.gt-xs="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
                             matStepperPrevious>YES</button>
@@ -104,14 +159,14 @@
 
             <mat-step [stepControl]="forthFormGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
-                    <mat-icon>settings_backup_restore</mat-icon>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
                 </button>
                 <form [formGroup]="forthFormGroup">
                     <ng-template matStepLabel>Wall Span</ng-template>
                     <div class="h1 my-24" matLine>What is the span of the wall?</div>
                     <mat-form-field class="pt-1 pb-1">
-                        <input type="number" matInput placeholder="Span of opening (m)" formControlName="forthCtrl"
-                            required>
+                        <input type="number" matInput placeholder="Span of opening (m)" formControlName="forthCtrl">
                     </mat-form-field>
                     <div class="h6 mt-2" matLine>Note: Dims are in meters</div>
                     <div fxLayout="column" fxLayout.gt-xs="row">
@@ -126,7 +181,8 @@
 
             <mat-step [stepControl]="fifthFormGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
-                    <mat-icon>settings_backup_restore</mat-icon>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
                 </button>
                 <form [formGroup]="fifthFormGroup">
                     <ng-template matStepLabel>Post Code</ng-template>
@@ -134,7 +190,7 @@
                     <mat-form-field class="pt-1 pb-1">
                         <input matInput placeholder="Nessct" formControlName="fifthCtrl" required>
                     </mat-form-field>
-                    <div fxLayout="column" fxLayout.gt-xs="row">
+                    <div fxLayout="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
                             matStepperNext>Next</button>
                     </div>
@@ -143,7 +199,8 @@
 
             <mat-step [stepControl]="sixthFormGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
-                    <mat-icon>settings_backup_restore</mat-icon>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
                 </button>
                 <ng-template matStepLabel>Purchase</ng-template>
                 <form [formGroup]="sixthFormGroup">
@@ -156,12 +213,12 @@
                         <textarea matInput formControlName="sixthCtrl" required></textarea>
                     </mat-form-field>
 
-                    <div fxLayout="column" fxLayout.gt-xs="row">
-                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
-                            matStepperNext>YES</button>
-                        <span fxFlex="8px"></span>
-                        <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
-                            matStepperNext>NO</button>
+                    <div fxLayout="row">
+                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="200px" color="primary" class="mt-12"
+                            (click)="submit()">
+                            <mat-icon>payment</mat-icon>
+                            Pay with card
+                        </button>
                     </div>
                 </form>
             </mat-step>
