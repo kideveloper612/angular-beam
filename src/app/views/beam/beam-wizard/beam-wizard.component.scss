@@ -1,6 +1,6 @@
-// ::ng-deep .mat-horizontal-stepper-header-container {
-//     display: none;
-// }
+::ng-deep .mat-horizontal-stepper-header-container {
+    display: none !important;
+}
 
 :host ::ng-deep {
     mat-radio-button {
@@ -37,7 +37,7 @@
                 bottom: 0px;
                 padding-left: 20px;
                 padding-right: 30px;
-                font-size: 1.5rem;
+                font-size: 2rem;
                 border-bottom-right-radius: 40px;
             }
         }

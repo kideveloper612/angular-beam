@@ -112,24 +112,20 @@ export class BeamWizardComponent implements OnInit {
         if (index === 1) {
           this.floorFlag = false;
 
-          if (this.firstFormSubTwoGroup.get('firstSubSideOneCtrl').value === null)
-            this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].setValidators([Validators.required]);
-
+          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].setValidators([Validators.required]);
           this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].updateValueAndValidity();
 
-          if (this.firstFormSubTwoGroup.get('firstSubSideTwoCtrl').value === null)
-            this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].setValidators([Validators.required]);
-
+          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].setValidators([Validators.required]);
           this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].updateValueAndValidity();
         }
         else {
           this.floorFlag = true;
 
-          this.firstFormSubTwoGroup.get['firstSubSideOneCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['firstSubSideOneCtrl']?.updateValueAndValidity();
+          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].clearValidators();
+          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].updateValueAndValidity();
 
-          this.firstFormSubTwoGroup.get['firstSubSideTwoCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['firstSubSideTwoCtrl']?.updateValueAndValidity();
+          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].clearValidators();
+          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].updateValueAndValidity();
         }
         break;
 
@@ -137,14 +133,10 @@ export class BeamWizardComponent implements OnInit {
         if (index === 1) {
           this.roofFlag = false;
 
-          if (this.secondFormSubTwoGroup.get('secondSubSideOneCtrl').value === null)
-            this.secondFormSubTwoGroup.controls['secondSubSideOneCtrl'].setValidators([Validators.required]);
-
+          this.secondFormSubTwoGroup.controls['secondSubSideOneCtrl'].setValidators([Validators.required]);
           this.secondFormSubTwoGroup.controls['secondSubSideOneCtrl'].updateValueAndValidity();
 
-          if (this.secondFormSubTwoGroup.get('secondSubSideTwoCtrl').value === null)
-            this.secondFormSubTwoGroup.controls['secondSubSideTwoCtrl'].setValidators([Validators.required]);
-
+          this.secondFormSubTwoGroup.controls['secondSubSideTwoCtrl'].setValidators([Validators.required]);
           this.secondFormSubTwoGroup.controls['secondSubSideTwoCtrl'].updateValueAndValidity();
         }
         else {
@@ -162,14 +154,10 @@ export class BeamWizardComponent implements OnInit {
         if (index === 1) {
           this.wallFlag = false;
 
-          if (this.thirdFormSubGroup.get('thirdSubOneCtrl').value === null)
-            this.thirdFormSubGroup.controls['thirdSubOneCtrl'].setValidators([Validators.required]);
-
+          this.thirdFormSubGroup.controls['thirdSubOneCtrl'].setValidators([Validators.required]);
           this.thirdFormSubGroup.controls['thirdSubOneCtrl'].updateValueAndValidity();
 
-          if (this.thirdFormSubGroup.get('thirdSubTwoCtrl').value === null)
-            this.thirdFormSubGroup.controls['thirdSubTwoCtrl'].setValidators([Validators.required]);
-
+          this.thirdFormSubGroup.controls['thirdSubTwoCtrl'].setValidators([Validators.required]);
           this.thirdFormSubGroup.controls['thirdSubTwoCtrl'].updateValueAndValidity();
         }
         else {
@@ -187,9 +175,7 @@ export class BeamWizardComponent implements OnInit {
         if (index === 1) {
           this.onlyDesign = false;
 
-          if (this.fifthFormGroup.get('fifthCtrl').value === null)
-            this.fifthFormGroup.controls['fifthCtrl'].setValidators([Validators.required]);
-
+          this.fifthFormGroup.controls['fifthCtrl'].setValidators([Validators.required]);
           this.fifthFormGroup.controls['fifthCtrl'].updateValueAndValidity();
         }
         else {
