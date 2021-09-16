@@ -46,20 +46,18 @@
                     <div class="h1 my-24" matLine>What type of floor?</div>
                     <mat-radio-group class="justify-center" fxLayout="column" fxLayout.gt-xs="row wrap"
                         formControlName="firstSubOneCtrl">
-                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="timber">
+                        <mat-radio-button (click)="goForward(null, 1)" fxFlex="100" fxFlex.gt-sm="45" color="primary"
+                            value="timber" matStepperNext>
                             <img class="full-width img-border-radius" [src]="'assets/images/beam/floor-type/timber.JPG'"
                                 alt="Timber">
                             <span class="dark-blue-400 dark-blue-400-fg">Timber</span>
                         </mat-radio-button>
-                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="concrete">
+                        <mat-radio-button (click)="goForward(null, 1)" fxFlex="100" fxFlex.gt-sm="45" color="primary"
+                            value="concrete">
                             <img class="full-width" [src]="'assets/images/beam/floor-type/concrete.JPG'" alt="Concrete">
                             <span class="dark-blue-400 dark-blue-400-fg">Concrete</span>
                         </mat-radio-button>
                     </mat-radio-group>
-                    <div fxLayout="column" fxLayout.gt-xs="row">
-                        <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
-                            matStepperNext>Next</button>
-                    </div>
                 </form>
             </mat-step>
 
@@ -70,10 +68,10 @@
                 </button>
                 <form [formGroup]="firstFormSubTwoGroup">
                     <div class="h1 my-24" matLine>What is the span of the floor?</div>
-                    <div fxLayout="row wrap" style="justify-content: space-between;">
+                    <div fxLayout="row wrap" style="justify-content: space-around;">
                         <div fxFlex="100" fxFlex.gt-xs="50">
-                            <img class="full-width img-border-radius" [src]="'assets/images/beam/floor-type/timber.JPG'"
-                                alt="Timber">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/span/floor.png'"
+                                alt="Floor Span">
                         </div>
                         <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="45">
                             <mat-form-field class="full-width" appearance="fill">
@@ -130,8 +128,63 @@
                 </form>
             </mat-step>
 
-            <mat-step [stepControl]="thirdFormGroup">
+            <mat-step [stepControl]="secondFormSubOneGroup">
                 <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
+                </button>
+                <form [formGroup]="secondFormSubOneGroup">
+                    <div class="h1 my-24" matLine>What type of roof?</div>
+                    <mat-radio-group class="justify-center" fxLayout="column" fxLayout.gt-xs="row wrap"
+                        formControlName="secondSubOneCtrl">
+                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="pitched"
+                            (click)="goForward(null, 1)">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/roof-type/Pitched.JPG'"
+                                alt="Pitched">
+                            <span class="dark-blue-400 dark-blue-400-fg">Pitched</span>
+                        </mat-radio-button>
+                        <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="flat"
+                            (click)="goForward(null, 1)">
+                            <img class="full-width" [src]="'assets/images/beam/roof-type/Flat.JPG'" alt="Flat">
+                            <span class="dark-blue-400 dark-blue-400-fg">Flat</span>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="secondFormSubTwoGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
+                </button>
+                <form [formGroup]="secondFormSubTwoGroup">
+                    <div class="h1 my-24" matLine>What is the span of the roof?</div>
+                    <div fxLayout="row wrap" style="justify-content: space-around;">
+                        <div fxFlex="100" fxFlex.gt-xs="50">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/span/roof.png'"
+                                alt="Roof Span">
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="45">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <input type="number" matInput formControlName="secondSubSideOneCtrl"
+                                    placeholder="Side1 (m)">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="fill">
+                                <input type="number" matInput formControlName="secondSubSideTwoCtrl"
+                                    placeholder="Side2 (m)">
+                            </mat-form-field>
+                            <div class="h6 mt-2" matLine>Note: Dims are in meters</div>
+                            <div fxLayout="row">
+                                <button mat-raised-button fxFlex="100" color="primary" class="mt-12"
+                                    matStepperNext>Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="thirdFormGroup">
+                <button mat-icon-button color="primary" class="float-right" (click)="goBack(1, 3)">
                     <mat-icon>arrow_back</mat-icon>
                     Back
                 </button>
@@ -143,23 +196,54 @@
                             <mat-grid-list class="w-100" cols="1" rowHeight="2:1">
                                 <mat-grid-tile>
                                     <img class="full-width" style="height: 100%;"
-                                        [src]="'assets/images/beam/wall/wall.png'" alt="Roof">
+                                        [src]="'assets/images/beam/span/wall.png'" alt="Roof">
                                 </mat-grid-tile>
                             </mat-grid-list>
                         </div>
                     </div>
                     <div fxLayout="column" fxLayout.gt-xs="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
-                            matStepperPrevious>YES</button>
+                            (click)="goForward(2, 1)">YES</button>
                         <span fxFlex="8px"></span>
                         <button mat-stroked-button fxFlex="100" fxFlex.gt-sm="80px" class="mt-12"
-                            matStepperNext>NO</button>
+                            (click)="goForward(2, 2)">NO</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="thirdFormSubGroup">
+                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                    <mat-icon>arrow_back</mat-icon>
+                    Back
+                </button>
+                <form [formGroup]="thirdFormSubGroup">
+                    <div class="h1 my-24" matLine>What is the span of the wall?</div>
+                    <div fxLayout="row wrap" style="justify-content: space-around;">
+                        <div fxFlex="100" fxFlex.gt-xs="50">
+                            <img class="full-width img-border-radius" [src]="'assets/images/beam/span/wall.png'"
+                                alt="Roof Span">
+                        </div>
+                        <div fxLayout="column" fxFlex="100" fxFlex.gt-xs="45">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <input type="number" matInput formControlName="thirdSubOneCtrl"
+                                    placeholder="Thickness of the wall (m)">
+                            </mat-form-field>
+                            <mat-form-field class="full-width" appearance="fill">
+                                <input type="number" matInput formControlName="thirdSubTwoCtrl"
+                                    placeholder="Height of the wall (m)">
+                            </mat-form-field>
+                            <div class="h6 mt-2" matLine>Note: Dims are in meters</div>
+                            <div fxLayout="row">
+                                <button mat-raised-button fxFlex="100" color="primary" class="mt-12"
+                                    matStepperNext>Next</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </mat-step>
 
             <mat-step [stepControl]="forthFormGroup">
-                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                <button mat-icon-button color="primary" class="float-right" (click)="goBack(2, 2)">
                     <mat-icon>arrow_back</mat-icon>
                     Back
                 </button>
@@ -172,10 +256,10 @@
                     <div class="h6 mt-2" matLine>Note: Dims are in meters</div>
                     <div fxLayout="column" fxLayout.gt-xs="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="200px" color="primary"
-                            class="mt-12" matStepperPrevious>Get the beam</button>
+                            class="mt-12" (click)="goForward(3, 1)">Get the beam</button>
                         <span fxFlex="8px"></span>
                         <button mat-raised-button fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="200px" color="primary"
-                            class="mt-12" matStepperNext>Get only design</button>
+                            class="mt-12" (click)="goForward(3, 2)">Get only design</button>
                     </div>
                 </form>
             </mat-step>
@@ -189,17 +273,17 @@
                     <ng-template matStepLabel>Post Code</ng-template>
                     <div class="h1 my-24" matLine>Please insert your post code</div>
                     <mat-form-field class="pt-1 pb-1">
-                        <input matInput placeholder="Nessct" formControlName="fifthCtrl" required>
+                        <input matInput placeholder="Nessct" formControlName="fifthCtrl">
                     </mat-form-field>
                     <div fxLayout="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="80px" color="primary" class="mt-12"
-                            matStepperNext>Next</button>
+                            (click)="goForward(4)">Next</button>
                     </div>
                 </form>
             </mat-step>
 
             <mat-step [stepControl]="sixthFormGroup">
-                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                <button mat-icon-button color="primary" class="float-right" (click)="goBack(3, 2)">
                     <mat-icon>arrow_back</mat-icon>
                     Back
                 </button>
@@ -211,7 +295,7 @@
 
                     <mat-form-field class="pt-1 pb-1" appearance="fill">
                         <mat-label>Address for calculation</mat-label>
-                        <textarea matInput formControlName="sixthCtrl" required></textarea>
+                        <textarea matInput formControlName="sixthCtrl"></textarea>
                     </mat-form-field>
 
                     <div fxLayout="row">

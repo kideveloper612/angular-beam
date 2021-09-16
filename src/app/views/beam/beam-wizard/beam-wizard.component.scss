@@ -12,6 +12,7 @@
 
         label {
             position: relative;
+            height: 100%;
 
             .mat-radio-container {
                 position: absolute;
@@ -21,7 +22,10 @@
             }
 
             .mat-radio-label-content {
+                height: 100%;
+
                 img {
+                    height: 100%;
                     cursor: pointer;
                     border-radius: 40px;
                 }
@@ -30,8 +34,7 @@
             span {
                 position: absolute;
                 right: 0px;
-                bottom: 6px;
-                z-index: 0;
+                bottom: 0px;
                 padding-left: 20px;
                 padding-right: 30px;
                 font-size: 1.5rem;
