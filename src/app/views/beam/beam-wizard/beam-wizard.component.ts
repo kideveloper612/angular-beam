@@ -19,6 +19,10 @@ export class BeamWizardComponent implements OnInit {
   firstFormSubOneGroup: FormGroup;
   firstFormSubTwoGroup: FormGroup;
 
+  floorFlag: Boolean = false;
+  roofFlag: Boolean = false;
+  wallFlag: Boolean = false;
+
   @ViewChild('stepper') private myStepper: MatStepper;
 
   constructor(private fb: FormBuilder) { }
@@ -30,7 +34,8 @@ export class BeamWizardComponent implements OnInit {
       firstSubOneCtrl: ['', Validators.required]
     });
     this.firstFormSubTwoGroup = this.fb.group({
-      firstSubTwoCtrl: ['', Validators.required]
+      firstSubSideOneCtrl: ['', Validators.required],
+      firstSubSideTwoCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this.fb.group({});
     this.thirdFormGroup = this.fb.group({});
@@ -45,19 +50,93 @@ export class BeamWizardComponent implements OnInit {
     });
   }
 
-  nextClick(index: number) {
-    console.log(this.firstFormSubOneGroup.value);
+  backAction(step: number = 1) {
+    while (step > 0) {
+      this.myStepper.previous();
+      step--;
+    }
+  }
+
+  forwardAction(step: number = 1) {
+    while (step > 0) {
+      this.myStepper.next();
+      step--;
+    }
+  }
+
+  goBack(step: number = 0, index: number = 1) {
+    console.log(step, index, this.floorFlag)
+    switch (step) {
+      case 0:
+        if (this.floorFlag) this.backAction(index);
+        else this.backAction(1)
+        break;
+
+      case 1:
+        if (this.roofFlag) this.backAction(index);
+        else this.backAction(1)
+        break;
+
+      case 2:
+        if (this.wallFlag) this.backAction(index);
+        else this.backAction(1)
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  goForward(step: number = 0, index: number = 1) {
+    switch (step) {
+      case 0:
+        if (index === 1) this.floorFlag = false;
+        else this.floorFlag = true;
+        break;
+
+      case 1:
+        if (index === 1) this.roofFlag = false;
+        else this.roofFlag = true;
+        break;
+
+      case 2:
+        if (index === 1) this.wallFlag = false;
+        else this.wallFlag = true;
+        break;
+
+      default:
+        break;
+    }
+
+    this.forwardAction(index);
+  }
+
+  floorSkip(index: number) {
+    this.floorFlag = true;
+
     while (index > 0) {
       this.myStepper.next();
       index--;
     }
   }
 
-  // nextClick(stepper: MatStepper) {
-  //   stepper.next();
+  roofSkip(index: number) {
+    this.roofFlag = true;
 
-  //   console.log("=============")
-  // }
+    while (index > 0) {
+      this.myStepper.next();
+      index--;
+    }
+  }
+
+  wallSkip(index: number) {
+    this.wallFlag = true;
+
+    while (index > 0) {
+      this.myStepper.next();
+      index--;
+    }
+  }
 
   submit() {
     console.log(this.firstFormGroup.value);
