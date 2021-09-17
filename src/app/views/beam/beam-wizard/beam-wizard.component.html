@@ -1,8 +1,4 @@
 <mat-card class="p-0">
-    <mat-card-title class="">
-        <div class="card-title-text">Beam Card</div>
-        <mat-divider></mat-divider>
-    </mat-card-title>
     <mat-card-content>
         <mat-horizontal-stepper [linear]="true" #stepper>
             <mat-step [stepControl]="firstFormGroup">
@@ -45,16 +41,17 @@
                 <form [formGroup]="firstFormSubOneGroup">
                     <div class="h1 my-24" matLine>What type of floor?</div>
                     <mat-radio-group class="justify-center" fxLayout="column" fxLayout.gt-xs="row wrap"
-                        formControlName="firstSubOneCtrl">
-                        <mat-radio-button (click)="goForward(null, 1)" fxFlex="100" fxFlex.gt-sm="45" color="primary"
-                            value="timber" matStepperNext>
+                        formControlName="firstSubOneCtrl" style="justify-content: space-evenly;">
+                        <mat-radio-button (click)="goForward(null, 1)" class="m-4 mb-12" fxFlex="100" fxFlex.gt-sm="45"
+                            color="primary" value="timber" matStepperNext>
                             <img class="full-width img-border-radius" [src]="'assets/images/beam/floor-type/timber.JPG'"
-                                alt="Timber">
+                                alt="Timber" style="display: inherit;">
                             <span class="dark-blue-400 dark-blue-400-fg">Timber</span>
                         </mat-radio-button>
-                        <mat-radio-button (click)="goForward(null, 1)" fxFlex="100" fxFlex.gt-sm="45" color="primary"
-                            value="concrete">
-                            <img class="full-width" [src]="'assets/images/beam/floor-type/concrete.JPG'" alt="Concrete">
+                        <mat-radio-button (click)="goForward(null, 1)" class="m-4 mb-12" fxFlex="100" fxFlex.gt-sm="45"
+                            color="primary" value="concrete">
+                            <img class="full-width" [src]="'assets/images/beam/floor-type/concrete.JPG'" alt="Concrete"
+                                style="display: inherit;">
                             <span class="dark-blue-400 dark-blue-400-fg">Concrete</span>
                         </mat-radio-button>
                     </mat-radio-group>
@@ -129,23 +126,24 @@
             </mat-step>
 
             <mat-step [stepControl]="secondFormSubOneGroup">
-                <button mat-icon-button color="primary" class="float-right" matStepperPrevious>
+                <button mat-icon-button color="primary" class="float-right " matStepperPrevious>
                     <mat-icon>arrow_back</mat-icon>
                     Back
                 </button>
                 <form [formGroup]="secondFormSubOneGroup">
                     <div class="h1 my-24" matLine>What type of roof?</div>
-                    <mat-radio-group class="justify-center" fxLayout="column" fxLayout.gt-xs="row wrap"
-                        formControlName="secondSubOneCtrl">
+                    <mat-radio-group class="justify-center" style="justify-content: space-evenly;" fxLayout="column"
+                        fxLayout.gt-xs="row wrap" formControlName="secondSubOneCtrl">
                         <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="pitched"
-                            (click)="goForward(null, 1)">
+                            (click)="goForward(null, 1)" class="m-4 mb-12">
                             <img class="full-width img-border-radius" [src]="'assets/images/beam/roof-type/Pitched.JPG'"
-                                alt="Pitched">
+                                alt="Pitched" style="display: inherit;">
                             <span class="dark-blue-400 dark-blue-400-fg">Pitched</span>
                         </mat-radio-button>
                         <mat-radio-button fxFlex="100" fxFlex.gt-sm="45" color="primary" value="flat"
-                            (click)="goForward(null, 1)">
-                            <img class="full-width" [src]="'assets/images/beam/roof-type/Flat.JPG'" alt="Flat">
+                            (click)="goForward(null, 1)" class="m-4 mb-12">
+                            <img class="full-width" [src]="'assets/images/beam/roof-type/Flat.JPG'" alt="Flat"
+                                style="display: inherit;">
                             <span class="dark-blue-400 dark-blue-400-fg">Flat</span>
                         </mat-radio-button>
                     </mat-radio-group>
@@ -290,11 +288,12 @@
                 <ng-template matStepLabel>Purchase</ng-template>
                 <form [formGroup]="sixthFormGroup">
                     <ng-template matStepLabel>Wall Span</ng-template>
-                    <div class="h4" matLine>Price (design calculation only)</div>
-                    <div class="h2 mb-12">$ 5.00</div>
+                    <div class="h4" matLine>Price ({{onlyDesign ? 'design calculation only' : 'beam with calculation'}})
+                    </div>
+                    <div class="h2 mb-12">$ {{onlyDesign ? '5.00' : '25.00'}}</div>
 
                     <mat-form-field class="pt-1 pb-1" appearance="fill">
-                        <mat-label>Address for calculation</mat-label>
+                        <mat-label>{{onlyDesign ? 'Address for calculation' : 'Full delivery address'}}</mat-label>
                         <textarea matInput formControlName="sixthCtrl"></textarea>
                     </mat-form-field>
 
