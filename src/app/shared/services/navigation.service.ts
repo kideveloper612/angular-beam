@@ -756,13 +756,26 @@ export class NavigationService {
     //   }
   ];
 
+  customerIconMenu: IMenuItem[] = [
+    {
+      name: "My Beam",
+      type: "link",
+      tooltip: "My Beam",
+      icon: "highlight",
+      state: "beam",
+    },
+  ]
+
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
   iconTypeMenuTitle: string = "Frequently Accessed";
   // sets iconMenu as default;
   menuItems = new BehaviorSubject<IMenuItem[]>(this.iconMenu);
+  customerMenuItems = new BehaviorSubject<IMenuItem[]>(this.customerIconMenu);
+
   // navigation component has subscribed to this Observable
   menuItems$ = this.menuItems.asObservable();
+  customerItems$ = this.customerMenuItems.asObservable();
 
   // Customizer component uses this method to change menu.
   // You can remove this method and customizer component.

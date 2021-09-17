@@ -25,13 +25,25 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.iconTypeMenuTitle = this.navService.iconTypeMenuTitle;
-    this.menuItemsSub = this.navService.menuItems$.subscribe(menuItem => {
-      this.menuItems = menuItem;
-      //Checks item list has any icon type.
-      this.hasIconTypeMenuItem = !!this.menuItems.filter(
-        item => item.type === "icon"
-      ).length;
-    });
+    this.jwtAuth.user$.subscribe(user => {
+      if (typeof user !== 'undefined' && user !== null) {
+        if (user.role === 'admin') {
+          this.menuItemsSub = this.navService.menuItems$.subscribe(menuItem => {
+            this.menuItems = menuItem;
+          });
+        } else {
+          this.menuItemsSub = this.navService.customerItems$.subscribe(menuItem => {
+            this.menuItems = menuItem;
+          })
+        }
+
+        //Checks item list has any icon type.
+        this.hasIconTypeMenuItem = !!this.menuItems.filter(
+          item => item.type === "icon"
+        ).length;
+      }
+    })
+
     this.layoutConf = this.layout.layoutConf;
   }
   ngAfterViewInit() {

@@ -34,23 +34,17 @@ export const rootRouterConfig: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    children: [
-      {
-        path: 'beam',
-        loadChildren: () => import('./views/beam/beam.module').then(m => m.BeamModule),
-        data: { title: 'My Beam', breadcrumb: 'Beam' }
-      },
-    ]
-  },
-  {
-    path: '',
-    component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
         data: { title: 'Dashboard', breadcrumb: 'Dashboard' }
+      },
+      {
+        path: 'beam',
+        loadChildren: () => import('./views/beam/beam.module').then(m => m.BeamModule),
+        data: { title: 'My Beam', breadcrumb: 'Beam' }
       },
       {
         path: 'products',
