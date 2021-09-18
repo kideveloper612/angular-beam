@@ -17,7 +17,7 @@ export const rootRouterConfig: Routes = [
   // },
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'beam',
     pathMatch: 'full'
   },
   {
