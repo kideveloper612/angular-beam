@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { ProductsService } from 'app/shared/services/products.service';
+
 
 @Component({
   selector: 'app-beam-wizard',
@@ -9,59 +11,62 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class BeamWizardComponent implements OnInit {
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
-  forthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  sixthFormGroup: FormGroup;
+  floorSupportFormGroup: FormGroup;
+  roofSupportFormGroup: FormGroup;
+  wallSupportFormGroup: FormGroup;
+  wallSupportSpanFormGroup: FormGroup;
+  postcodeFormGroup: FormGroup;
+  addressFormGroup: FormGroup;
 
-  firstFormSubOneGroup: FormGroup;
-  firstFormSubTwoGroup: FormGroup;
-  secondFormSubOneGroup: FormGroup;
-  secondFormSubTwoGroup: FormGroup;
-  thirdFormSubGroup: FormGroup;
+  floorSupportTypeFormGroup: FormGroup;
+  floorSupportSpanFormGroup: FormGroup;
+  roofSupportTypeFormGroup: FormGroup;
+  roofSupportSpanFormGroup: FormGroup;
+  wallSupportDimsFormGroup: FormGroup;
 
-  floorFlag: Boolean = false;
-  roofFlag: Boolean = false;
-  wallFlag: Boolean = false;
+  supportFloor: Boolean = false;
+  supportRoof: Boolean = false;
+  supportWall: Boolean = false;
   onlyDesign: Boolean = false;
 
   @ViewChild('stepper') private myStepper: MatStepper;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private productSvc: ProductsService
+  ) { }
 
 
   ngOnInit() {
-    this.firstFormGroup = this.fb.group({});
-    this.firstFormSubOneGroup = this.fb.group({
-      firstSubOneCtrl: []
+    this.floorSupportFormGroup = this.fb.group({});
+    this.floorSupportTypeFormGroup = this.fb.group({
+      floorTypeCtrl: []
     });
-    this.firstFormSubTwoGroup = this.fb.group({
-      firstSubSideOneCtrl: [],
-      firstSubSideTwoCtrl: []
+    this.floorSupportSpanFormGroup = this.fb.group({
+      floorSpanSideOneCtrl: [],
+      floorSpanSideTwoCtrl: []
     });
-    this.secondFormGroup = this.fb.group({});
-    this.secondFormSubOneGroup = this.fb.group({
-      secondSubOneCtrl: []
+    this.roofSupportFormGroup = this.fb.group({});
+    this.roofSupportTypeFormGroup = this.fb.group({
+      roofTypeCtrl: []
     });
-    this.secondFormSubTwoGroup = this.fb.group({
-      secondSubSideOneCtrl: [],
-      secondSubSideTwoCtrl: []
+    this.roofSupportSpanFormGroup = this.fb.group({
+      roofSpanSideOneCtrl: [],
+      roofSpanSideTwoCtrl: []
     });
-    this.thirdFormGroup = this.fb.group({});
-    this.thirdFormSubGroup = this.fb.group({
-      thirdSubOneCtrl: [],
-      thirdSubTwoCtrl: []
+    this.wallSupportFormGroup = this.fb.group({});
+    this.wallSupportDimsFormGroup = this.fb.group({
+      wallThicknessCtrl: [],
+      wallHeightCtrl: []
     });
-    this.forthFormGroup = this.fb.group({
-      forthCtrl: ['', Validators.required]
+    this.wallSupportSpanFormGroup = this.fb.group({
+      wallSpanCtrl: ['', Validators.required]
     });
-    this.fifthFormGroup = this.fb.group({
-      fifthCtrl: []
+    this.postcodeFormGroup = this.fb.group({
+      postcodeCtrl: []
     });
-    this.sixthFormGroup = this.fb.group({
-      sixthCtrl: ['', Validators.required]
+    this.addressFormGroup = this.fb.group({
+      addressCtrl: ['', Validators.required]
     });
   }
 
@@ -82,17 +87,17 @@ export class BeamWizardComponent implements OnInit {
   goBack(step: number = 0, index: number = 1) {
     switch (step) {
       case 0:
-        if (this.floorFlag) this.backAction(index);
+        if (this.supportFloor) this.backAction(index);
         else this.backAction(1)
         break;
 
       case 1:
-        if (this.roofFlag) this.backAction(index);
+        if (this.supportRoof) this.backAction(index);
         else this.backAction(1)
         break;
 
       case 2:
-        if (this.wallFlag) this.backAction(index);
+        if (this.supportWall) this.backAction(index);
         else this.backAction(1)
         break;
 
@@ -110,64 +115,64 @@ export class BeamWizardComponent implements OnInit {
     switch (step) {
       case 0:
         if (index === 1) {
-          this.floorFlag = false;
+          this.supportFloor = false;
 
-          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].setValidators([Validators.required]);
-          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].updateValueAndValidity();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideOneCtrl'].setValidators([Validators.required]);
+          this.floorSupportSpanFormGroup.controls['floorSpanSideOneCtrl'].updateValueAndValidity();
 
-          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].setValidators([Validators.required]);
-          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].updateValueAndValidity();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideTwoCtrl'].setValidators([Validators.required]);
+          this.floorSupportSpanFormGroup.controls['floorSpanSideTwoCtrl'].updateValueAndValidity();
         }
         else {
-          this.floorFlag = true;
+          this.supportFloor = true;
 
-          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].clearValidators();
-          this.firstFormSubTwoGroup.controls['firstSubSideOneCtrl'].updateValueAndValidity();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideOneCtrl'].clearValidators();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideOneCtrl'].updateValueAndValidity();
 
-          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].clearValidators();
-          this.firstFormSubTwoGroup.controls['firstSubSideTwoCtrl'].updateValueAndValidity();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideTwoCtrl'].clearValidators();
+          this.floorSupportSpanFormGroup.controls['floorSpanSideTwoCtrl'].updateValueAndValidity();
         }
         break;
 
       case 1:
         if (index === 1) {
-          this.roofFlag = false;
+          this.supportRoof = false;
 
-          this.secondFormSubTwoGroup.controls['secondSubSideOneCtrl'].setValidators([Validators.required]);
-          this.secondFormSubTwoGroup.controls['secondSubSideOneCtrl'].updateValueAndValidity();
+          this.roofSupportSpanFormGroup.controls['roofSpanSideOneCtrl'].setValidators([Validators.required]);
+          this.roofSupportSpanFormGroup.controls['roofSpanSideOneCtrl'].updateValueAndValidity();
 
-          this.secondFormSubTwoGroup.controls['secondSubSideTwoCtrl'].setValidators([Validators.required]);
-          this.secondFormSubTwoGroup.controls['secondSubSideTwoCtrl'].updateValueAndValidity();
+          this.roofSupportSpanFormGroup.controls['roofSpanSideTwoCtrl'].setValidators([Validators.required]);
+          this.roofSupportSpanFormGroup.controls['roofSpanSideTwoCtrl'].updateValueAndValidity();
         }
         else {
-          this.roofFlag = true;
+          this.supportRoof = true;
 
-          this.firstFormSubTwoGroup.get['secondSubSideOneCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['secondSubSideOneCtrl']?.updateValueAndValidity();
+          this.roofSupportSpanFormGroup.get['roofSpanSideOneCtrl']?.clearValidators();
+          this.roofSupportSpanFormGroup.get['roofSpanSideOneCtrl']?.updateValueAndValidity();
 
-          this.firstFormSubTwoGroup.get['secondSubSideTwoCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['secondSubSideTwoCtrl']?.updateValueAndValidity();
+          this.roofSupportSpanFormGroup.get['roofSpanSideTwoCtrl']?.clearValidators();
+          this.roofSupportSpanFormGroup.get['roofSpanSideTwoCtrl']?.updateValueAndValidity();
         }
         break;
 
       case 2:
         if (index === 1) {
-          this.wallFlag = false;
+          this.supportWall = false;
 
-          this.thirdFormSubGroup.controls['thirdSubOneCtrl'].setValidators([Validators.required]);
-          this.thirdFormSubGroup.controls['thirdSubOneCtrl'].updateValueAndValidity();
+          this.wallSupportDimsFormGroup.controls['wallThicknessCtrl'].setValidators([Validators.required]);
+          this.wallSupportDimsFormGroup.controls['wallThicknessCtrl'].updateValueAndValidity();
 
-          this.thirdFormSubGroup.controls['thirdSubTwoCtrl'].setValidators([Validators.required]);
-          this.thirdFormSubGroup.controls['thirdSubTwoCtrl'].updateValueAndValidity();
+          this.wallSupportDimsFormGroup.controls['wallHeightCtrl'].setValidators([Validators.required]);
+          this.wallSupportDimsFormGroup.controls['wallHeightCtrl'].updateValueAndValidity();
         }
         else {
-          this.wallFlag = true;
+          this.supportWall = true;
 
-          this.firstFormSubTwoGroup.get['thirdSubOneCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['thirdSubOneCtrl']?.updateValueAndValidity();
+          this.wallSupportDimsFormGroup.get['wallThicknessCtrl']?.clearValidators();
+          this.wallSupportDimsFormGroup.get['wallThicknessCtrl']?.updateValueAndValidity();
 
-          this.firstFormSubTwoGroup.get['thirdSubTwoCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['thirdSubTwoCtrl']?.updateValueAndValidity();
+          this.wallSupportDimsFormGroup.get['wallHeightCtrl']?.clearValidators();
+          this.wallSupportDimsFormGroup.get['wallHeightCtrl']?.updateValueAndValidity();
         }
         break;
 
@@ -175,19 +180,132 @@ export class BeamWizardComponent implements OnInit {
         if (index === 1) {
           this.onlyDesign = false;
 
-          this.fifthFormGroup.controls['fifthCtrl'].setValidators([Validators.required]);
-          this.fifthFormGroup.controls['fifthCtrl'].updateValueAndValidity();
+          this.wallSupportSpanFormGroup.controls['wallSpanCtrl'].setValidators([Validators.required]);
+          this.wallSupportSpanFormGroup.controls['wallSpanCtrl'].updateValueAndValidity();
         }
         else {
           this.onlyDesign = true;
 
-          this.firstFormSubTwoGroup.get['fifthCtrl']?.clearValidators();
-          this.firstFormSubTwoGroup.get['fifthCtrl']?.updateValueAndValidity();
+          this.wallSupportSpanFormGroup.get['wallSpanCtrl']?.clearValidators();
+          this.wallSupportSpanFormGroup.get['wallSpanCtrl']?.updateValueAndValidity();
         }
         break;
 
       case 4:
-        console.log(step, index);
+        if (!this.onlyDesign) {
+          this.postcodeFormGroup.controls['postcodeCtrl'].setValidators([Validators.required]);
+          this.postcodeFormGroup.controls['postcodeCtrl'].updateValueAndValidity();
+        }
+        else {
+          this.postcodeFormGroup.get['postcodeCtrl']?.clearValidators();
+          this.postcodeFormGroup.get['postcodeCtrl']?.updateValueAndValidity();
+        }
+
+        const postCode = this.postcodeFormGroup.value.postcodeCtrl;
+        const target = this.onlyDesign ? 'design' : 'beam';
+
+        if (typeof postCode !== 'undefined' && postCode !== null) {
+          let L1, L2, FD = 0, FD1, FD2, fl = 0, fl1, fl2, RD = 0, RD1, RD2, Fw = 0, Ftotal, M, Sx, Ix
+
+
+          if (this.supportFloor) {
+            const floorType = this.floorSupportTypeFormGroup.value.floorTypeCtrl;
+            if (floorType == 'timber') {
+              L1 = 0.5;
+            }
+            else {
+              L1 = 2.5;
+            }
+
+            const preFloorSpanSide1 = this.floorSupportSpanFormGroup.value.floorSpanSideOneCtrl;
+            const preFloorSpanSide2 = this.floorSupportSpanFormGroup.value.floorSpanSideTwoCtrl;
+
+            const floorSpanSide1 = parseFloat(preFloorSpanSide1 === null ? 0 : preFloorSpanSide1);
+            const floorSpanSide2 = parseFloat(preFloorSpanSide2 === null ? 0 : preFloorSpanSide2);
+
+            FD1 = L1 * floorSpanSide1;
+            FD2 = L1 * floorSpanSide2;
+            FD = FD1 + FD2;
+
+            fl1 = 2.5 * floorSpanSide1;
+            fl2 = 2.5 * floorSpanSide2;
+            fl = fl1 + fl2;
+          }
+
+          if (this.supportRoof) {
+            const roofType = this.roofSupportTypeFormGroup.value.roofTypeCtrl;
+            if (roofType == 'pitch')
+              L2 = 1;
+            else
+              L2 = 0.5;
+
+            const preRoofSpanSide1 = this.roofSupportSpanFormGroup.value.roofSpanSideOneCtrl;
+            const preRoofSpanSide2 = this.roofSupportSpanFormGroup.value.roofSpanSideTwoCtrl;
+
+            const roofSpanSide1 = parseFloat(preRoofSpanSide1 === null ? 0 : preRoofSpanSide1);
+            const roofSpanSide2 = parseFloat(preRoofSpanSide2 === null ? 0 : preRoofSpanSide2);
+
+            RD1 = L2 * roofSpanSide1;
+            RD2 = L2 * roofSpanSide2;
+
+            RD = RD1 + RD2;
+          }
+
+          if (this.supportWall) {
+            const preThickness = this.wallSupportDimsFormGroup.value.wallThicknessCtrl;
+            const preHeight = this.wallSupportDimsFormGroup.value.wallHeightCtrl;
+
+            const thickness = parseFloat(preThickness === null ? 0 : preThickness);
+            const height = parseFloat(preHeight === null ? 0 : preHeight);
+
+            Fw = thickness * height * 20;
+          }
+
+          Ftotal = FD + fl + Fw + RD;
+          const openingSpan = parseFloat(this.wallSupportSpanFormGroup.value.wallSpanCtrl);
+          M = Ftotal * 1.5 * openingSpan * openingSpan / 8;
+          Sx = M * 1000 / 265;
+          Ix = 2.29 * Ftotal * openingSpan * openingSpan * openingSpan;
+
+          let data = {
+            Sx: Sx,
+            Ix: Ix,
+            postCode: postCode,
+            target: target
+          }
+
+          console.log(data);
+
+          this.productSvc.getProduct(data)
+            .subscribe(response => {
+              console.log(response);
+              if (response && response.status == "success" && response.data) {
+                // this.processResponse(response);
+                // this.snack.open('New product Added!', 'OK', { duration: 4000 })
+              } else {
+                // this.snack.open('Failed!', 'OK', { duration: 4000 })
+              }
+              // this.loader.close();
+            })
+
+
+          // if (res && res.status == "success" && res.data) {
+          //   yield put(productAction.getProductSuccess(res.data));
+          // } else {
+          //   yield put(productAction.getProductFailed(true));
+          // }
+
+          console.log(data);
+
+          // let res = yield call(Api.getProduct, data)
+          // console.log(res);
+          // if (res && res.status == "success" && res.data) {
+          //   yield put(productAction.getProductSuccess(res.data));
+          // } else {
+          //   yield put(productAction.getProductFailed(true));
+          // }
+
+        }
         break
 
       default:
@@ -198,16 +316,16 @@ export class BeamWizardComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.firstFormGroup.value);
-    console.log(this.secondFormGroup.value);
-    console.log(this.thirdFormGroup.value);
-    console.log(this.forthFormGroup.value);
-    console.log(this.fifthFormGroup.value);
-    console.log(this.sixthFormGroup.value);
-    console.log(this.firstFormSubOneGroup.value);
-    console.log(this.firstFormSubTwoGroup.value);
-    console.log(this.secondFormSubOneGroup.value);
-    console.log(this.secondFormSubTwoGroup.value);
-    console.log(this.thirdFormSubGroup.value);
+    console.log(this.floorSupportFormGroup.value);
+    console.log(this.roofSupportFormGroup.value);
+    console.log(this.wallSupportFormGroup.value);
+    console.log(this.wallSupportSpanFormGroup.value);
+    console.log(this.postcodeFormGroup.value);
+    console.log(this.addressFormGroup.value);
+    console.log(this.floorSupportTypeFormGroup.value);
+    console.log(this.floorSupportSpanFormGroup.value);
+    console.log(this.roofSupportTypeFormGroup.value);
+    console.log(this.roofSupportSpanFormGroup.value);
+    console.log(this.wallSupportDimsFormGroup.value);
   }
 }

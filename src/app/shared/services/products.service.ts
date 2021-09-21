@@ -15,6 +15,25 @@ export class ProductsService {
 
   }
 
+  getProduct(data: any) {
+    const formdata = new FormData();
+
+    formdata.append('postCode', data.postCode);
+    formdata.append("target", data.target);
+    formdata.append('Ix', data.Ix);
+    formdata.append('Sx', data.Sx);
+
+    return this.http.post(`${environment.apiURL}/getProduct`, formdata).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError((error) => {
+        return of(error);
+      })
+    )
+  }
+
+
   getProducts() {
     let data = new FormData();
     return this.http.post(`${environment.apiURL}/getProducts`, data)
