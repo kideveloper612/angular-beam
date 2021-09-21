@@ -18,11 +18,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { BeamWizardComponent } from './beam-wizard/beam-wizard.component';
 
 import { BeamRoute } from './beam.routing';
 import { BeamComponent } from './beam.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
     imports: [
@@ -45,9 +47,10 @@ import { BeamComponent } from './beam.component';
         QuillModule,
         NgxDatatableModule,
         FileUploadModule,
+        NgxStripeModule.forChild('pk_test_51Jb71AJHp287mdDjNJtSeWnkwDMwiAWOxclU4MW0jazPzzRzqFLiaSuNBVF4wCzJ2R4vrsnBZJ49quMAxUi1RI81001eIaSrSQ'),
         RouterModule.forChild(BeamRoute),
     ],
-    declarations: [BeamWizardComponent, BeamComponent]
+    declarations: [BeamWizardComponent, BeamComponent, CheckoutComponent]
 })
 
 export class BeamModule { }
