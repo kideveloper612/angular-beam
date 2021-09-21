@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtAuthService } from './auth/jwt-auth.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map, catchError, delay } from "rxjs/operators";
-import { of, BehaviorSubject, throwError } from "rxjs";
+import { of, BehaviorSubject, throwError, Observable } from "rxjs";
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -10,9 +10,15 @@ import { environment } from 'environments/environment';
 })
 export class ProductsService {
 
-  constructor(private jwtAuthSvc: JwtAuthService,
-    private http: HttpClient) {
+  public purchaseTerm: BehaviorSubject<Number> = new BehaviorSubject<Number>(0);
+  public purchaseTerm$: Observable<Number> = this.purchaseTerm.asObservable();
 
+  constructor(
+    private http: HttpClient) {
+  }
+
+  updatePurchaseTerm(price: any) {
+    this.purchaseTerm.next(price);
   }
 
   getProduct(data: any) {

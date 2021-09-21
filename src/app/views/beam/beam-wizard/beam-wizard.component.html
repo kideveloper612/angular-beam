@@ -1,5 +1,4 @@
 <mat-card class="p-0">
-    <app-checkout></app-checkout>
     <mat-card-content>
         <mat-horizontal-stepper [linear]="true" #stepper>
             <mat-step [stepControl]="floorSupportFormGroup">
@@ -285,12 +284,12 @@
                     <mat-icon>arrow_back</mat-icon>
                     Back
                 </button>
-                <ng-template matStepLabel>Purchase</ng-template>
+                <ng-template matStepLabel>Address</ng-template>
                 <form [formGroup]="addressFormGroup">
                     <ng-template matStepLabel>Address</ng-template>
                     <div class="h4" matLine>Price ({{onlyDesign ? 'design calculation only' : 'beam with calculation'}})
                     </div>
-                    <div class="h2 mb-12">&#163; {{onlyDesign ? '5.00' : '25.00'}}</div>
+                    <div class="h2 mb-12">&#163; {{this.productPrice}}</div>
 
                     <mat-form-field class="pt-1 pb-1" appearance="fill">
                         <mat-label>{{onlyDesign ? 'Address for calculation' : 'Full delivery address'}}</mat-label>
@@ -299,11 +298,19 @@
 
                     <div fxLayout="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="200px" color="primary" class="mt-12"
-                            (click)="submit()">
+                            matStepperNext>
                             <mat-icon>payment</mat-icon>
                             Pay with card
                         </button>
                     </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="paymentFormGroup">
+                <ng-template matStepLabel>Purchase</ng-template>
+                <form [formGroup]="paymentFormGroup">
+                    <ng-template matStepLabel>Address</ng-template>
+                    <app-checkout></app-checkout>
                 </form>
             </mat-step>
         </mat-horizontal-stepper>

@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ProductsService } from 'app/shared/services/products.service';
+import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
+import { AppConfirmService } from "app/shared/services/app-confirm/app-confirm.service";
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,6 +20,7 @@ export class BeamWizardComponent implements OnInit {
   wallSupportSpanFormGroup: FormGroup;
   postcodeFormGroup: FormGroup;
   addressFormGroup: FormGroup;
+  paymentFormGroup: FormGroup;
 
   floorSupportTypeFormGroup: FormGroup;
   floorSupportSpanFormGroup: FormGroup;
@@ -29,11 +33,19 @@ export class BeamWizardComponent implements OnInit {
   supportWall: Boolean = false;
   onlyDesign: Boolean = false;
 
+  productData: Object;
+  productPrice: Number = 0;
+
+  private snackBarRef: MatSnackBarRef<SimpleSnackBar>;
+
   @ViewChild('stepper') private myStepper: MatStepper;
 
   constructor(
     private fb: FormBuilder,
-    private productSvc: ProductsService
+    private productSvc: ProductsService,
+    private loader: AppLoaderService,
+    private confirmService: AppConfirmService,
+    private snackBar: MatSnackBar
   ) { }
 
 
@@ -68,6 +80,7 @@ export class BeamWizardComponent implements OnInit {
     this.addressFormGroup = this.fb.group({
       addressCtrl: ['', Validators.required]
     });
+    this.paymentFormGroup = this.fb.group({});
   }
 
   backAction(step: number = 1) {
@@ -274,45 +287,51 @@ export class BeamWizardComponent implements OnInit {
             target: target
           }
 
-          console.log(data);
+          this.loader.open();
 
           this.productSvc.getProduct(data)
             .subscribe(response => {
-              console.log(response);
+              this.loader.close();
+
               if (response && response.status == "success" && response.data) {
-                // this.processResponse(response);
-                // this.snack.open('New product Added!', 'OK', { duration: 4000 })
+                this.productData = response.data;
+
+                if (target === 'beam') {
+                  const ppm = parseFloat(response.data.ppm);
+                  this.productPrice = parseFloat((openingSpan * ppm).toFixed(2));
+                } else {
+                  this.productPrice = 5.00;
+                }
+
+                this.productSvc.updatePurchaseTerm(this.productPrice);
+                this.forwardAction(index);
               } else {
-                // this.snack.open('Failed!', 'OK', { duration: 4000 })
+                this.confirmService.confirm({
+                  title: 'Can\'t find product',
+                  message: `Would you like one of our engineers to look at this for you?`
+                })
+                  .subscribe(res => {
+                    if (res) {
+                      this.snackBarRef = this.snackBar.open(
+                        'Your request has been submitted successfully!',
+                        '',
+                        { duration: 2000 }
+                      );
+                      this.snackBarRef.afterDismissed().subscribe(() => {
+                        this.snackBar.open('Request help for design of beam', '', { duration: 2000 });
+                      });
+                    } else return;
+                  });
               }
-              // this.loader.close();
-            })
-
-
-          // if (res && res.status == "success" && res.data) {
-          //   yield put(productAction.getProductSuccess(res.data));
-          // } else {
-          //   yield put(productAction.getProductFailed(true));
-          // }
-
-          console.log(data);
-
-          // let res = yield call(Api.getProduct, data)
-          // console.log(res);
-          // if (res && res.status == "success" && res.data) {
-          //   yield put(productAction.getProductSuccess(res.data));
-          // } else {
-          //   yield put(productAction.getProductFailed(true));
-          // }
-
+            });
         }
-        break
+        break;
 
       default:
         break;
     }
 
-    this.forwardAction(index);
+    if (step !== 4) this.forwardAction(index);
   }
 
   submit() {
