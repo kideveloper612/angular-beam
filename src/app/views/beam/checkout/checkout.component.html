@@ -1,9 +1,4 @@
 <form novalidate (ngSubmit)="createToken()" [formGroup]="billingFormGroup">
-    <div class="mb-12" fxLayout="column" fxLayout.gt-xs="row" style="justify-content: space-between;">
-        <button mat-stroked-button fxFlex="100" fxFlex.gt-xs="49" color="primary" class="mt-12">Cancel</button>
-        <button type="submit" mat-raised-button fxFlex="100" fxFlex.gt-xs="49" color="primary"
-            class="mt-12">Pay</button>
-    </div>
     <div class="mb-24">
         <mat-label>Card</mat-label>
         <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
@@ -83,5 +78,10 @@
             </div>
         </div>
     </div>
-
+    <div class="mt-12" fxLayout="column" fxLayout.gt-xs="row" style="justify-content: space-between;">
+        <button mat-stroked-button fxFlex="100" fxFlex.gt-xs="49" color="primary" class="mt-12"
+            (click)="back($event)">Cancel</button>
+        <button type="submit" mat-raised-button fxFlex="100" fxFlex.gt-xs="49" color="primary"
+            class="mt-12">Pay</button>
+    </div>
 </form>

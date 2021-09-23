@@ -13,12 +13,47 @@ export class ProductsService {
   public purchaseTerm: BehaviorSubject<Number> = new BehaviorSubject<Number>(0);
   public purchaseTerm$: Observable<Number> = this.purchaseTerm.asObservable();
 
+  public target: BehaviorSubject<String> = new BehaviorSubject<String>('');
+  public target$: Observable<String> = this.target.asObservable();
+
+  public comment: BehaviorSubject<String> = new BehaviorSubject<String>('');
+  public comment$: Observable<String> = this.comment.asObservable();
+
+  public orderContent: BehaviorSubject<Object> = new BehaviorSubject<Object>({});
+  public orderContent$: Observable<Object> = this.orderContent.asObservable();
+
+  public optProduct: BehaviorSubject<Object> = new BehaviorSubject<Object>({});
+  public optProduct$: Observable<Object> = this.optProduct.asObservable();
+
+  public postCode: BehaviorSubject<String> = new BehaviorSubject<String>('');
+  public postCode$: Observable<String> = this.postCode.asObservable();
+
   constructor(
     private http: HttpClient) {
   }
 
   updatePurchaseTerm(price: any) {
     this.purchaseTerm.next(price);
+  }
+
+  updateTarget(item: any) {
+    this.target.next(item);
+  }
+
+  updateComment(comment: any) {
+    this.comment.next(comment);
+  }
+
+  updateOrderContent(content: any) {
+    this.orderContent.next(content);
+  }
+
+  updateOptProduct(content: any) {
+    this.optProduct.next(content);
+  }
+
+  updatePostCode(code: any) {
+    this.postCode.next(code);
   }
 
   getProduct(data: any) {
@@ -36,9 +71,38 @@ export class ProductsService {
       catchError((error) => {
         return of(error);
       })
-    )
+    );
   }
 
+  orderByCard(data: any) {
+    let formdata = new FormData();
+
+    formdata.append('amount', data.amount);
+    formdata.append('tokenId', data.tokenId);
+    formdata.append('comment', data.comment);
+    formdata.append('postCode', data.postCode);
+    formdata.append('target', data.target);
+    formdata.append('pid', data.pid);
+    formdata.append('sid', data.sid);
+    formdata.append('orderContent', data.orderContent);
+
+    return fetch(`${environment.apiURL}/orderByCard`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${data.token}`
+        },
+        body: formdata
+      })
+      .then((response) => response.json())
+      .then((responsJson) => {
+        return responsJson;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error
+      });
+  }
 
   getProducts() {
     let data = new FormData();

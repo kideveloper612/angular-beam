@@ -101,23 +101,25 @@ export class BeamWizardComponent implements OnInit {
     switch (step) {
       case 0:
         if (this.supportFloor) this.backAction(index);
-        else this.backAction(1)
+        else this.backAction(1);
         break;
 
       case 1:
         if (this.supportRoof) this.backAction(index);
-        else this.backAction(1)
+        else this.backAction(1);
         break;
 
       case 2:
         if (this.supportWall) this.backAction(index);
-        else this.backAction(1)
+        else this.backAction(1);
         break;
 
       case 3:
         if (this.onlyDesign) this.backAction(index);
-        else this.backAction(1)
+        else this.backAction(1);
         break;
+      case 4:
+        this.backAction(1);
 
       default:
         break;
@@ -294,7 +296,11 @@ export class BeamWizardComponent implements OnInit {
               this.loader.close();
 
               if (response && response.status == "success" && response.data) {
+                this.productSvc.updatePostCode(this.postcodeFormGroup.value.postcodeCtrl);
+
                 this.productData = response.data;
+
+                this.productSvc.updateOptProduct(this.productData);
 
                 if (target === 'beam') {
                   const ppm = parseFloat(response.data.ppm);
@@ -304,6 +310,9 @@ export class BeamWizardComponent implements OnInit {
                 }
 
                 this.productSvc.updatePurchaseTerm(this.productPrice);
+                this.productSvc.updateTarget(target);
+                this.productSvc.updateComment(this.addressFormGroup.value.addressCtrl);
+
                 this.forwardAction(index);
               } else {
                 this.confirmService.confirm({
@@ -327,12 +336,39 @@ export class BeamWizardComponent implements OnInit {
         }
         break;
 
+      case 5:
+        const orderContent = {
+          supportFloor: this.supportFloor,
+          floorType: this.floorSupportTypeFormGroup.value.floorTypeCtrl,
+          floorSpanSide1: this.floorSupportSpanFormGroup.value.floorSpanSideOneCtrl,
+          floorSpanSide2: this.floorSupportSpanFormGroup.value.floorSpanSideTwoCtrl,
+          supportRoof: this.supportRoof,
+          roofType: this.roofSupportTypeFormGroup.value.roofTypeCtrl,
+          roofSpanSide1: this.roofSupportSpanFormGroup.value.roofSpanSideOneCtrl,
+          roofSpanSide2: this.roofSupportSpanFormGroup.value.roofSpanSideTwoCtrl,
+          supportWall: this.supportWall,
+          thickness: this.wallSupportDimsFormGroup.value.wallThicknessCtrl,
+          height: this.wallSupportDimsFormGroup.value.wallHeightCtrl,
+          openingSpan: this.wallSupportSpanFormGroup.value.wallSpanCtrl
+        }
+
+        this.productSvc.updateOrderContent(orderContent);
+
+        this.productPrice = 5.00;
+
+        this.productSvc.updatePurchaseTerm(this.productPrice);
+        this.productSvc.updateTarget(this.onlyDesign ? 'design' : 'beam');
+        this.productSvc.updateComment(this.addressFormGroup.value.addressCtrl);
+
+        this.forwardAction(index);
+        break;
       default:
         break;
     }
 
     if (step !== 4) this.forwardAction(index);
   }
+
 
   submit() {
     console.log(this.floorSupportFormGroup.value);

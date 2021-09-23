@@ -298,7 +298,7 @@
 
                     <div fxLayout="row">
                         <button mat-raised-button fxFlex="100" fxFlex.gt-sm="200px" color="primary" class="mt-12"
-                            matStepperNext>
+                            (click)="goForward(5)">
                             <mat-icon>payment</mat-icon>
                             Pay with card
                         </button>
@@ -310,7 +310,7 @@
                 <ng-template matStepLabel>Purchase</ng-template>
                 <form [formGroup]="paymentFormGroup">
                     <ng-template matStepLabel>Address</ng-template>
-                    <app-checkout></app-checkout>
+                    <app-checkout (goBack)="goBack(4, 1)"></app-checkout>
                 </form>
             </mat-step>
         </mat-horizontal-stepper>
