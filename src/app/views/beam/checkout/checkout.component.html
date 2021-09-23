@@ -1,7 +1,87 @@
-<form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-    <input type="text" formControlName="name" placeholder="Jane Doe">
-    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-    <button type="submit">
-        CREATE TOKEN
-    </button>
+<form novalidate (ngSubmit)="createToken()" [formGroup]="billingFormGroup">
+    <div class="mb-12" fxLayout="column" fxLayout.gt-xs="row" style="justify-content: space-between;">
+        <button mat-stroked-button fxFlex="100" fxFlex.gt-xs="49" color="primary" class="mt-12">Cancel</button>
+        <button type="submit" mat-raised-button fxFlex="100" fxFlex.gt-xs="49" color="primary"
+            class="mt-12">Pay</button>
+    </div>
+    <div class="mb-24">
+        <mat-label>Card</mat-label>
+        <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+    </div>
+    <div fxLayout="column" fxLayout.gt-xs="row wrap" style="justify-content: space-between;">
+        <div fxFlex="100" class="mb-8">
+            <mat-label>Billing Address</mat-label>
+        </div>
+        <div fxFlex.gt-xs="49">
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput name="name" formControlName="name" placeholder="Name" value="">
+                </mat-form-field>
+            </div>
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Address</mat-label>
+                    <input matInput name="address" formControlName="address" placeholder="Address" value="">
+                </mat-form-field>
+            </div>
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Apt.</mat-label>
+                    <input matInput name="apt" formControlName="apt" placeholder="Apt." value="">
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="49">
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>City</mat-label>
+                    <input matInput name="city" formControlName="city" placeholder="City" value="">
+                </mat-form-field>
+            </div>
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>State/Province/Region</mat-label>
+                    <input matInput name="state" formControlName="state" placeholder="State" value="">
+                </mat-form-field>
+            </div>
+            <div class="pb-1">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <mat-select name="country" formControlName="country" [(value)]="selected">
+                        <mat-option>None</mat-option>
+                        <mat-option value="AU">Australia</mat-option>
+                        <mat-option value="AT">Austria</mat-option>
+                        <mat-option value="BE">Belgium</mat-option>
+                        <mat-option value="BR">Brazil</mat-option>
+                        <mat-option value="CA">Canada</mat-option>
+                        <mat-option value="CN">China</mat-option>
+                        <mat-option value="DK">Denmark</mat-option>
+                        <mat-option value="FI">Finland</mat-option>
+                        <mat-option value="FR">France</mat-option>
+                        <mat-option value="DE">Germany</mat-option>
+                        <mat-option value="HK">Hong Kong</mat-option>
+                        <mat-option value="IE">Ireland</mat-option>
+                        <mat-option value="IT">Italy</mat-option>
+                        <mat-option value="JP">Japan</mat-option>
+                        <mat-option value="LU">Luxembourg</mat-option>
+                        <mat-option value="MY">Malaysia</mat-option>
+                        <mat-option value="MX">Mexico</mat-option>
+                        <mat-option value="NL">Netherlands</mat-option>
+                        <mat-option value="NZ">New Zealand</mat-option>
+                        <mat-option value="NO">Norway</mat-option>
+                        <mat-option value="PL">Poland</mat-option>
+                        <mat-option value="PT">Portugal</mat-option>
+                        <mat-option value="SG">Singapore</mat-option>
+                        <mat-option value="ES">Spain</mat-option>
+                        <mat-option value="SE">Sweden</mat-option>
+                        <mat-option value="CH">Switzerland</mat-option>
+                        <mat-option value="GB">United Kingdom</mat-option>
+                        <mat-option value="US" selected="selected">United States</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
 </form>

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import {
   StripeCardElementOptions,
   StripeElementsOptions
 } from '@stripe/stripe-js';
+import { ProductsService } from 'app/shared/services/products.service';
 
 
 @Component({
@@ -36,20 +36,44 @@ export class CheckoutComponent implements OnInit {
     locale: 'es'
   };
 
-  stripeTest: FormGroup;
+  billingFormGroup: FormGroup;
+  productPrice: Number = 0;
+  selected: String;
 
-  constructor(private fb: FormBuilder, private stripeService: StripeService) { }
-
-  ngOnInit(): void {
-    this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]]
+  constructor(
+    private fb: FormBuilder,
+    private stripeService: StripeService,
+    private productSvc: ProductsService
+  ) {
+    this.billingFormGroup = this.fb.group({
+      name: new FormControl('', [
+        Validators.required
+      ]),
+      address: new FormControl('', [
+        Validators.required
+      ]),
+      apt: new FormControl('', [
+        Validators.required
+      ]),
     });
   }
 
+  ngOnInit(): void {
+    this.productSvc.purchaseTerm$.subscribe(price => this.productPrice = price);
+  }
+
   createToken(): void {
-    const name = this.stripeTest.get('name').value;
+    var options = {
+      name: 'name',
+      address_line1: 'line1',
+      address_line2: 'line2',
+      address_city: 'city',
+      address_state: 'state',
+      address_zip: 'zip',
+      address_country: 'country',
+    };
     this.stripeService
-      .createToken(this.card.element, { name })
+      .createToken(this.card.element, options)
       .subscribe((result) => {
         if (result.token) {
           // Use the token

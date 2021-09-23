@@ -25,6 +25,7 @@ import { BeamWizardComponent } from './beam-wizard/beam-wizard.component';
 import { BeamRoute } from './beam.routing';
 import { BeamComponent } from './beam.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -32,6 +33,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatSelectModule,
         MatListModule,
         MatCardModule,
         MatDatepickerModule,
