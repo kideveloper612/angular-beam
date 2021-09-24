@@ -7,6 +7,8 @@ import {
 } from '@stripe/stripe-js';
 import { ProductsService } from 'app/shared/services/products.service';
 import { JwtAuthService } from 'app/shared/services/auth/jwt-auth.service';
+import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -53,6 +55,8 @@ export class CheckoutComponent implements OnInit {
     private stripeService: StripeService,
     private productSvc: ProductsService,
     public jwtAuth: JwtAuthService,
+    private loader: AppLoaderService,
+    private snackBar: MatSnackBar
   ) {
     this.billingFormGroup = this.fb.group({
       name: new FormControl('', [
@@ -123,31 +127,33 @@ export class CheckoutComponent implements OnInit {
           }
 
           console.log(requestData);
+          this.loader.open();
+
           this.productSvc.orderByCard(requestData)
-            .then(res => console.log(res))
-            .catch(error => console.log(error));
+            .then(res => {
+              this.loader.close();
 
+              if (res && res.status === 'success') {
+                this.snackBar.open(
+                  'Your order has been received successfully!',
+                  'OK',
+                );
+              } else {
+                this.snackBar.open(
+                  res.msg,
+                  'OK',
+                );
+              }
+            })
+            .catch(error => {
+              this.loader.close();
 
-          // let res = yield call(Api.orderByCard, data);
-          // if (res && res.status == "success") {
-          //   Toast.show('Your order has been received successfully!', Toast.LONG);
-          //   yield put(productAction.orderByCardSuccess());
-          // } else {
-          //   Toast.show(res.msg, Toast.LONG);
-          //   yield put(productAction.orderByCardFailed());
-          // }
-
-
-          // this.props.dispatch(
-          //   productAction.orderByCardAttempt(
-          //     tokenId,
-          //     this.getPrice(),
-          //     target,
-          //     this.state.comment,
-          //   ),
-          // );
+              this.snackBar.open(
+                error.msg,
+                'OK',
+              );
+            });
         } else if (result.error) {
-          // Error creating the token
           console.log(result.error.message);
         }
       });

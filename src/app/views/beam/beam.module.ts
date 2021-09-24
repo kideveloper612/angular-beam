@@ -49,7 +49,7 @@ import { MatSelectModule } from '@angular/material/select';
         QuillModule,
         NgxDatatableModule,
         FileUploadModule,
-        NgxStripeModule.forChild('pk_test_51Jb71AJHp287mdDjNJtSeWnkwDMwiAWOxclU4MW0jazPzzRzqFLiaSuNBVF4wCzJ2R4vrsnBZJ49quMAxUi1RI81001eIaSrSQ'),
+        NgxStripeModule.forChild('pk_live_51HSfOdBziMncUTWD3JDFGwAQJUzg7udko7DUUSExeoazUuByq46Up042zeIXMKIO0LUE2bpwUecZDpCm9b6P8h1W00xrSUmOf6'),
         RouterModule.forChild(BeamRoute),
     ],
     declarations: [BeamWizardComponent, BeamComponent, CheckoutComponent]
