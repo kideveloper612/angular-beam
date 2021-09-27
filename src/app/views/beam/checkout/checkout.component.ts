@@ -110,6 +110,8 @@ export class CheckoutComponent implements OnInit {
       address_state: state,
       address_country: country,
     };
+
+    this.loader.open();
     this.stripeService
       .createToken(this.card.element, options)
       .subscribe((result) => {
@@ -125,9 +127,6 @@ export class CheckoutComponent implements OnInit {
             sid: this.optProduct.sid,
             orderContent: this.orderContent
           }
-
-          console.log(requestData);
-          this.loader.open();
 
           this.productSvc.orderByCard(requestData)
             .then(res => {
@@ -154,6 +153,12 @@ export class CheckoutComponent implements OnInit {
               );
             });
         } else if (result.error) {
+          this.loader.close();
+
+          this.snackBar.open(
+            result.error.message,
+            'OK',
+          );
           console.log(result.error.message);
         }
       });
